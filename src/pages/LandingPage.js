@@ -1,10 +1,9 @@
 import React from 'react'
+import Welcome from '../components/Welcome';
 
 const LandingPage = () => {
     return (
-        <div>
-            Welcome to our service
-        </div>
+        <Welcome />
     )
 }
 
