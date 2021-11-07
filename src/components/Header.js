@@ -5,15 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Header = () => {
+    let currentPage = window.location.pathname;
     return (
         <StyledHeader>
             <Link to="/">
             </Link>
             <nav classname="header-nav">
-                <Link to ="/walklemap">워클맵</Link>
-                <Link to ="/creators">크리에이터</Link>
-                <Link to ="/projects">프로젝트</Link>
-                <Link to ="/community">커뮤니티</Link>
+                <Link to ="/walklemap" className={(currentPage === "/walklemap" ? 'current-page' : 'nav-element')}>워클맵</Link>
+                <Link to ="/creators" className={(currentPage === "/creators" ? 'current-page' : 'nav-element')}>크리에이터</Link>
+                <Link to ="/projects"className={(currentPage === "/projects" ? 'current-page' : 'nav-element')}>프로젝트</Link>
+                <Link to ="/community"className={(currentPage === "/community" ? 'current-page' : 'nav-element')}>커뮤니티</Link>
             </nav>
             <Link to ="/addproject">
                 <AddProjectBtn>+ 프로젝트 생성</AddProjectBtn>
@@ -36,12 +37,21 @@ const StyledHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 1rem;
+    border-bottom: 1px solid #DBDBDB;
+    padding: 1rem 1rem 1rem 0rem;
     width: 100%;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     font-family: "Noto Sans KR", sans-serif;
-    text-decoration: none;
-    a:link, a:visited { color: darkgrey; text-decoration: none; padding: 1rem;}
+    a { text-decoration: none; }
+    .current-page {
+        color: #7054FF;
+        padding: 1rem;
+    }
+    .nav-element {
+        color: #313338;
+        padding: 1rem;
+    }
 `;
 
 const AddProjectBtn = styled.div`
@@ -50,9 +60,9 @@ const AddProjectBtn = styled.div`
     text-align: center;
     border: none;
     border-radius: 25px;
-    width: 100px;
-    height: 25px;
-    font-size: 4px;
+    width: 140px;
+    height: 35px;
+    font-size: 0.9rem;
     color: #FFFFFF;
     background: #7054FF;
     :hover {
