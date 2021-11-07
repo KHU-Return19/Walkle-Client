@@ -29,5 +29,6 @@ const StyledSearchBar = styled.div`
         background: #FAFAFA;
         font-size: 1rem;
         font-weight: 600;
+        :focus{ outline: none; }
     }
 `;
