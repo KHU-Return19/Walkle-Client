@@ -1,4 +1,4 @@
 export const State = atom({
-    key: 'state',
-    default: ""
+  key: "state",
+  default: "",
 });
