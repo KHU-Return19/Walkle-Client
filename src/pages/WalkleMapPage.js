@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
+import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
 
 // const { kakao } = window;
 
@@ -14,19 +14,21 @@ const WalkleMapPage = () => {
     const container = useRef(null); //지도를 담을 영역의 DOM 레퍼런스
 
     useEffect(() => {
-      new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
-    return () => {};
+        new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
+        return () => {};
     }, []);
 
-    return (<>
-    <Header />
-    <SearchBar />
-    <div
-        className="map"
-        style={{ width: "100vw", height: "500px" }}
-        ref={container}
-    ></div>
-    </>);
-}
+    return (
+        <>
+            <Header />
+            <SearchBar />
+            <div
+                className="map"
+                style={{ width: "100vw", height: "500px" }}
+                ref={container}
+            ></div>
+        </>
+    );
+};
 
 export default WalkleMapPage;
