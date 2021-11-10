@@ -34,7 +34,9 @@ const SignInForm = ({ id, password, handleInput, onSubmitHandler }) => {
         </SignInFormBox>
         <SocialSignInFormBox>
           <SubText>신규 회원이신가요?</SubText>
-          <EmailSignUpBtn>이메일로 가입하기</EmailSignUpBtn>
+          <Link to="/signup">
+            <EmailSignUpBtn>이메일로 가입하기</EmailSignUpBtn>
+          </Link>
           <KaKaoSignUpBtn>카카오로 가입하기</KaKaoSignUpBtn>
         </SocialSignInFormBox>
       </SignInContainer>
@@ -68,6 +70,9 @@ const SignInFormBox = styled.form`
   padding: 2rem;
   border: 1px solid #f1f1f1;
   border-radius: 10px;
+  a {
+    text-decoration: none;
+  }
 `;
 
 const InputContainer = styled.div`
