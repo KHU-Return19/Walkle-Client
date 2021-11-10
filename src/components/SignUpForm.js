@@ -1,6 +1,7 @@
-import React, { Link } from "react";
+import React from "react";
 import styled from "styled-components";
 import StyledButton from "./Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignUpForm = ({
   name,
@@ -27,7 +28,13 @@ const SignUpForm = ({
                 placeholder="이름을 입력해주세요"
                 required
               />
+              <SuccessText>
+                <FontAwesomeIcon icon="check" />
+              </SuccessText>
             </InputContainer>
+            <CommentContainer>
+              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
+            </CommentContainer>
           </SignUpRow>
           <SignUpRow>
             <LabelText>이메일</LabelText>
@@ -39,7 +46,13 @@ const SignUpForm = ({
                 placeholder="이메일을 입력해주세요"
                 required
               />
+              <SuccessText>
+                <FontAwesomeIcon icon="check" />
+              </SuccessText>
             </InputContainer>
+            <CommentContainer>
+              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
+            </CommentContainer>
           </SignUpRow>
           <SignUpRow>
             <LabelText>인증번호</LabelText>
@@ -51,7 +64,13 @@ const SignUpForm = ({
                 placeholder="인증번호를 입력해주세요"
                 required
               />
+              <SuccessText>
+                <FontAwesomeIcon icon="check" />
+              </SuccessText>
             </InputContainer>
+            <CommentContainer>
+              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
+            </CommentContainer>
           </SignUpRow>
           <SignUpRow>
             <LabelText>아이디</LabelText>
@@ -63,7 +82,13 @@ const SignUpForm = ({
                 placeholder="아이디를 입력해주세요"
                 required
               />
+              <SuccessText>
+                <FontAwesomeIcon icon="check" />
+              </SuccessText>
             </InputContainer>
+            <CommentContainer>
+              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
+            </CommentContainer>
           </SignUpRow>
           <SignUpRow>
             <LabelText>비밀번호</LabelText>
@@ -75,7 +100,13 @@ const SignUpForm = ({
                 placeholder="비밀번호를 입력해주세요"
                 required
               />
+              <SuccessText>
+                <FontAwesomeIcon icon="check" />
+              </SuccessText>
             </InputContainer>
+            <CommentContainer>
+              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
+            </CommentContainer>
           </SignUpRow>
           <SignUpRow>
             <LabelText>비밀번호 확인</LabelText>
@@ -87,7 +118,13 @@ const SignUpForm = ({
                 placeholder="다시 한번 비밀번호를 입력해주세요"
                 required
               />
+              <SuccessText>
+                <FontAwesomeIcon icon="check" />
+              </SuccessText>
             </InputContainer>
+            <CommentContainer>
+              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
+            </CommentContainer>
           </SignUpRow>
           <ToProfilePageBtn type="submit">
             프로필 등록하러 가기
@@ -133,6 +170,7 @@ const InputContainer = styled.div`
   display: table-cell;
   vertical-align: middle;
   margin: 0.4rem auto;
+  margin-bottom: 0;
   padding-left: 1.5rem;
   border: none;
   border-radius: 100px;
@@ -146,7 +184,7 @@ const InputContainer = styled.div`
 const NameInput = styled.input`
   border: none;
   border-radius: 100px;
-  width: 350px;
+  width: 330px;
   height: 50px;
   font-size: 1rem;
   color: #313338;
@@ -156,10 +194,24 @@ const NameInput = styled.input`
   }
 `;
 
+const SuccessText = styled.span`
+  padding-right: 1rem;
+  color: #7054ff;
+`;
+
+const CommentContainer = styled.div`
+  text-align: right;
+`;
+
+const SuccessComment = styled(SuccessText)`
+  font-size: 0.7rem;
+`;
+
 const ToProfilePageBtn = styled(StyledButton)`
   width: 400px;
   height: 50px;
-  margin: 0.2rem;
+  margin-top: 1.5rem;
   color: #ffffff;
   font-size: 1rem;
+  font-weight: 600;
 `;
