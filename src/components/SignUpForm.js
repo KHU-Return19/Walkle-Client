@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import StyledButton from "./Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import InputRow from "./InputRow";
 
 const SignUpForm = ({
   name,
@@ -18,114 +18,54 @@ const SignUpForm = ({
       <SignUpContainer>
         <HeadText>계정 정보를 입력해 주세요</HeadText>
         <SignUpFormBox onSubmit={onSubmitHandler}>
-          <SignUpRow>
-            <LabelText>이름</LabelText>
-            <InputContainer>
-              <NameInput
-                type="name"
-                value={name}
-                onChange={handleInput("name")}
-                placeholder="이름을 입력해주세요"
-                required
-              />
-              <SuccessText>
-                <FontAwesomeIcon icon="check" />
-              </SuccessText>
-            </InputContainer>
-            <CommentContainer>
-              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
-            </CommentContainer>
-          </SignUpRow>
-          <SignUpRow>
-            <LabelText>이메일</LabelText>
-            <InputContainer>
-              <NameInput
-                type="email"
-                value={email}
-                onChange={handleInput("email")}
-                placeholder="이메일을 입력해주세요"
-                required
-              />
-              <SuccessText>
-                <FontAwesomeIcon icon="check" />
-              </SuccessText>
-            </InputContainer>
-            <CommentContainer>
-              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
-            </CommentContainer>
-          </SignUpRow>
-          <SignUpRow>
-            <LabelText>인증번호</LabelText>
-            <InputContainer>
-              <NameInput
-                type="authNum"
-                value={authNum}
-                onChange={handleInput("authNum")}
-                placeholder="인증번호를 입력해주세요"
-                required
-              />
-              <SuccessText>
-                <FontAwesomeIcon icon="check" />
-              </SuccessText>
-            </InputContainer>
-            <CommentContainer>
-              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
-            </CommentContainer>
-          </SignUpRow>
-          <SignUpRow>
-            <LabelText>아이디</LabelText>
-            <InputContainer>
-              <NameInput
-                type="id"
-                value={id}
-                onChange={handleInput("id")}
-                placeholder="아이디를 입력해주세요"
-                required
-              />
-              <SuccessText>
-                <FontAwesomeIcon icon="check" />
-              </SuccessText>
-            </InputContainer>
-            <CommentContainer>
-              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
-            </CommentContainer>
-          </SignUpRow>
-          <SignUpRow>
-            <LabelText>비밀번호</LabelText>
-            <InputContainer>
-              <NameInput
-                type="password"
-                value={password}
-                onChange={handleInput("password")}
-                placeholder="비밀번호를 입력해주세요"
-                required
-              />
-              <SuccessText>
-                <FontAwesomeIcon icon="check" />
-              </SuccessText>
-            </InputContainer>
-            <CommentContainer>
-              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
-            </CommentContainer>
-          </SignUpRow>
-          <SignUpRow>
-            <LabelText>비밀번호 확인</LabelText>
-            <InputContainer>
-              <NameInput
-                type="passwordCheck"
-                value={passwordCheck}
-                onChange={handleInput("passwordCheck")}
-                placeholder="다시 한번 비밀번호를 입력해주세요"
-                required
-              />
-              <SuccessText>
-                <FontAwesomeIcon icon="check" />
-              </SuccessText>
-            </InputContainer>
-            <CommentContainer>
-              <SuccessComment>사용 가능한 이름입니다.</SuccessComment>
-            </CommentContainer>
-          </SignUpRow>
+          <InputRow
+            labelText="이름"
+            type="name"
+            value={name}
+            onChange={handleInput("name")}
+            placeholder="이름을 입력해주세요"
+            successComment="사용 가능한 이름입니다"
+          />
+          <InputRow
+            labelText="이메일"
+            type="email"
+            value={email}
+            onChange={handleInput("email")}
+            placeholder="이메일을 입력해주세요"
+            successComment="이메일로 인증번호가 발송되었습니다"
+          />
+          <InputRow
+            labelText="인증번호"
+            type="authNum"
+            value={authNum}
+            onChange={handleInput("authNum")}
+            placeholder="인증번호를 입력해주세요"
+            successComment="인증에 성공하였습니다"
+          />
+          <InputRow
+            labelText="아이디"
+            type="id"
+            value={id}
+            onChange={handleInput("id")}
+            placeholder="아이디를 입력해주세요"
+            successComment="사용 가능한 아이디입니다"
+          />
+          <InputRow
+            labelText="비밀번호"
+            type="password"
+            value={password}
+            onChange={handleInput("password")}
+            placeholder="비밀번호를 입력해주세요"
+            successComment="사용 가능한 비밀번호입니다"
+          />
+          <InputRow
+            labelText="비밀번호 확인"
+            type="passwordCheck"
+            value={passwordCheck}
+            onChange={handleInput("passwordCheck")}
+            placeholder="다시 한번 비밀번호를 입력해주세요"
+            successComment="비밀번호가 확인되었습니다"
+          />
           <ToProfilePageBtn type="submit">
             프로필 등록하러 가기
           </ToProfilePageBtn>
@@ -156,55 +96,6 @@ const HeadText = styled.span`
 const SignUpFormBox = styled.form`
   display: flex;
   flex-direction: column;
-`;
-const SignUpRow = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 107px;
-`;
-const LabelText = styled.span`
-  font-size: 0.8rem;
-  color: #8b8b8b;
-`;
-const InputContainer = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-  margin: 0.4rem auto;
-  margin-bottom: 0;
-  padding-left: 1.5rem;
-  border: none;
-  border-radius: 100px;
-  width: 376px;
-  max-width: 400px;
-  height: 50px;
-  font-size: 1rem;
-  color: #313338;
-  background: #fafafa;
-`;
-const NameInput = styled.input`
-  border: none;
-  border-radius: 100px;
-  width: 330px;
-  height: 50px;
-  font-size: 1rem;
-  color: #313338;
-  background: #fafafa;
-  :focus {
-    outline: none;
-  }
-`;
-
-const SuccessText = styled.span`
-  padding-right: 1rem;
-  color: #7054ff;
-`;
-
-const CommentContainer = styled.div`
-  text-align: right;
-`;
-
-const SuccessComment = styled(SuccessText)`
-  font-size: 0.7rem;
 `;
 
 const ToProfilePageBtn = styled(StyledButton)`
