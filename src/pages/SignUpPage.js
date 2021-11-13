@@ -14,7 +14,7 @@ const SignUpPage = (props) => {
 
   useEffect(() => {
     axios.get("/api/profile/:nickname").then((res) => {
-      const response = response.data.profile;
+      const response = res.data.profile;
       if (res.data.success) {
         console.log(response.data);
       }
