@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -96,6 +96,7 @@ const AddProjectBtn = styled.div`
   border: none;
   border-radius: 100px;
   width: 140px;
+  min-width: 140px;
   height: 35px;
   font-size: 0.9rem;
   color: #ffffff;
