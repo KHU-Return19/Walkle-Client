@@ -12,6 +12,7 @@ const SignUpForm = ({
   authNum,
   handleInput,
   onSubmitHandler,
+  isValidPasswordCheck,
 }) => {
   return (
     <>
@@ -60,11 +61,13 @@ const SignUpForm = ({
           />
           <InputRow
             labelText="비밀번호 확인"
-            type="passwordCheck"
+            type="password"
             value={passwordCheck}
             onChange={handleInput("passwordCheck")}
             placeholder="다시 한번 비밀번호를 입력해주세요"
             successComment="비밀번호가 확인되었습니다"
+            failComment="비밀번호가 다릅니다"
+            isValid={isValidPasswordCheck}
           />
           <ToProfilePageBtn type="submit">
             프로필 등록하러 가기

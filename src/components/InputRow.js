@@ -9,6 +9,8 @@ const InputRow = ({
   onChange,
   placeholder,
   successComment,
+  failComment,
+  isValid,
 }) => {
   return (
     <>
@@ -22,12 +24,17 @@ const InputRow = ({
             placeholder={placeholder}
             required
           />
-          <SuccessText>
+          <SuccessText className={isValid !== true && "invisible"}>
             <FontAwesomeIcon icon="check" />
           </SuccessText>
         </InputContainer>
         <CommentContainer>
-          <SuccessComment>{successComment}</SuccessComment>
+          <SuccessComment className={isValid !== true && "invisible"}>
+            {successComment}
+          </SuccessComment>
+          <FailComment className={isValid !== false && "invisible"}>
+            {failComment}
+          </FailComment>
         </CommentContainer>
       </InputRowBox>
     </>
@@ -40,6 +47,9 @@ const InputRowBox = styled.div`
   display: flex;
   flex-direction: column;
   height: 107px;
+  .invisible {
+    display: none;
+  }
 `;
 const LabelText = styled.span`
   font-size: 0.8rem;
@@ -84,4 +94,8 @@ const CommentContainer = styled.div`
 
 const SuccessComment = styled(SuccessText)`
   font-size: 0.7rem;
+`;
+
+const FailComment = styled(SuccessComment)`
+  color: #f24822;
 `;
