@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import StyledButton from "./Button";
 import InputRow from "./InputRow";
@@ -69,9 +70,11 @@ const SignUpForm = ({
             failComment="비밀번호가 다릅니다"
             isValid={isValidPasswordCheck}
           />
-          <ToProfilePageBtn type="submit">
-            프로필 등록하러 가기
-          </ToProfilePageBtn>
+          <Link to="/profile">
+            <ToProfilePageBtn type="submit">
+              프로필 등록하러 가기
+            </ToProfilePageBtn>
+          </Link>
         </SignUpFormBox>
       </SignUpContainer>
       ;
@@ -90,6 +93,9 @@ const SignUpContainer = styled.div`
   max-height: 1000px;
   margin: 50px auto;
   margin-bottom: 0;
+  a {
+    text-decoration: none;
+  }
 `;
 const HeadText = styled.span`
   padding-bottom: 2rem;
