@@ -12,7 +12,7 @@ import "./styles/App.css";
 
 library.add(faMapMarkerAlt, faSearch, faCheck);
 
-
+ 
 const App = () => {
   return (
     <div className="App">

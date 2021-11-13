@@ -15,7 +15,7 @@ const Router = () => {
       <Route exact path="/walklemap" component={Auth(WalkleMapPage, true)} />
       <Route exact path="/signin" component={Auth(SignInPage, false)} />
       <Route exact path="/signup" component={Auth(SignUpPage, false)} />
-      <Route exact path="/" component={Auth(ProjectPage, true)} />
+      <Route exact path="/projects" component={Auth(ProjectPage, false)} />
       <Route path="/">404 not found</Route>
     </Switch>
   );

@@ -12,7 +12,7 @@ const SearchBar = (props) => {
 };
 
 export default SearchBar;
-
+//검색바 가운데정렬하고 싶어서 마진추가했어요
 const StyledSearchBar = styled.div`
   display: flex;
   justify-content: space-between;
@@ -23,6 +23,7 @@ const StyledSearchBar = styled.div`
   padding-right: 2rem;
   border-radius: 30px;
   background: #fafafa;
+  margin: 75px auto; 
   input {
     width: 500px;
     border: none;
