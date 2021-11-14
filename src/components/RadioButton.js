@@ -4,23 +4,33 @@ import styled from "styled-components";
 const RadioButton = ({ value, selectedValue, handleCheck }) => {
   return (
     <>
-      <RadioElement
-        id={value}
-        value={value}
-        name="radio"
-        type="radio"
-        checked={value === selectedValue}
-        onChange={() => handleCheck}
-      />
-      <RadioText>{value}</RadioText>
+      <RadioButtonContainer>
+        <RadioElement
+          id={value}
+          value={value}
+          name="radio"
+          type="radio"
+          checked={value === selectedValue}
+          onClick={() => handleCheck(value)}
+        />
+        <RadioText>{value}</RadioText>
+      </RadioButtonContainer>
     </>
   );
 };
 
 export default RadioButton;
 
-const RadioElement = styled.input``;
+const RadioButtonContainer = styled.div`
+  display: inline;
+  padding-left: 1rem;
+`;
+
+const RadioElement = styled.input`
+  color: #7054ff;
+`;
 
 const RadioText = styled.span`
   font-size: 1rem;
+  padding-left: 0.3rem;
 `;

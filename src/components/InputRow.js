@@ -51,11 +51,11 @@ const InputRowBox = styled.div`
     display: none;
   }
 `;
-const LabelText = styled.span`
+export const LabelText = styled.span`
   font-size: 0.8rem;
   color: #8b8b8b;
 `;
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   display: table-cell;
   vertical-align: middle;
   margin: 0.4rem auto;
@@ -70,7 +70,7 @@ const InputContainer = styled.div`
   color: #313338;
   background: #fafafa;
 `;
-const Input = styled.input`
+export const Input = styled.input`
   border: none;
   border-radius: 100px;
   width: 330px;
