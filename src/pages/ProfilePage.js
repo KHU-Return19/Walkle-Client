@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Carousel from "../components/Carousel/Carousel";
 
 const ProfilePage = (props) => {
-  const [gender, setGender] = useState("여자");
+  const [gender, setGender] = useState("여");
   const [photo, setPhoto] = useState("");
   const [nickname, setNickname] = useState("");
   const [job, setJob] = useState("");

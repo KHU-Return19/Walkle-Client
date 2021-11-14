@@ -11,7 +11,7 @@ const ProfileRegisterSlide = ({
   age,
   handleInput,
 }) => {
-  const genderList = ["여자", "남자"];
+  const genderList = ["여", "남"];
   return (
     <>
       <HeadText>프로필 등록</HeadText>
@@ -57,14 +57,14 @@ const ProfileRegisterSlide = ({
       </ProfileInputRow>
       <ProfileInputRow>
         <LabelText>성별</LabelText>
-        {genderList.map((element, i) => {
+        {genderList.map((element, i) => (
           <RadioButton
             key={i}
             value={element}
             selectedValue={gender}
             handleCheck={setGender}
-          />;
-        })}
+          />
+        ))}
       </ProfileInputRow>
     </>
   );
