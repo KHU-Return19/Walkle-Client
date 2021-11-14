@@ -1,13 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import ProfileRegisterSlide from "./ProfileRegisterSlide";
+import IntroduceMeSlide from "./IntroduceMeSlide";
 
-const Carousel = ({ gender, setGender, handleInput }) => {
+const Carousel = ({
+  gender,
+  introduce,
+  setIntroduce,
+  setGender,
+  handleInput,
+}) => {
   return (
     <CarouselContainer>
       <ProfileRegisterSlide
         gender={gender}
         setGender={setGender}
+        handleInput={handleInput}
+      />
+      <IntroduceMeSlide
+        introduce={introduce}
+        setIntroduce={setIntroduce}
         handleInput={handleInput}
       />
     </CarouselContainer>

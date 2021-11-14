@@ -81,7 +81,7 @@ const ProfileRegisterSlide = ({
 
 export default ProfileRegisterSlide;
 
-const ProfileRegisterForm = styled.form`
+export const ProfileRegisterForm = styled.form`
   width: 460px;
   height: 600px;
   border: 1px solid #f1f1f1;
@@ -96,12 +96,12 @@ const ProfileRegisterForm = styled.form`
   }
 `;
 
-const HeadText = styled.span`
+export const HeadText = styled.span`
   font-size: 2.6rem;
   font-weight: 600;
 `;
 
-const ProfileInputRowBox = styled.div`
+export const ProfileInputRowBox = styled.div`
   margin: 1rem auto;
 `;
 
@@ -109,11 +109,11 @@ const ProfileInputRow = styled.div`
   padding: 1rem;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   text-align: right;
 `;
 
-const NextSlideButton = styled(StyledButton)`
+export const NextSlideButton = styled(StyledButton)`
   margin: 1rem;
   width: 110px;
   height: 40px;
