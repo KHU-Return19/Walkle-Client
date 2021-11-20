@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StyledButton from "./Button";
+import { useRecoilValue } from "recoil";
+import { userProfileState } from "../store/state";
 
 const Header = ({ userId }) => {
+  const profileImg = useRecoilValue(userProfileState.picture);
   let currentPage = window.location.pathname;
   return (
     <StyledHeader>
@@ -54,7 +57,12 @@ const Header = ({ userId }) => {
         <SignInButton>Sign In</SignInButton>
       </Link>
       <Link to="/profile" className={!userId && "invisible"}>
-        <ProfileImgContainer></ProfileImgContainer>
+        <ProfileImgContainer>
+          <ProfileImage
+            src={profileImg}
+            classname={!profileImg && "invisible"}
+          />
+        </ProfileImgContainer>
       </Link>
     </StyledHeader>
   );

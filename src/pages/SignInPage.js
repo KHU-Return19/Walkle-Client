@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import SignInForm from "../components/SignInForm";
+import { useRecoilState } from "recoil";
+import { userProfileState } from "../store/state";
 
 const SignInPage = (props) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [userProfile, setUserProfile] = useRecoilState(userProfileState);
 
   const handleInput = (type) => (event) => {
     const targetVal = event.currentTarget.value;
@@ -19,9 +22,18 @@ const SignInPage = (props) => {
       password: password,
     };
     axios
-      .post("/apiURL", body)
+      .post("/api/user/login", body)
       .then((res) => {
-        res.data.success ? props.history.push("/") : alert(res.data.msg);
+        if (res.data.success) {
+          axios.get("/api/profile/:nickname", body).then((res) => {
+            res.data.success
+              ? setUserProfile(res.data.user_data)
+              : alert(res.data.msg);
+          });
+          props.history.push("/");
+        } else {
+          alert(res.data.msg);
+        }
       })
       .catch((error) => {
         console.log(error);

@@ -12,7 +12,7 @@ export default function (Component, option, adminRoute = null) {
           }
         } else {
           if (option === false) props.history.push("/");
-          setUserId(response.data._id);
+          setUserId(response.data.userid);
         }
       });
     }, []);
