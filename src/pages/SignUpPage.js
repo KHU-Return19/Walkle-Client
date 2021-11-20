@@ -32,7 +32,7 @@ const SignUpPage = (props) => {
 
   useEffect(() => {
     handleValid(password, passwordCheck);
-  }, [passwordCheck]);
+  }, [password, passwordCheck]);
 
   const handleInput = (type) => (event) => {
     const targetVal = event.currentTarget.value;

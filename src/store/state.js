@@ -1,3 +1,5 @@
+import { atom } from "recoil";
+
 export const State = atom({
   key: "state",
   default: "",

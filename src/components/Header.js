@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 import { userProfileState } from "../store/state";
 
 const Header = ({ userId }) => {
-  const profileImg = useRecoilValue(userProfileState.picture);
+  const profileImg = useRecoilValue(userProfileState).picture;
   let currentPage = window.location.pathname;
   return (
     <StyledHeader>
@@ -122,6 +122,8 @@ const ProfileImgContainer = styled.div`
   border-radius: 100px;
   margin-right: 1rem;
 `;
+
+const ProfileImage = styled.img``;
 
 const SignInButton = styled(StyledButton)`
   width: 80px;
