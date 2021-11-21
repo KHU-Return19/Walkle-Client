@@ -43,5 +43,4 @@ font-family: "Dotum, 돋움, Helvetica", "Apple SD Gothic Neo", sans-serif: "Not
 font-size: 0.7rem;
 color: #A1A1A1;
  margin: 14px 0px 0px;
-
 `;

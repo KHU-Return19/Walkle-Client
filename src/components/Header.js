@@ -1,18 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StyledButton from "./Button";
-import { useRecoilValue } from "recoil";
-import { userProfileState } from "../store/state";
+import { useRecoilValue, useRecoilState } from "recoil";
+import {
+  latitudeState,
+  longitudeState,
+  userProfileState,
+} from "../store/state";
+import axios from "axios";
+require("dotenv").config();
+
+const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
 
 const Header = ({ userId }) => {
+  const [locationInfo, setLocationInfo] = useState("");
+  const [latitude, setLatitude] = useRecoilState(latitudeState);
+  const [longitude, setLongitude] = useRecoilState(longitudeState);
   const profileImg = useRecoilValue(userProfileState).picture;
   let currentPage = window.location.pathname;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+  }
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${longitude}&y=${latitude}`,
+        {
+          headers: {
+            Authorization: `KakaoAK ${REST_API_KEY}`,
+          },
+        }
+      )
+      .then((res) => {
+        const location = res.data.documents[0];
+        setLocationInfo(location.address_name);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [latitude, longitude]);
+
   return (
     <StyledHeader>
       <Link to="/"></Link>
-      <nav classname="header-nav">
+      <nav className="header-nav">
         <Link
           to="/walklemap"
           className={
@@ -51,7 +88,7 @@ const Header = ({ userId }) => {
       </Link>
       <div className="where-I-am">
         <FontAwesomeIcon icon="map-marker-alt" />
-        경기도 안산시 상록구
+        {locationInfo}
       </div>
       <Link to="/signin" className={userId && "invisible"}>
         <SignInButton>Sign In</SignInButton>

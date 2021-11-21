@@ -5,6 +5,16 @@ export const State = atom({
   default: "",
 });
 
+export const latitudeState = atom({
+  key: "latitudeState",
+  default: "",
+});
+
+export const longitudeState = atom({
+  key: "longitudeState",
+  default: "",
+});
+
 export const userProfileState = atom({
   key: "userProfileState",
   default: {
