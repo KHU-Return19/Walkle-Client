@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import StyledButton from "./Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignInForm = ({ id, password, handleInput, onSubmitHandler }) => {
   return (
@@ -37,7 +38,10 @@ const SignInForm = ({ id, password, handleInput, onSubmitHandler }) => {
           <Link to="/signup">
             <EmailSignUpBtn>이메일로 가입하기</EmailSignUpBtn>
           </Link>
-          <KaKaoSignUpBtn>카카오로 가입하기</KaKaoSignUpBtn>
+          <KaKaoSignUpBtn>
+            <FontAwesomeIcon icon="comment" style={{ margin: "0px 10px" }} />
+            카카오로 가입하기
+          </KaKaoSignUpBtn>
         </SocialSignInFormBox>
       </SignInContainer>
     </>
@@ -54,6 +58,7 @@ const SignInContainer = styled.div`
   min-width: 400px;
   max-height: 700px;
   margin: 100px auto;
+  margin-bottom: 0;
 `;
 
 const MainText = styled.span`

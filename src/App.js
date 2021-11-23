@@ -7,10 +7,11 @@ import {
   faMapMarkerAlt,
   faSearch,
   faCheck,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/App.css";
 
-library.add(faMapMarkerAlt, faSearch, faCheck);
+library.add(faMapMarkerAlt, faSearch, faCheck, faComment);
 
 const App = () => {
   return (

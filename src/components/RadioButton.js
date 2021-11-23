@@ -28,6 +28,7 @@ const RadioButtonContainer = styled.div`
 
 const RadioElement = styled.input`
   color: #7054ff;
+  cursor: pointer;
 `;
 
 const RadioText = styled.span`
