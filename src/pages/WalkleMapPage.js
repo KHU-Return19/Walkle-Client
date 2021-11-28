@@ -1,10 +1,12 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { useRecoilValue } from "recoil";
 import { latitudeState, longitudeState } from "../store/state";
 import { Creators } from "../store/fakeCreators";
+import mainLogo from "../assets/mainLogo.svg";
+import { MapCreatorCard } from "../components/CreatorCard";
 
 const { kakao } = window;
 
@@ -18,6 +20,31 @@ const WalkleMapPage = () => {
   const container = useRef(null); //지도를 담을 영역의 DOM 레퍼런스
   const lat = useRecoilValue(latitudeState);
   const lon = useRecoilValue(longitudeState);
+  const [selectedObject, setSelectedObject] = useState(0);
+
+  const renderMarker = (creator) => {
+    const overlay = new kakao.maps.CustomOverlay();
+    const content = document.createElement("div");
+
+    content.innerHTML = `<div className="marker" >
+    <img
+      className=${selectedObject === creator.id ? "selected" : "markerImg"}
+      id=${creator.id}
+      alt="marker"
+      src=${mainLogo}
+      onClick="${() => handleClick(creator.id)}"
+    />
+  </div>`;
+    overlay.setContent(content);
+    overlay.setPosition(
+      new kakao.maps.LatLng(creator.positionY, creator.positionX)
+    );
+    return overlay;
+  };
+
+  const handleClick = (id) => {
+    setSelectedObject(id);
+  };
 
   useEffect(() => {
     const map = new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
@@ -41,10 +68,7 @@ const WalkleMapPage = () => {
       marker.setPosition(latlng);
     });
     Creators.forEach((creator) => {
-      const marker = new kakao.maps.Marker({
-        map: map,
-        position: new kakao.maps.LatLng(creator.positionY, creator.positionX),
-      });
+      const marker = renderMarker(creator);
       marker.setMap(map);
     });
     return () => {};
@@ -56,6 +80,14 @@ const WalkleMapPage = () => {
       <MapPageContainer>
         <SearchContainer>
           <SearchBar length="short" className="searchBar" />
+          {Creators.map((creator) => (
+            <MapCreatorCard
+              name={creator.name}
+              key={creator.id}
+              intro={creator.intro}
+              tagList={creator.tag}
+            />
+          ))}
         </SearchContainer>
         <MapContainer className="mapContainer" ref={container}></MapContainer>
       </MapPageContainer>
@@ -72,6 +104,7 @@ const MapPageContainer = styled.div`
 const SearchContainer = styled.div`
   float: left;
   width: 26vw;
+  min-width: 450px;
   .searchBar {
     margin-top: 0;
   }
@@ -81,4 +114,25 @@ const MapContainer = styled.div`
   float: left;
   width: 74vw;
   height: 100vw;
+  .marker {
+    :hover {
+      color: #ffffff;
+    }
+  }
+  img {
+    width: 50px;
+    height: 50px;
+    fill: white;
+    :hover {
+      transform: scale(1.5);
+      transition: 0.1s;
+      filter: invert(34%) sepia(56%) saturate(4881%) hue-rotate(238deg)
+        brightness(104%) contrast(102%);
+    }
+  }
+  .marker > .selected {
+    transform: scale(1.5);
+    filter: invert(34%) sepia(56%) saturate(4881%) brightness(104%)
+      contrast(102%);
+  }
 `;

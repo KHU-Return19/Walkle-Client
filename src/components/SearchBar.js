@@ -17,7 +17,7 @@ export const StyledSearchBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: ${(props) => (props.length === "short" ? "22vw" : "33vw")};
+  width: ${(props) => (props.length === "short" ? "390px" : "33vw")};
   height: ${(props) => (props.length === "short" ? "5vh" : "6vh")};
   padding-left: 2rem;
   padding-right: 2rem;
