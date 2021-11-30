@@ -15,6 +15,16 @@ export const longitudeState = atom({
   default: "",
 });
 
+export const regionState = atom({
+  key: "regionState",
+  default: "",
+});
+
+export const selectedCreatorState = atom({
+  key: "selectedCreatorState",
+  default: {},
+});
+
 export const userProfileState = atom({
   key: "userProfileState",
   default: {

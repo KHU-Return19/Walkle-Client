@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
+import SearchTab from "../components/WalkleMap/SearchTab";
 import { useRecoilValue } from "recoil";
 import { latitudeState, longitudeState } from "../store/state";
 import { Creators } from "../store/fakeCreators";
 import mainLogo from "../assets/mainLogo.svg";
-import { MapCreatorCard } from "../components/CreatorCard";
 
 const { kakao } = window;
 
@@ -21,6 +20,7 @@ const WalkleMapPage = () => {
   const lat = useRecoilValue(latitudeState);
   const lon = useRecoilValue(longitudeState);
   const [selectedObject, setSelectedObject] = useState(0);
+  const [searchCategory, setSearchCategory] = useState("creator");
 
   const renderMarker = (creator) => {
     const overlay = new kakao.maps.CustomOverlay();
@@ -78,17 +78,10 @@ const WalkleMapPage = () => {
     <>
       <Header />
       <MapPageContainer>
-        <SearchContainer>
-          <SearchBar length="short" className="searchBar" />
-          {Creators.map((creator) => (
-            <MapCreatorCard
-              name={creator.name}
-              key={creator.id}
-              intro={creator.intro}
-              tagList={creator.tag}
-            />
-          ))}
-        </SearchContainer>
+        <SearchTab
+          searchCategory={searchCategory}
+          setSearchCategory={setSearchCategory}
+        />
         <MapContainer className="mapContainer" ref={container}></MapContainer>
       </MapPageContainer>
     </>
@@ -99,14 +92,8 @@ export default WalkleMapPage;
 
 const MapPageContainer = styled.div`
   display: flex;
-`;
-
-const SearchContainer = styled.div`
-  float: left;
-  width: 26vw;
-  min-width: 450px;
-  .searchBar {
-    margin-top: 0;
+  .selected-creator {
+    background: #f5f3ff;
   }
 `;
 

@@ -8,6 +8,7 @@ import {
   latitudeState,
   longitudeState,
   userProfileState,
+  regionState,
 } from "../store/state";
 import axios from "axios";
 require("dotenv").config();
@@ -15,19 +16,19 @@ require("dotenv").config();
 const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
 
 const Header = ({ userId }) => {
-  const [locationInfo, setLocationInfo] = useState("");
+  const [locationInfo, setLocationInfo] = useRecoilState(regionState);
   const [latitude, setLatitude] = useRecoilState(latitudeState);
   const [longitude, setLongitude] = useRecoilState(longitudeState);
   const profileImg = useRecoilValue(userProfileState).picture;
   let currentPage = window.location.pathname;
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    });
-  }
 
   useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+      });
+    }
     axios
       .get(
         `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${longitude}&y=${latitude}`,
@@ -86,10 +87,10 @@ const Header = ({ userId }) => {
       <Link to="/addproject">
         <AddProjectBtn>+ 프로젝트 생성</AddProjectBtn>
       </Link>
-      <div className="where-I-am">
-        <FontAwesomeIcon icon="map-marker-alt" />
-        {locationInfo}
-      </div>
+      <LocationInfoContainer>
+        <FontAwesomeIcon icon="map-marker-alt" className="location-marker" />
+        <LocationText>{locationInfo}</LocationText>
+      </LocationInfoContainer>
       <Link to="/signin" className={userId && "invisible"}>
         <SignInButton>Sign In</SignInButton>
       </Link>
@@ -115,9 +116,10 @@ const StyledHeader = styled.div`
   border-bottom: 1px solid #dbdbdb;
   padding: 1rem 0rem 1rem 0rem;
   width: 100%;
+  height: 
   font-size: 0.9rem;
-  font-weight: 500;
-  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  font-family: Pretendard;
   a {
     text-decoration: none;
   }
@@ -132,6 +134,12 @@ const StyledHeader = styled.div`
   .invisible {
     display: none;
   }
+  .clicked {
+    color: purple;
+  }
+  .nonclicked {
+    color: grey;
+  }
 `;
 
 const AddProjectBtn = styled.div`
@@ -144,6 +152,7 @@ const AddProjectBtn = styled.div`
   min-width: 140px;
   height: 35px;
   font-size: 0.9rem;
+  font-weight: 500;
   color: #ffffff;
   background: #7054ff;
   :hover {
@@ -161,6 +170,22 @@ const ProfileImgContainer = styled.div`
 `;
 
 const ProfileImage = styled.img``;
+
+const LocationInfoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  > .location-marker {
+    padding: 0px 5px;
+    color: #3d2c95;
+  }
+`;
+
+const LocationText = styled.span`
+  font-size: 13px;
+  font-weight: 500;
+`;
 
 const SignInButton = styled(StyledButton)`
   width: 80px;

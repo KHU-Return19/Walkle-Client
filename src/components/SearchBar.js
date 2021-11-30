@@ -19,19 +19,21 @@ export const StyledSearchBar = styled.div`
   align-items: center;
   width: ${(props) => (props.length === "short" ? "390px" : "33vw")};
   height: ${(props) => (props.length === "short" ? "5vh" : "6vh")};
-  padding-left: 2rem;
-  padding-right: 2rem;
-  border-radius: 30px;
+  min-height: 44px;
+  min-width: 375px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 100px;
   background: #fafafa;
-  margin: 75px auto;
   input {
     width: 500px;
     border: none;
     background: #fafafa;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 600;
     :focus {
       outline: none;
     }
+    line-height: 44px;
   }
 `;

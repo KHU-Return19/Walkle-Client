@@ -2,11 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import CreatorTag from "./CreatorTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRecoilState } from "recoil";
+import { selectedCreatorState } from "../store/state";
 
-export const MapCreatorCard = ({ name, intro, tagList }) => {
+export const MapCreatorCard = (creator) => {
+  const [selectedCreator, setSelectedCreator] =
+    useRecoilState(selectedCreatorState);
+  const currentCreator = creator;
   return (
     <>
-      <CardSection>
+      <CardSection
+        className={selectedCreator === creator && "selected-creator"}
+        onClick={() => setSelectedCreator(currentCreator)}
+      >
         <CardContainer>
           <CardInnerContainer>
             <ImageContainer>
@@ -14,12 +22,12 @@ export const MapCreatorCard = ({ name, intro, tagList }) => {
             </ImageContainer>
             <InfoContainer>
               <CardHeader>
-                <CreatorName>{name}</CreatorName>
+                <CreatorName>{creator.name}</CreatorName>
               </CardHeader>
-              <CreatorIntroText>{intro}</CreatorIntroText>
+              <CreatorIntroText>{creator.intro}</CreatorIntroText>
               <TagListContainer>
-                {tagList.map((tag, i) => (
-                  <CreatorTag tag={tag} key={i} />
+                {creator.tag.map((subject, i) => (
+                  <CreatorTag tag={subject} key={i} />
                 ))}
               </TagListContainer>
             </InfoContainer>
@@ -47,7 +55,7 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 0px;
+  padding: 0px 30px;
 `;
 
 const CardInnerContainer = styled.div`
@@ -55,7 +63,6 @@ const CardInnerContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  padding-left: 30px;
 `;
 
 const ImageContainer = styled.div``;
