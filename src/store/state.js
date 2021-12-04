@@ -25,6 +25,11 @@ export const selectedCreatorState = atom({
   default: {},
 });
 
+export const selectedProjectState = atom({
+  key: "selectedProjectState",
+  default: {},
+});
+
 export const userProfileState = atom({
   key: "userProfileState",
   default: {

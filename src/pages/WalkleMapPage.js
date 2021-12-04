@@ -8,6 +8,7 @@ import {
   latitudeState,
   longitudeState,
   selectedCreatorState,
+  selectedProjectState,
 } from "../store/state";
 import { Creators } from "../store/fakeCreators";
 import mainLogo from "../assets/mainLogo.svg";
@@ -27,6 +28,9 @@ const WalkleMapPage = () => {
   const [selectedObject, setSelectedObject] = useState(0);
   const [searchCategory, setSearchCategory] = useState("creator");
   const selectedCreator = useRecoilValue(selectedCreatorState);
+  const selectedProject = useRecoilValue(selectedProjectState);
+  const [searchContent, setSearchContent] = useState("");
+  const [searchFilter, setSearchFilter] = useState("recent");
 
   const renderMarker = (creator) => {
     const overlay = new kakao.maps.CustomOverlay();
@@ -54,13 +58,31 @@ const WalkleMapPage = () => {
 
   useEffect(() => {
     const map = new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
-    const moveLatLon = selectedCreator.positionX
-      ? new window.kakao.maps.LatLng(
-          selectedCreator.positionY,
-          selectedCreator.positionX
-        )
-      : new window.kakao.maps.LatLng(lat, lon);
-    map.panTo(moveLatLon);
+    switch (searchCategory) {
+      default:
+        map.panTo(new window.kakao.maps.LatLng(lat, lon));
+        break;
+      case "creator":
+        selectedCreator.id
+          ? map.panTo(
+              new window.kakao.maps.LatLng(
+                selectedCreator.positionY,
+                selectedCreator.positionX
+              )
+            )
+          : map.panTo(new window.kakao.maps.LatLng(lat, lon));
+        break;
+      case "project":
+        selectedProject.id
+          ? map.panTo(
+              new window.kakao.maps.LatLng(
+                selectedProject.positionY,
+                selectedProject.positionX
+              )
+            )
+          : map.panTo(new window.kakao.maps.LatLng(lat, lon));
+        break;
+    }
     // 현재 위치로 지도 중심 설정
     // 지도를 클릭한 위치에 표출할 마커입니다
     var marker = new kakao.maps.Marker({
@@ -83,7 +105,7 @@ const WalkleMapPage = () => {
       marker.setMap(map);
     });
     return () => {};
-  }, [selectedCreator]);
+  }, [selectedCreator, selectedProject]);
 
   return (
     <>
@@ -93,8 +115,12 @@ const WalkleMapPage = () => {
           <SearchTab
             searchCategory={searchCategory}
             setSearchCategory={setSearchCategory}
+            searchContent={searchContent}
+            setSearchContent={setSearchContent}
+            searchFilter={searchFilter}
+            setSearchFilter={setSearchFilter}
           />
-          <Modal />
+          <Modal searchCategory={searchCategory} />
           <MapContainer className="mapContainer" ref={container}></MapContainer>
         </MapPageContainer>
       </PageContainer>

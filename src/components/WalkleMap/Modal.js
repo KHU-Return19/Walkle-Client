@@ -1,30 +1,50 @@
 import React from "react";
 import styled from "styled-components";
-import { selectedCreatorState } from "../../store/state";
+import { selectedCreatorState, selectedProjectState } from "../../store/state";
 import { useRecoilState } from "recoil";
 import { TagContainer, TagText } from "../CreatorTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Modal = () => {
-  const [selectedObj, setSelectedObj] = useRecoilState(selectedCreatorState);
-  const TagList = selectedObj.tag;
+const Modal = ({ searchCategory }) => {
+  const [selectedCreator, setSelectedCreator] =
+    useRecoilState(selectedCreatorState);
+  const [selectedProject, setSelectedProject] =
+    useRecoilState(selectedProjectState);
+  const handleClick = () => {
+    setSelectedCreator({});
+    setSelectedProject({});
+  };
+  const TagList =
+    searchCategory === "creator" ? selectedCreator.tag : selectedProject.tag;
   return (
     <>
-      <ModalContainer className={selectedObj.id ? "visible" : "invisible"}>
+      <ModalContainer
+        className={
+          selectedCreator.id || selectedProject.id ? "visible" : "invisible"
+        }
+      >
         <ImageContainer>
           <ExitButton>
             <FontAwesomeIcon
               className="Icon"
               icon={["far", "times-circle"]}
-              onClick={() => setSelectedObj({})}
+              onClick={() => handleClick()}
             />
           </ExitButton>
         </ImageContainer>
         <MainTextContainer>
-          <MainText>{selectedObj.name}</MainText>
+          <MainText>
+            {searchCategory === "creator"
+              ? selectedCreator.name
+              : selectedProject.name}
+          </MainText>
         </MainTextContainer>
         <SubTextContainer>
-          <SubText>{selectedObj.job}</SubText>
+          <SubText>
+            {searchCategory === "creator"
+              ? selectedCreator.job
+              : "Director. " + selectedProject.director}
+          </SubText>
         </SubTextContainer>
         <TagListContainer>
           {TagList &&
@@ -47,6 +67,7 @@ const ModalContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 `;
 
 const ImageContainer = styled.div`
@@ -67,13 +88,13 @@ const MainText = styled.span`
 `;
 
 const SubTextContainer = styled.div`
-  padding-top: 36px;
+  padding-top: 10px;
   text-align: center;
 `;
 
 const SubText = styled(MainText)`
   font-weight: 500;
-  font-size: 13px;
+  font-size: 15px;
   color: #8b8b8b;
 `;
 

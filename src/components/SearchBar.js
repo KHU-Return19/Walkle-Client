@@ -5,7 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const SearchBar = (props) => {
   return (
     <StyledSearchBar length={props.length}>
-      <input type="text" placeholder="프로젝트명 or 태그 검색하기" />
+      <input
+        type="text"
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={props.onChange}
+      />
       <FontAwesomeIcon icon="search" onClick={props.onClick} />
     </StyledSearchBar>
   );
@@ -18,7 +23,7 @@ export const StyledSearchBar = styled.div`
   justify-content: space-between;
   align-items: center;
   width: ${(props) => (props.length === "short" ? "390px" : "33vw")};
-  height: ${(props) => (props.length === "short" ? "5vh" : "6vh")};
+  height: ${(props) => (props.length === "short" ? "54px" : "6vh")};
   min-height: 44px;
   min-width: 375px;
   padding-left: 30px;
@@ -29,8 +34,9 @@ export const StyledSearchBar = styled.div`
     width: 500px;
     border: none;
     background: #fafafa;
-    font-size: 16px;
-    font-weight: 600;
+    font-family: Pretendard;
+    font-size: 21px;
+    font-weight: 400;
     :focus {
       outline: none;
     }

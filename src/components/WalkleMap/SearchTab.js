@@ -1,41 +1,65 @@
 import React from "react";
 import styled from "styled-components";
 import SearchBar from "../SearchBar";
+import RegionSelector from "./RegionSelector";
+import CategorySelector from "./CategorySelector";
+import FilterSelector from "./FilterSelector";
 import { MapCreatorCard } from "../CreatorCard";
-import { Creators } from "../../store/fakeCreators";
+import { MapProjectCard } from "../ProjectCard";
+import { Creators, Projects } from "../../store/fakeCreators";
 import { useRecoilValue } from "recoil";
 import { regionState } from "../../store/state";
 
-const SearchTab = ({ searchCategory, setSearchCategory }) => {
+const SearchTab = ({
+  searchCategory,
+  setSearchCategory,
+  searchContent,
+  setSearchContent,
+  searchFilter,
+  setSearchFilter,
+}) => {
   const selectedRegion = useRecoilValue(regionState);
+  let filteredCreators = searchContent === "" ? Creators : "";
+  let filteredProjects = searchContent == "" ? Projects : "";
+  const handleSearch = () => {
+    if (searchCategory === "creator") {
+    }
+  };
   return (
     <>
       <SearchTabContainer>
         <SearchTabHeader>
           <SearchBarContainer>
-            <SearchBar length="short" className="searchBar" />
+            <SearchBar
+              length="short"
+              placeholder={
+                searchCategory === "creator"
+                  ? "우리 동네 크리에이터 검색하기"
+                  : "프로젝트명 or 태그 검색하기"
+              }
+              className="searchBar"
+              value={searchContent}
+            />
           </SearchBarContainer>
-          <RegionSelectorContainer>
-            <RegionSelector>{selectedRegion}</RegionSelector>
-          </RegionSelectorContainer>
+          <RegionSelector selectedRegion={selectedRegion} />
         </SearchTabHeader>
-        <CategorySelectorContainer>
+        <SelectorContainer>
           <CategorySelector
-            className={searchCategory === "creator" && "selected"}
-            onClick={() => setSearchCategory("creator")}
-          >
-            크리에이터
-          </CategorySelector>
-          <CategorySelector
-            className={searchCategory === "project" && "selected"}
-            onClick={() => setSearchCategory("project")}
-          >
-            프로젝트
-          </CategorySelector>
-        </CategorySelectorContainer>
+            searchCategory={searchCategory}
+            setSearchCategory={setSearchCategory}
+          />
+          <FilterSelector
+            searchCategory={searchCategory}
+            searchFilter={searchFilter}
+            setSearchFilter={setSearchFilter}
+          />
+        </SelectorContainer>
         <CardContainer className="scroll">
-          {searchCategory === "creator" &&
-            Creators.map((creator) => <MapCreatorCard {...creator} />)}
+          {searchCategory === "creator"
+            ? filteredCreators.map((creator) => <MapCreatorCard {...creator} />)
+            : filteredProjects.map((project) => (
+                <MapProjectCard {...project} />
+              ))}
         </CardContainer>
       </SearchTabContainer>
     </>
@@ -48,6 +72,7 @@ const SearchTabContainer = styled.div`
   float: left;
   width: 26vw;
   min-width: 500px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   .searchBar {
     margin-top: 0;
   }
@@ -79,76 +104,17 @@ const SearchBarContainer = styled.div`
   padding: 30px 0px 30px 0px;
 `;
 
-const RegionSelectorContainer = styled.div`
+const SelectorContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-`;
-
-const RegionSelector = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 8px 8px;
-  min-width: 165px;
-  height: 32px;
-
-  border: 1px solid #7054ff;
-  box-sizing: border-box;
-  border-radius: 100px;
-
-  color: #7054ff;
-  font-family: pretendard;
-  font-weight: 400;
-  font-size: 14px;
-`;
-
-const CategorySelectorContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  margin: 20px 0px;
-  margin-left: 2rem;
-  background: #f1f1f1;
-  border-radius: 100px;
-  width: 189px;
-  height: 35px;
-  left: 30px;
-  top: 196px;
-  .selected {
-    background: #7054ff;
-    color: #ffffff;
-    font-weight: 600;
-  }
-`;
-
-const CategorySelector = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  position: static;
-  width: 101px;
-  height: 35px;
-  left: 0px;
-  top: 0px;
-  border-radius: 100px;
-  border: none;
-
-  font-family: Pretendard;
-  font-weight: 400;
-  font-size: 14px;
-
-  cursor: pointer;
+  padding-right: 30px;
 `;
 
 const CardContainer = styled.div`
-  .selected-creator {
+  .selected-creator,
+  .selected-project {
     background: #f5f3ff;
   }
 `;
