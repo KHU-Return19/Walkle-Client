@@ -25,7 +25,7 @@ export const TagContainer = styled.div`
   box-sizing: border-box;
   border-radius: 100px;
 
-  font-size: 5px;
+  font-size: 11px;
 
   flex: none;
   order: 1;
@@ -36,7 +36,7 @@ export const TagContainer = styled.div`
 export const TagText = styled.span`
   font-family: Pretendard;
   font-style: normal;
-  font-weight: normal
+  font-weight: 400;
   line-height: 11px;
   color: #8b8b8b;
-  `;
+`;

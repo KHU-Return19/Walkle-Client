@@ -92,7 +92,7 @@ const Header = ({ userId }) => {
         <LocationText>{locationInfo}</LocationText>
       </LocationInfoContainer>
       <Link to="/signin" className={userId && "invisible"}>
-        <SignInButton>Sign In</SignInButton>
+        <SignInButton>로그인</SignInButton>
       </Link>
       <Link to="/profile" className={!userId && "invisible"}>
         <ProfileImgContainer>
@@ -117,7 +117,7 @@ const StyledHeader = styled.div`
   padding: 1rem 0rem 1rem 0rem;
   width: 100%;
   height: 
-  font-size: 0.9rem;
+  font-size: 15px;
   font-weight: 700;
   font-family: Pretendard;
   a {
@@ -151,8 +151,8 @@ const AddProjectBtn = styled.div`
   width: 140px;
   min-width: 140px;
   height: 35px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 700;
   color: #ffffff;
   background: #7054ff;
   :hover {
@@ -191,4 +191,7 @@ const SignInButton = styled(StyledButton)`
   width: 80px;
   border-radius: 10px;
   margin-right: 1rem;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 600;
 `;

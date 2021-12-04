@@ -92,7 +92,8 @@ const CreatorName = styled.span`
 
 const CreatorIntroText = styled.span`
   color: #8b8b8b;
-  font-size: 11px;
+  font-size: 13px;
+  line-height: 19px;
 `;
 const TagListContainer = styled.div`
   display: flex;
