@@ -3,7 +3,11 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import SearchTab from "../components/WalkleMap/SearchTab";
 import { useRecoilValue } from "recoil";
-import { latitudeState, longitudeState } from "../store/state";
+import {
+  latitudeState,
+  longitudeState,
+  selectedCreatorState,
+} from "../store/state";
 import { Creators } from "../store/fakeCreators";
 import mainLogo from "../assets/mainLogo.svg";
 
@@ -21,6 +25,7 @@ const WalkleMapPage = () => {
   const lon = useRecoilValue(longitudeState);
   const [selectedObject, setSelectedObject] = useState(0);
   const [searchCategory, setSearchCategory] = useState("creator");
+  const selectedCreator = useRecoilValue(selectedCreatorState);
 
   const renderMarker = (creator) => {
     const overlay = new kakao.maps.CustomOverlay();
@@ -48,8 +53,14 @@ const WalkleMapPage = () => {
 
   useEffect(() => {
     const map = new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
-    const moveLatLon = new window.kakao.maps.LatLng(lat, lon);
-    map.panTo(moveLatLon); // 현재 위치로 지도 중심 설정
+    const moveLatLon = selectedCreator.positionX
+      ? new window.kakao.maps.LatLng(
+          selectedCreator.positionY,
+          selectedCreator.positionX
+        )
+      : new window.kakao.maps.LatLng(lat, lon);
+    map.panTo(moveLatLon);
+    // 현재 위치로 지도 중심 설정
     // 지도를 클릭한 위치에 표출할 마커입니다
     var marker = new kakao.maps.Marker({
       // 지도 중심좌표에 마커를 생성합니다
@@ -57,7 +68,6 @@ const WalkleMapPage = () => {
     });
     // 지도에 마커를 표시합니다
     marker.setMap(map);
-
     // 지도에 클릭 이벤트를 등록합니다
     // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
     kakao.maps.event.addListener(map, "click", function (mouseEvent) {
@@ -72,23 +82,30 @@ const WalkleMapPage = () => {
       marker.setMap(map);
     });
     return () => {};
-  }, []);
+  }, [selectedCreator]);
 
   return (
     <>
-      <Header />
-      <MapPageContainer>
-        <SearchTab
-          searchCategory={searchCategory}
-          setSearchCategory={setSearchCategory}
-        />
-        <MapContainer className="mapContainer" ref={container}></MapContainer>
-      </MapPageContainer>
+      <PageContainer>
+        <Header />
+        <MapPageContainer>
+          <SearchTab
+            searchCategory={searchCategory}
+            setSearchCategory={setSearchCategory}
+          />
+          <MapContainer className="mapContainer" ref={container}></MapContainer>
+        </MapPageContainer>
+      </PageContainer>
     </>
   );
 };
 
 export default WalkleMapPage;
+
+const PageContainer = styled.div`
+  width: 100vw;
+  max-height: 100vh;
+`;
 
 const MapPageContainer = styled.div`
   display: flex;
@@ -100,7 +117,6 @@ const MapPageContainer = styled.div`
 const MapContainer = styled.div`
   float: left;
   width: 74vw;
-  height: 100vw;
   .marker {
     :hover {
       color: #ffffff;

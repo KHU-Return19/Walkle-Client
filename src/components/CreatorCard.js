@@ -12,7 +12,9 @@ export const MapCreatorCard = (creator) => {
   return (
     <>
       <CardSection
-        className={selectedCreator === creator && "selected-creator"}
+        className={
+          selectedCreator.id === currentCreator.id && "selected-creator"
+        }
         onClick={() => setSelectedCreator(currentCreator)}
       >
         <CardContainer>
