@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import SearchTab from "../components/WalkleMap/SearchTab";
+import Modal from "../components/WalkleMap/Modal";
 import { useRecoilValue } from "recoil";
 import {
   latitudeState,
@@ -93,6 +94,7 @@ const WalkleMapPage = () => {
             searchCategory={searchCategory}
             setSearchCategory={setSearchCategory}
           />
+          <Modal />
           <MapContainer className="mapContainer" ref={container}></MapContainer>
         </MapPageContainer>
       </PageContainer>
@@ -105,12 +107,15 @@ export default WalkleMapPage;
 const PageContainer = styled.div`
   width: 100vw;
   max-height: 100vh;
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", sans-serif;
 `;
 
 const MapPageContainer = styled.div`
   display: flex;
-  .selected-creator {
-    background: #f5f3ff;
+  .invisible {
+    display: none;
   }
 `;
 

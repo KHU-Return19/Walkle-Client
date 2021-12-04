@@ -33,8 +33,10 @@ const SearchTab = ({ searchCategory, setSearchCategory }) => {
             프로젝트
           </CategorySelector>
         </CategorySelectorContainer>
-        {searchCategory === "creator" &&
-          Creators.map((creator) => <MapCreatorCard {...creator} />)}
+        <CardContainer className="scroll">
+          {searchCategory === "creator" &&
+            Creators.map((creator) => <MapCreatorCard {...creator} />)}
+        </CardContainer>
       </SearchTabContainer>
     </>
   );
@@ -49,10 +51,23 @@ const SearchTabContainer = styled.div`
   .searchBar {
     margin-top: 0;
   }
+  .scroll {
+    overflow-y: scroll;
+  }
+  .scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scroll::-webkit-scrollbar-thumb {
+    background-color: #8b8b8b;
+    border-radius: 100px;
+  }
+  .scroll::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
 `;
 
 const SearchTabHeader = styled.div`
-  width: 500px;
+  width: 470px;
   height: 166px;
   left: 0px;
   padding-left: 30px;
@@ -130,4 +145,10 @@ const CategorySelector = styled.button`
   font-size: 14px;
 
   cursor: pointer;
+`;
+
+const CardContainer = styled.div`
+  .selected-creator {
+    background: #f5f3ff;
+  }
 `;

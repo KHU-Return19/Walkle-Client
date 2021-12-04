@@ -33,7 +33,7 @@ export const TagContainer = styled.div`
   margin: 0px 8px 0px 0px;
 `;
 
-const TagText = styled.span`
+export const TagText = styled.span`
   font-family: Pretendard;
   font-style: normal;
   font-weight: normal

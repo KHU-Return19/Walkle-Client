@@ -11,7 +11,7 @@ import {
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/App.css";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
   faMapMarkerAlt,
@@ -19,7 +19,8 @@ library.add(
   faCheck,
   faComment,
   faBookmark,
-  faPaperPlane
+  faPaperPlane,
+  faTimesCircle
 );
 
 const App = () => {
