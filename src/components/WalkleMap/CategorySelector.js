@@ -6,10 +6,10 @@ import { useSetRecoilState } from "recoil";
 const CategorySelector = ({ searchCategory, setSearchCategory }) => {
   const setSelectedCreator = useSetRecoilState(selectedCreatorState);
   const setSelectedProject = useSetRecoilState(selectedProjectState);
-  const handleClick = (category) => {
+  const handleClick = async (category) => {
+    await setSelectedCreator("");
+    await setSelectedProject("");
     setSearchCategory(category);
-    setSelectedCreator("");
-    setSelectedProject("");
   };
   return (
     <>
