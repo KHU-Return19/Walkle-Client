@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Header from "../components/Header";
 import SignUpForm from "../components/SignUpForm";
 import { userProfileState } from "../store/state";
@@ -13,7 +13,7 @@ const SignUpPage = (props) => {
   const [passwordCheck, setPasswordCheck] = useState(null);
   const [email, setEmail] = useState("");
   const [isValidPasswordCheck, setIsValidPasswordCheck] = useState(null);
-  const [userProfile, setUserProfile] = useRecoilValue(userProfileState);
+  const [userProfile, setUserProfile] = useRecoilState(userProfileState);
 
   useEffect(() => {
     axios.get("/api/profile/:nickname").then((res) => {
