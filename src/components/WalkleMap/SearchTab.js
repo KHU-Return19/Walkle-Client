@@ -19,11 +19,26 @@ const SearchTab = ({
   setSearchFilter,
 }) => {
   const selectedRegion = useRecoilValue(regionState);
-  let filteredCreators = searchContent === "" ? Creators : "";
-  let filteredProjects = searchContent == "" ? Projects : "";
-  const handleSearch = () => {
-    if (searchCategory === "creator") {
-    }
+  let filteredCreators =
+    searchContent === ""
+      ? Creators
+      : Creators.filter(
+          (creator) =>
+            creator.name.toLowerCase().includes(searchContent.toLowerCase()) ===
+            true
+        );
+  let filteredProjects =
+    searchContent == ""
+      ? Projects
+      : Projects.filter(
+          (project) =>
+            project.name.toLowerCase().includes(searchContent.toLowerCase()) ===
+            true
+        );
+
+  const handleSearch = (event) => {
+    const targetVal = event.currentTarget.value;
+    setSearchContent(targetVal);
   };
   return (
     <>
@@ -39,6 +54,7 @@ const SearchTab = ({
               }
               className="searchBar"
               value={searchContent}
+              handleSearch={handleSearch}
             />
           </SearchBarContainer>
           <RegionSelector selectedRegion={selectedRegion} />
@@ -117,4 +133,5 @@ const CardContainer = styled.div`
   .selected-project {
     background: #f5f3ff;
   }
+  height: 60vh;
 `;

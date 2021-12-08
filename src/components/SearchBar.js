@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SearchBar = (props) => {
+const SearchBar = ({ length, placeholder, value, handleSearch }) => {
   return (
-    <StyledSearchBar length={props.length}>
+    <StyledSearchBar length={length}>
       <input
         type="text"
-        placeholder={props.placeholder}
-        value={props.value}
-        onChange={props.onChange}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleSearch}
       />
-      <FontAwesomeIcon icon="search" onClick={props.onClick} />
+      <FontAwesomeIcon icon="search" />
     </StyledSearchBar>
   );
 };

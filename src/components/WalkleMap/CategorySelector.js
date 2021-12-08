@@ -1,19 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import { selectedCreatorState, selectedProjectState } from "../../store/state";
+import { useSetRecoilState } from "recoil";
 
 const CategorySelector = ({ searchCategory, setSearchCategory }) => {
+  const setSelectedCreator = useSetRecoilState(selectedCreatorState);
+  const setSelectedProject = useSetRecoilState(selectedProjectState);
+  const handleClick = (category) => {
+    setSearchCategory(category);
+    setSelectedCreator("");
+    setSelectedProject("");
+  };
   return (
     <>
       <CategorySelectorContainer>
         <SelectCategory
           className={searchCategory === "creator" && "selected"}
-          onClick={() => setSearchCategory("creator")}
+          onClick={() => handleClick("creator")}
         >
           크리에이터
         </SelectCategory>
         <SelectCategory
           className={searchCategory === "project" && "selected"}
-          onClick={() => setSearchCategory("project")}
+          onClick={() => handleClick("project")}
         >
           프로젝트
         </SelectCategory>
