@@ -8,7 +8,7 @@ import { MapCreatorCard } from "../CreatorCard";
 import { MapProjectCard } from "../ProjectCard";
 import { Creators, Projects } from "../../store/fakeCreators";
 import { useRecoilValue } from "recoil";
-import { regionState } from "../../store/state";
+import { latitudeState, longitudeState, regionState } from "../../store/state";
 
 const SearchTab = ({
   searchCategory,
@@ -18,19 +18,31 @@ const SearchTab = ({
   searchFilter,
   setSearchFilter,
 }) => {
+  const lat = useRecoilValue(latitudeState);
+  const lon = useRecoilValue(longitudeState);
   const selectedRegion = useRecoilValue(regionState);
+  const localCreators = Creators.filter(
+    (creator) =>
+      Math.abs(creator.positionX - lon) <= 0.0337 &&
+      Math.abs(creator.positionY - lat) <= 0.027
+  );
+  const localProjects = Projects.filter(
+    (project) =>
+      Math.abs(project.positionX - lon) <= 0.0337 &&
+      Math.abs(project.positionY - lat) <= 0.027
+  );
   let filteredCreators =
     searchContent === ""
-      ? Creators
-      : Creators.filter(
+      ? localCreators
+      : localCreators.filter(
           (creator) =>
             creator.name.toLowerCase().includes(searchContent.toLowerCase()) ===
             true
         );
   let filteredProjects =
     searchContent == ""
-      ? Projects
-      : Projects.filter(
+      ? localProjects
+      : localProjects.filter(
           (project) =>
             project.name.toLowerCase().includes(searchContent.toLowerCase()) ===
             true
