@@ -116,7 +116,7 @@ const StyledHeader = styled.div`
   border-bottom: 1px solid #dbdbdb;
   padding: 1rem 0rem 1rem 0rem;
   width: 100%;
-  height: 
+  height: 64px;
   font-size: 15px;
   font-weight: 700;
   font-family: Pretendard;
