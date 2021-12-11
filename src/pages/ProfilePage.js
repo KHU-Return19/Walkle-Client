@@ -10,39 +10,32 @@ const ProfilePage = (props) => {
   const [nickname, setNickname] = useState("");
   const [job, setJob] = useState("");
   const [age, setAge] = useState("");
+  const [instagramUrl, setInstagramUrl] = useState("");
+  const [isValidNickname, setIsValidNickname] = useState();
+  const [isValidInstagramUrl, setIsValidInstagramUrl] = useState();
 
-  const handleInput = (type) => (event) => {
-    const targetVal = event.currentTarget.value;
-    switch (type) {
-      case "gender":
-        setGender(targetVal);
-        break;
-      case "photo":
-        setPhoto(targetVal);
-        break;
-      case "nickname":
-        setNickname(targetVal);
-        break;
-      case "job":
-        setJob(targetVal);
-        break;
-      case "age":
-        setAge(targetVal);
-        break;
-      case "introduce":
-        setIntroduce(targetVal);
-        break;
-    }
-  };
   return (
     <>
       <Header userId={""} />
       <Carousel
         gender={gender}
         introduce={introduce}
-        setIntroduce={setIntroduce}
+        photo={photo}
+        nickname={nickname}
+        job={job}
+        age={age}
+        instagramUrl={instagramUrl}
+        isValidNickname={isValidNickname}
+        isValidInstagramUrl={isValidInstagramUrl}
         setGender={setGender}
-        handleInput={handleInput}
+        setIntroduce={setIntroduce}
+        setPhoto={setPhoto}
+        setNickname={setNickname}
+        setJob={setJob}
+        setAge={setAge}
+        setInstagramUrl={setInstagramUrl}
+        setIsValidNickname={setIsValidNickname}
+        setIsValidInstagramUrl={setIsValidInstagramUrl}
       />
     </>
   );

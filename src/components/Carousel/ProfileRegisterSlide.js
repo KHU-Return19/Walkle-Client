@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RadioButton from "../RadioButton";
 import { LabelText, InputContainer, Input } from "../InputRow";
 import StyledButton from "../Button";
@@ -110,7 +111,7 @@ const ProfileInputRow = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  text-align: right;
+  text-align: center;
 `;
 
 export const NextSlideButton = styled(StyledButton)`

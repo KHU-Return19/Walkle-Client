@@ -51,8 +51,11 @@ const InputRowBox = styled.div`
     display: none;
   }
 `;
-export const LabelText = styled.span`
-  font-size: 0.8rem;
+export const LabelText = styled.div`
+  margin-bottom: 1rem;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
   color: #8b8b8b;
 `;
 export const InputContainer = styled.div`
@@ -63,19 +66,22 @@ export const InputContainer = styled.div`
   padding-left: 1.5rem;
   border: none;
   border-radius: 100px;
-  width: 376px;
-  max-width: 400px;
+  width: 400px;
   height: 50px;
   font-size: 1rem;
   color: #313338;
   background: #fafafa;
+  .invisible {
+    display: none;
+  }
 `;
 export const Input = styled.input`
   border: none;
   border-radius: 100px;
   width: 330px;
   height: 50px;
-  font-size: 1rem;
+  font-family: Pretendard;
+  font-size: 18px;
   color: #313338;
   background: #fafafa;
   :focus {
@@ -85,15 +91,17 @@ export const Input = styled.input`
 
 const SuccessText = styled.span`
   padding-right: 1rem;
+  font-family: Pretendard;
   color: #7054ff;
 `;
 
 const CommentContainer = styled.div`
   text-align: right;
+  line-height: 21px;
 `;
 
 const SuccessComment = styled(SuccessText)`
-  font-size: 0.7rem;
+  font-size: 13px;
 `;
 
 const FailComment = styled(SuccessComment)`
