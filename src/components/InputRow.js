@@ -24,12 +24,20 @@ const InputRow = ({
             placeholder={placeholder}
             required
           />
-          <SuccessText className={isValid !== true && "invisible"}>
+          <SuccessText
+            className={
+              value === "" ? "invisible" : isValid !== true && "invisible"
+            }
+          >
             <FontAwesomeIcon icon="check" />
           </SuccessText>
         </InputContainer>
         <CommentContainer>
-          <SuccessComment className={isValid !== true && "invisible"}>
+          <SuccessComment
+            className={
+              value === "" ? "invisible" : isValid !== true && "invisible"
+            }
+          >
             {successComment}
           </SuccessComment>
           <FailComment className={isValid !== false && "invisible"}>
@@ -98,6 +106,9 @@ const SuccessText = styled.span`
 const CommentContainer = styled.div`
   text-align: right;
   line-height: 21px;
+  .invisible {
+    display: none;
+  }
 `;
 
 const SuccessComment = styled(SuccessText)`

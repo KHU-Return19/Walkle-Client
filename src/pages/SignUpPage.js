@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import Header from "../components/Header";
 import SignUpForm from "../components/SignUpForm";
 import { userProfileState } from "../store/state";
@@ -10,7 +10,7 @@ const SignUpPage = (props) => {
   const [id, setId] = useState("");
   const [authNum, setAuthNum] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState(null);
+  const [passwordCheck, setPasswordCheck] = useState("");
   const [email, setEmail] = useState("");
   const [isValidPasswordCheck, setIsValidPasswordCheck] = useState(null);
   const [userProfile, setUserProfile] = useRecoilState(userProfileState);
@@ -34,7 +34,7 @@ const SignUpPage = (props) => {
     handleValid(password, passwordCheck);
   }, [password, passwordCheck]);
 
-  const handleInput = (type) => (event) => {
+  const handleInput = (type) => async (event) => {
     const targetVal = event.currentTarget.value;
     switch (type) {
       case "name":
@@ -50,10 +50,12 @@ const SignUpPage = (props) => {
         setAuthNum(targetVal);
         break;
       case "password":
-        setPassword(targetVal);
+        await setPassword(targetVal);
+        targetVal === "" && setIsValidPasswordCheck(null);
         break;
       case "passwordCheck":
-        setPasswordCheck(targetVal);
+        await setPasswordCheck(targetVal);
+        targetVal === "" && setIsValidPasswordCheck(null);
         break;
     }
   };
