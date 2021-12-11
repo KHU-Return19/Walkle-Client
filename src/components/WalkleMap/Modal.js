@@ -27,7 +27,7 @@ const Modal = ({ searchCategory }) => {
           <ExitButton>
             <FontAwesomeIcon
               className="Icon"
-              icon={["far", "times-circle"]}
+              icon={["fas", "times"]}
               onClick={() => handleClick()}
             />
           </ExitButton>
