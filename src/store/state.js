@@ -44,3 +44,31 @@ export const userProfileState = atom({
     picture: null,
   },
 });
+
+export const profileHashtagListState = atom({
+  key: "profileHashtagListState",
+  default: [],
+});
+
+export const profileFieldTagListState = atom({
+  key: "profileFieldTagListState",
+  default: [],
+});
+
+export const fieldTagListState = atom({
+  key: "fieldTagListState",
+  default: [
+    "디자인",
+    "기획",
+    "개발",
+    "마케팅",
+    "음악",
+    "커피",
+    "비즈니스",
+    "글쓰기",
+    "교육",
+    "운동",
+    "무역",
+    "로컬사업",
+  ],
+});

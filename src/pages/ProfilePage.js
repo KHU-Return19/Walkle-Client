@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import Header from "../components/Header";
 import Carousel from "../components/Carousel/Carousel";
 
@@ -11,6 +10,7 @@ const ProfilePage = (props) => {
   const [job, setJob] = useState("");
   const [age, setAge] = useState("");
   const [instagramUrl, setInstagramUrl] = useState("");
+  const [hashtag, setHashtag] = useState("");
   const [isValidNickname, setIsValidNickname] = useState();
   const [isValidInstagramUrl, setIsValidInstagramUrl] = useState();
 
@@ -25,6 +25,7 @@ const ProfilePage = (props) => {
         job={job}
         age={age}
         instagramUrl={instagramUrl}
+        hashtag={hashtag}
         isValidNickname={isValidNickname}
         isValidInstagramUrl={isValidInstagramUrl}
         setGender={setGender}
@@ -34,6 +35,7 @@ const ProfilePage = (props) => {
         setJob={setJob}
         setAge={setAge}
         setInstagramUrl={setInstagramUrl}
+        setHashtag={setHashtag}
         setIsValidNickname={setIsValidNickname}
         setIsValidInstagramUrl={setIsValidInstagramUrl}
       />

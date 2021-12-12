@@ -72,6 +72,7 @@ export default SetNameJobSlide;
 
 export const SlideContainer = styled.div`
   justify-items: center;
+  width: 460px;
 `;
 export const HeadTextContainer = styled.div`
   justify-items: center;
@@ -86,7 +87,7 @@ export const HeadText = styled.span`
   line-height: 36px;
   white-space: pre-wrap;
 `;
-export const InputForm = styled.form`
+export const InputForm = styled.div`
   border: 1px solid #f1f1f1;
   border-radius: 20px;
 `;

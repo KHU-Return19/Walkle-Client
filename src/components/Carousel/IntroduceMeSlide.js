@@ -6,7 +6,6 @@ import {
   HeadTextContainer,
   HeadText,
   InputForm,
-  InputRow,
   CommentContainer,
   ButtonContainer,
   PrevSlideButton,

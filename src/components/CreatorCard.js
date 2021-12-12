@@ -95,7 +95,7 @@ const CreatorIntroText = styled.span`
   font-size: 13px;
   line-height: 19px;
 `;
-const TagListContainer = styled.div`
+export const TagListContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;

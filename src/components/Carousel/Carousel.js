@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import ProfileRegisterSlide from "./ProfileRegisterSlide";
+import { useRecoilState } from "recoil";
+import { profileHashtagListState } from "../../store/state";
 import IntroduceMeSlide from "./IntroduceMeSlide";
 import SetNameJobSlide from "./SetNameJobSlide";
+import TagSlide from "./TagSlide";
 
 const Carousel = ({
   gender,
@@ -12,6 +14,7 @@ const Carousel = ({
   job,
   age,
   instagramUrl,
+  hashtag,
   isValidNickname,
   isValidInstagramUrl,
   setNickname,
@@ -21,15 +24,18 @@ const Carousel = ({
   setGender,
   setPhoto,
   setInstagramUrl,
+  setHashtag,
   setIsValidNickname,
   setIsValidInstagramUrl,
 }) => {
+  const [hashtagList, setHashtagList] = useRecoilState(profileHashtagListState);
   const handleInput = (type) => async (event) => {
     const targetVal = event.currentTarget.value;
     const regExpNickname =
-      /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{3,50}$/;
+      /(?=.*\d{1,50})(?=.*[~`!@#$%^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{3,50}$/;
     const regExpUrl =
       /(http(s)?:\/\/www.instagram.com\/)([a-z0-9~`!@#$%^&*()-+=_]{1,100})/gi;
+
     switch (type) {
       case "gender":
         setGender(targetVal);
@@ -66,7 +72,22 @@ const Carousel = ({
           ? setIsValidInstagramUrl(true)
           : setIsValidInstagramUrl(false);
         break;
+      case "hashtag":
+        setHashtag(targetVal);
+        break;
     }
+  };
+  const handleSubmitTag = async (val) => {
+    const regExpTag = /^#([\w|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|]{1,15})/g;
+    const targetVal = val.replace(/\s/gi, "");
+    let newTagList = hashtagList;
+    console.log(hashtagList);
+    if (targetVal !== "") {
+      const newTag = targetVal.substring(1);
+      regExpTag.test(targetVal) &&
+        (newTagList = await hashtagList.concat(newTag));
+    }
+    setHashtagList(newTagList);
   };
   return (
     <CarouselContainer>
@@ -85,6 +106,13 @@ const Carousel = ({
         instagramUrl={instagramUrl}
         isValid={isValidInstagramUrl}
         failComment="잘못된 주소입니다"
+        handleInput={handleInput}
+      />
+      <TagSlide
+        hashtag={hashtag}
+        setHashtag={setHashtag}
+        hashtagList={hashtagList}
+        handleSubmitTag={handleSubmitTag}
         handleInput={handleInput}
       />
     </CarouselContainer>
