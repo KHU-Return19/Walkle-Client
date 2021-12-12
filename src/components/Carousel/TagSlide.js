@@ -24,7 +24,13 @@ import { LabelText, InputContainer, Input } from "../InputRow";
 import { TagContainer, TagText } from "../CreatorTag";
 import { TagListContainer } from "../CreatorCard";
 
-const TagSlide = ({ hashtag, setHashtag, handleSubmitTag, handleInput }) => {
+const TagSlide = ({
+  hashtag,
+  setHashtag,
+  handleSubmitTag,
+  handleInput,
+  toggleSlide,
+}) => {
   const [hashtagList, setHashtagList] = useRecoilState(profileHashtagListState);
   const fieldTagList = useRecoilValue(fieldTagListState);
   const [myFieldTagList, setMyFieldTagList] = useRecoilState(
@@ -137,8 +143,12 @@ const TagSlide = ({ hashtag, setHashtag, handleSubmitTag, handleInput }) => {
           </InputRowContainer>
         </InputForm>
         <ButtonContainer>
-          <PrevSlideButton>이전으로</PrevSlideButton>
-          <NextSlideButton>다음으로</NextSlideButton>
+          <PrevSlideButton onClick={toggleSlide("prev")}>
+            이전으로
+          </PrevSlideButton>
+          <NextSlideButton onClick={toggleSlide("next")}>
+            다음으로
+          </NextSlideButton>
         </ButtonContainer>
       </SlideContainer>
     </>

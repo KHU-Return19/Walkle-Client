@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { profileHashtagListState } from "../../store/state";
 import IntroduceMeSlide from "./IntroduceMeSlide";
 import SetNameJobSlide from "./SetNameJobSlide";
 import TagSlide from "./TagSlide";
+import SetLocationSlide from "./SetLocationSlide";
+
+const TOTAL_SLIDES = 2;
 
 const Carousel = ({
   gender,
@@ -29,6 +32,8 @@ const Carousel = ({
   setIsValidInstagramUrl,
 }) => {
   const [hashtagList, setHashtagList] = useRecoilState(profileHashtagListState);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideRef = useRef(null);
   const handleInput = (type) => async (event) => {
     const targetVal = event.currentTarget.value;
     const regExpNickname =
@@ -89,44 +94,87 @@ const Carousel = ({
     }
     setHashtagList(newTagList);
   };
+  const toggleSlide = (type) => (e) => {
+    if (type === "prev") {
+      if (currentSlide === 0) {
+        return;
+      } else {
+        setCurrentSlide(currentSlide - 1);
+      }
+    }
+    if (type === "next") {
+      if (currentSlide >= TOTAL_SLIDES) {
+        return;
+      } else {
+        setCurrentSlide(currentSlide + 1);
+      }
+    }
+  };
+  useEffect(() => {
+    slideRef.current.style.transition = "all 0.5s ease-in-out";
+    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+  }, [currentSlide]);
   return (
-    <CarouselContainer>
-      <SetNameJobSlide
-        nickname={nickname}
-        setNickname={setNickname}
-        job={job}
-        setJob={setJob}
-        handleInput={handleInput}
-        isValid={isValidNickname}
-        failComment="영어(대/소문자), 숫자, 특수문자를 포함해 주세요"
-      />
-      <IntroduceMeSlide
-        introduce={introduce}
-        setIntroduce={setIntroduce}
-        instagramUrl={instagramUrl}
-        isValid={isValidInstagramUrl}
-        failComment="잘못된 주소입니다"
-        handleInput={handleInput}
-      />
-      <TagSlide
-        hashtag={hashtag}
-        setHashtag={setHashtag}
-        hashtagList={hashtagList}
-        handleSubmitTag={handleSubmitTag}
-        handleInput={handleInput}
-      />
-    </CarouselContainer>
+    <>
+      <PageIndicatorContainer>
+        <PageIndicatorSlider>
+          <PageIndicator />
+        </PageIndicatorSlider>
+      </PageIndicatorContainer>
+      <CarouselContainer>
+        <SlideContainer ref={slideRef}>
+          <SetNameJobSlide
+            nickname={nickname}
+            setNickname={setNickname}
+            job={job}
+            setJob={setJob}
+            handleInput={handleInput}
+            isValid={isValidNickname}
+            failComment="영어(대/소문자), 숫자, 특수문자를 포함해 주세요"
+            toggleSlide={toggleSlide}
+          />
+          <IntroduceMeSlide
+            introduce={introduce}
+            setIntroduce={setIntroduce}
+            instagramUrl={instagramUrl}
+            isValid={isValidInstagramUrl}
+            failComment="잘못된 주소입니다"
+            handleInput={handleInput}
+            toggleSlide={toggleSlide}
+          />
+          <TagSlide
+            hashtag={hashtag}
+            setHashtag={setHashtag}
+            hashtagList={hashtagList}
+            handleSubmitTag={handleSubmitTag}
+            handleInput={handleInput}
+            toggleSlide={toggleSlide}
+          />
+        </SlideContainer>
+      </CarouselContainer>
+    </>
   );
 };
 
 export default Carousel;
 
+const PageIndicatorContainer = styled.div``;
+
+const PageIndicatorSlider = styled.div``;
+
+const PageIndicator = styled.div``;
+
 const CarouselContainer = styled.div`
+  margin: auto;
+  width: 462px;
+  overflow: hidden;
+`;
+
+const SlideContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  max-width: 460px;
-  min-width: 400px;
+  width: 100%;
   max-height: 1000px;
   margin: 50px auto;
   margin-bottom: 0;
@@ -134,3 +182,4 @@ const CarouselContainer = styled.div`
     text-decoration: none;
   }
 `;
+//<SetLocationSlide />

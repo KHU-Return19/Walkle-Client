@@ -10,6 +10,7 @@ const SetNameJobSlide = ({
   handleInput,
   isValid,
   failComment,
+  toggleSlide,
 }) => {
   return (
     <>
@@ -60,8 +61,12 @@ const SetNameJobSlide = ({
           </InputRowContainer>
         </InputForm>
         <ButtonContainer>
-          <PrevSlideButton>이전으로</PrevSlideButton>
-          <NextSlideButton>다음으로</NextSlideButton>
+          <PrevSlideButton onClick={toggleSlide("prev")}>
+            이전으로
+          </PrevSlideButton>
+          <NextSlideButton onClick={toggleSlide("next")}>
+            다음으로
+          </NextSlideButton>
         </ButtonContainer>
       </SlideContainer>
     </>
@@ -72,7 +77,7 @@ export default SetNameJobSlide;
 
 export const SlideContainer = styled.div`
   justify-items: center;
-  width: 460px;
+  width: 100vw;
 `;
 export const HeadTextContainer = styled.div`
   justify-items: center;
@@ -88,6 +93,7 @@ export const HeadText = styled.span`
   white-space: pre-wrap;
 `;
 export const InputForm = styled.div`
+  width: 460px;
   border: 1px solid #f1f1f1;
   border-radius: 20px;
 `;

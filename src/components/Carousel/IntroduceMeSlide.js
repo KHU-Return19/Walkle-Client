@@ -21,6 +21,7 @@ const IntroduceMeSlide = ({
   isValid,
   failComment,
   handleInput,
+  toggleSlide,
 }) => {
   return (
     <>
@@ -75,8 +76,12 @@ const IntroduceMeSlide = ({
           </IntroduceInputRowContainer>
         </InputForm>
         <ButtonContainer>
-          <PrevSlideButton>이전으로</PrevSlideButton>
-          <NextSlideButton>다음으로</NextSlideButton>
+          <PrevSlideButton onClick={toggleSlide("prev")}>
+            이전으로
+          </PrevSlideButton>
+          <NextSlideButton onClick={toggleSlide("next")}>
+            다음으로
+          </NextSlideButton>
         </ButtonContainer>
       </SlideContainer>
     </>
