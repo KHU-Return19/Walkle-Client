@@ -6,8 +6,9 @@ import IntroduceMeSlide from "./IntroduceMeSlide";
 import SetNameJobSlide from "./SetNameJobSlide";
 import TagSlide from "./TagSlide";
 import SetLocationSlide from "./SetLocationSlide";
+import PageIndicator from "./PageIndicator";
 
-const TOTAL_SLIDES = 2;
+const TOTAL_SLIDES = 3;
 
 const Carousel = ({
   gender,
@@ -40,8 +41,9 @@ const Carousel = ({
       /(?=.*\d{1,50})(?=.*[~`!@#$%^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{3,50}$/;
     const regExpUrl =
       /(http(s)?:\/\/www.instagram.com\/)([a-z0-9~`!@#$%^&*()-+=_]{1,100})/gi;
-
     switch (type) {
+      default:
+        break;
       case "gender":
         setGender(targetVal);
         break;
@@ -116,12 +118,8 @@ const Carousel = ({
   }, [currentSlide]);
   return (
     <>
-      <PageIndicatorContainer>
-        <PageIndicatorSlider>
-          <PageIndicator />
-        </PageIndicatorSlider>
-      </PageIndicatorContainer>
       <CarouselContainer>
+        <PageIndicator currentSlide={currentSlide}/>
         <SlideContainer ref={slideRef}>
           <SetNameJobSlide
             nickname={nickname}
@@ -150,6 +148,9 @@ const Carousel = ({
             handleInput={handleInput}
             toggleSlide={toggleSlide}
           />
+          <SetLocationSlide 
+            toggleSlide={toggleSlide}
+          />
         </SlideContainer>
       </CarouselContainer>
     </>
@@ -157,12 +158,6 @@ const Carousel = ({
 };
 
 export default Carousel;
-
-const PageIndicatorContainer = styled.div``;
-
-const PageIndicatorSlider = styled.div``;
-
-const PageIndicator = styled.div``;
 
 const CarouselContainer = styled.div`
   margin: auto;
@@ -173,7 +168,7 @@ const CarouselContainer = styled.div`
 const SlideContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: top;
   width: 100%;
   max-height: 1000px;
   margin: 50px auto;
@@ -182,4 +177,4 @@ const SlideContainer = styled.div`
     text-decoration: none;
   }
 `;
-//<SetLocationSlide />
+//

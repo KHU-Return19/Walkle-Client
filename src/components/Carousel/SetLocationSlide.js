@@ -7,14 +7,21 @@ import {
   InputForm,
   InputRowContainer,
   SlideContainer,
+  ButtonContainer,
+  PrevSlideButton,
+  NextSlideButton,
 } from "./SetNameJobSlide";
 
-const SetLocationSlide = () => {
+const representText = "대표 위치를 {'\n'} 등록해 보세요";
+const addAnotherText = "다른 위치도{'\n'}추가할 수 있어요"
+
+const SetLocationSlide = ({toggleSlide}) => {
   return (
     <>
       <SlideContainer>
         <HeadTextContainer>
           <HeadText>다른 위치도{"\n"}추가할 수 있어요</HeadText>
+          </HeadTextContainer>
           <InputForm>
             <InputRowContainer>
               <LocationLabelText>위치등록</LocationLabelText>
@@ -25,7 +32,14 @@ const SetLocationSlide = () => {
             </InputRowContainer>
             <MapContainer></MapContainer>
           </InputForm>
-        </HeadTextContainer>
+          <ButtonContainer>
+          <PrevSlideButton onClick={toggleSlide("prev")}>
+            이전으로
+          </PrevSlideButton>
+          <NextSlideButton onClick={toggleSlide("next")}>
+            다음으로
+          </NextSlideButton>
+        </ButtonContainer>
       </SlideContainer>
     </>
   );
