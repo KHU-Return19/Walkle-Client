@@ -1,3 +1,9 @@
+# 시작 전
+0. branch 및 버전 확인, 가장 최신 버전으로 pull.
+1. `npm install`로 필요 dependencies 전부 설치
+2. walkle-client 폴더에 .env 생성, REACT_APP_REST_API_KEY 와 REACT_APP_API_KEY 환경변수 선언, app key는 프론트 팀에게 문의
+3. npm start 실행
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
