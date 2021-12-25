@@ -10,7 +10,7 @@ import { Creators, Projects } from "../../store/fakeCreators";
 import { useRecoilValue } from "recoil";
 import { latitudeState, longitudeState, regionState } from "../../store/state";
 
-// 현재 위치에 상관없는 ui 확인을 위해 89, 90에 filteredCreators, filteredProjects 대신 Creators 와 Projects 원본 사용중. 후에 개발이 완료되면 다시 변경 요망
+// 현재 위치에 상관없는 ui 확인을 위해 <CardContainer /> 컴포넌트에 filteredCreators, filteredProjects 대신 Creators 와 Projects 원본 사용중. 후에 개발이 완료되면 다시 변경 요망
 
 const SearchTab = ({
   searchCategory,
