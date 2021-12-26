@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { LabelText } from "../InputRow";
+import ModalCreatorCard from "./ModalCreatorCard";
 import RecruitmentPeriodSelector, {
   DateInput,
   DateInputContainer,
@@ -13,6 +14,9 @@ const AddProjectForm = ({
   isConstantRecruit,
   recruitStartDate,
   recruitEndDate,
+  isModalOpen,
+  setIsModalOpen,
+  participants,
 }) => {
   return (
     <>
@@ -27,14 +31,20 @@ const AddProjectForm = ({
         <AddMemberContainer>
           <AddProjectLabelText>참여 멤버</AddProjectLabelText>
           <AddMemberListContainer>
-            <AddMemberButton>+ 멤버 추가</AddMemberButton>
+            {participants &&
+              participants.map((creator) => (
+                <ModalCreatorCard creator={creator} />
+              ))}
+            <AddMemberButton onClick={() => setIsModalOpen(true)}>
+              + 멤버 추가
+            </AddMemberButton>
           </AddMemberListContainer>
         </AddMemberContainer>
         <RecruitmentPeriodSelector
           isConstantRecruit={isConstantRecruit}
           handleCheck={handleCheck}
-          recruitStartDate={recruitStartDate}
           handleInput={handleInput}
+          recruitStartDate={recruitStartDate}
           recruitEndDate={recruitEndDate}
         />
         <SimpleIntroduceContainer>
@@ -119,7 +129,9 @@ const ProjectTitleInput = styled.input`
 
 const AddMemberContainer = styled.div``;
 
-const AddMemberListContainer = styled.div``;
+const AddMemberListContainer = styled.div`
+  display: flex;
+`;
 
 const AddMemberButton = styled.div`
   display: flex;
@@ -131,6 +143,7 @@ const AddMemberButton = styled.div`
   border-radius: 8px;
   background: #f5f3ff;
   color: #7054ff;
+  cursor: pointer;
 `;
 
 export const AddProjectLabelText = styled(LabelText)`

@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SearchBar = ({ length, placeholder, value, handleSearch }) => {
+const SearchBar = ({ placeholder, value, handleSearch }) => {
   return (
-    <StyledSearchBar length={length}>
+    <StyledSearchBar>
       <input
         type="text"
         placeholder={placeholder}

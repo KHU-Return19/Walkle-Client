@@ -87,9 +87,7 @@ const SearchTab = ({
         <CardContainer className="scroll">
           {searchCategory === "creator"
             ? Creators.map((creator) => <MapCreatorCard {...creator} />)
-            : Projects.map((project) => (
-                <MapProjectCard {...project} />
-              ))}
+            : Projects.map((project) => <MapProjectCard {...project} />)}
         </CardContainer>
       </SearchTabContainer>
     </>
