@@ -12,6 +12,7 @@ const AddProjectPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchContent, setSearchContent] = useState("");
   const [currentCreator, setCurrentCreator] = useState();
+  const [simpleIntro, setSimpleIntro] = useState("");
   const handleInput = (type) => async (event) => {
     const targetValue = event.currentTarget.value;
     switch (type) {
@@ -25,6 +26,9 @@ const AddProjectPage = () => {
         break;
       case "endDate":
         setRecruitEndDate(targetValue);
+        break;
+      case "simpleIntro":
+        setSimpleIntro(targetValue);
         break;
     }
   };
@@ -57,6 +61,7 @@ const AddProjectPage = () => {
           recruitEndDate={recruitEndDate}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          simpleIntro={simpleIntro}
         />
       </AddProjectFormContainer>
       <AddMemberModal

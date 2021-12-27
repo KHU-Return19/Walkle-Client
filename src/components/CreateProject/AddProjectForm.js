@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { LabelText } from "../InputRow";
+import IntroduceInput from "./IntroduceInput";
 import MemberSelector from "./MemberSelector";
-import RecruitmentPeriodSelector, {
-  DateInput,
-  DateInputContainer,
-} from "./RecruitmentPeriodSelector";
+import RecruitmentPeriodSelector from "./RecruitmentPeriodSelector";
 
 const AddProjectForm = ({
   projectTitle,
@@ -18,6 +16,7 @@ const AddProjectForm = ({
   isModalOpen,
   setIsModalOpen,
   memberList,
+  simpleIntro,
 }) => {
   return (
     <>
@@ -41,21 +40,7 @@ const AddProjectForm = ({
           recruitStartDate={recruitStartDate}
           recruitEndDate={recruitEndDate}
         />
-        <SimpleIntroduceContainer>
-          <AddProjectLabelText>한줄 소개</AddProjectLabelText>
-          <SimpleIntroduceInputContainer>
-            <SimpleIntroduceInput placeholder="프로젝트의 한줄 소개 내용을 입력해 주세요" />
-          </SimpleIntroduceInputContainer>
-        </SimpleIntroduceContainer>
-        <DetailedIntroduceContainer>
-          <AddProjectLabelText>세부 소개</AddProjectLabelText>
-          <DetailedIntroduceInputContainer>
-            <DetailedIntroduceInput
-              type="textarea"
-              placeholder="프로젝트의 세부 소개 내용을 입력해 주세요"
-            />
-          </DetailedIntroduceInputContainer>
-        </DetailedIntroduceContainer>
+        <IntroduceInput simpleIntro={simpleIntro} handleInput={handleInput} />
         <SetTagContainer>
           <AddProjectLabelText>태그 설정</AddProjectLabelText>
           <SubLabelText>분야/검색 태그 (최대 3개)</SubLabelText>
@@ -130,22 +115,6 @@ export const AddProjectLabelText = styled(LabelText)`
 export const SubLabelText = styled(LabelText)`
   margin-bottom: 20px;
 `;
-
-const SimpleIntroduceContainer = styled.div``;
-
-const SimpleIntroduceInputContainer = styled(DateInputContainer)`
-  width: 960px;
-`;
-
-const SimpleIntroduceInput = styled(DateInput)`
-  width: 940px;
-`;
-
-const DetailedIntroduceContainer = styled.div``;
-
-const DetailedIntroduceInputContainer = styled(SimpleIntroduceInputContainer)``;
-
-const DetailedIntroduceInput = styled(SimpleIntroduceInput)``;
 
 const SetTagContainer = styled.div``;
 
