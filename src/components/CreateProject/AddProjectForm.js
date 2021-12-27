@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { LabelText } from "../InputRow";
 import IntroduceInput from "./IntroduceInput";
 import MemberSelector from "./MemberSelector";
+import ProjectTagSelector from "./ProjectTagSelector";
 import RecruitmentPeriodSelector from "./RecruitmentPeriodSelector";
 
 const AddProjectForm = ({
@@ -10,6 +11,8 @@ const AddProjectForm = ({
   handleInput,
   handleCheck,
   handleClick,
+  handleTagClick,
+  onCheckEnter,
   isConstantRecruit,
   recruitStartDate,
   recruitEndDate,
@@ -17,6 +20,9 @@ const AddProjectForm = ({
   setIsModalOpen,
   memberList,
   simpleIntro,
+  myFieldTagList,
+  hashtag,
+  hashtagList,
 }) => {
   return (
     <>
@@ -41,21 +47,14 @@ const AddProjectForm = ({
           recruitEndDate={recruitEndDate}
         />
         <IntroduceInput simpleIntro={simpleIntro} handleInput={handleInput} />
-        <SetTagContainer>
-          <AddProjectLabelText>태그 설정</AddProjectLabelText>
-          <SubLabelText>분야/검색 태그 (최대 3개)</SubLabelText>
-          <SubText>
-            해당 프로젝트와 관련한 태그를 선택해주세요.{"\n"}분야 태그는
-            프로젝트의 메인 카드에 노출됩니다.
-          </SubText>
-          <SubLabelText>검색 태그 (최대 3개)</SubLabelText>
-          <SubText>
-            크리에이터님의 관련 해시태그로 노출되는 키워드입니다.
-          </SubText>
-          <HashtagInputContainer>
-            <HashtagInput placeholder="#태그입력 후 Enter" />
-          </HashtagInputContainer>
-        </SetTagContainer>
+        <ProjectTagSelector
+          myFieldTagList={myFieldTagList}
+          hashtag={hashtag}
+          hashtagList={hashtagList}
+          handleInput={handleInput}
+          handleTagClick={handleTagClick}
+          onCheckEnter={onCheckEnter}
+        />
       </AddProjectFormContainer>
     </>
   );
@@ -116,10 +115,4 @@ export const SubLabelText = styled(LabelText)`
   margin-bottom: 20px;
 `;
 
-const SetTagContainer = styled.div``;
-
-const SubText = styled(SubLabelText)``;
-
-const HashtagInputContainer = styled.div``;
-
-const HashtagInput = styled.input``;
+export const SubText = styled(SubLabelText)``;

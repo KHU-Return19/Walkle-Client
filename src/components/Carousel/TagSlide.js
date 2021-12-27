@@ -16,8 +16,6 @@ import {
   ButtonContainer,
   PrevSlideButton,
   NextSlideButton,
-  SuccessText,
-  FailComment,
   InputRowContainer,
 } from "./SetNameJobSlide";
 import { LabelText, InputContainer, Input } from "../InputRow";
@@ -169,7 +167,7 @@ const TagLabelSubText = styled(LabelText)`
 
 const TagInputRow = styled.div``;
 
-const FieldTagListContainer = styled.div`
+export const FieldTagListContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: left;
@@ -181,19 +179,19 @@ const FieldTagListContainer = styled.div`
   }
 `;
 
-const FieldTagContainer = styled(TagContainer)`
+export const FieldTagContainer = styled(TagContainer)`
   height: 50px;
   padding: 16px 20px;
   line-height: 18px;
   margin: 0px 10px 16px 0px;
 `;
 
-const FieldTag = styled(TagText)`
+export const FieldTag = styled(TagText)`
   font-size: 18px;
   font-weight: 500;
 `;
 
-const HashtagListContainer = styled(TagListContainer)`
+export const HashtagListContainer = styled(TagListContainer)`
   display: flex;
   flex-flow: row wrap;
   justify-content: left;
@@ -201,7 +199,7 @@ const HashtagListContainer = styled(TagListContainer)`
   padding: 0;
 `;
 
-const HashtagContainer = styled(TagContainer)`
+export const HashtagContainer = styled(TagContainer)`
   height: 36px;
   font-size: 16px;
   line-height: 16px;
@@ -209,26 +207,27 @@ const HashtagContainer = styled(TagContainer)`
   margin: 16px 10px 0px 0px;
 `;
 
-const HashtagContentContainer = styled.div`
+export const HashtagContentContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `;
 
-const HashtagInputContainer = styled(InputContainer)`
+export const HashtagInputContainer = styled(InputContainer)`
   margin-top: 16px;
 `;
 
-const HashtagText = styled(TagText)`
+export const HashtagText = styled(TagText)`
   font-weight: 500;
   line-height: 16px;
 `;
 
-const IconContainer = styled.div`
+export const IconContainer = styled.div`
   background: none;
+  line-height: 9px;
   .Icon {
-    font-size: 16px;
+    font-size: 12px;
     color: #8b8b8b;
     margin-left: 10px;
     cursor: pointer;

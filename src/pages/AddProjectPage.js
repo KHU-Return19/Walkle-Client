@@ -13,6 +13,9 @@ const AddProjectPage = () => {
   const [searchContent, setSearchContent] = useState("");
   const [currentCreator, setCurrentCreator] = useState();
   const [simpleIntro, setSimpleIntro] = useState("");
+  const [hashtag, setHashtag] = useState("");
+  const [hashtagList, setHashtagList] = useState([]);
+  const [myFieldTagList, setMyFieldTagList] = useState([]);
   const handleInput = (type) => async (event) => {
     const targetValue = event.currentTarget.value;
     switch (type) {
@@ -30,6 +33,9 @@ const AddProjectPage = () => {
       case "simpleIntro":
         setSimpleIntro(targetValue);
         break;
+      case "hashtag":
+        setHashtag(targetValue);
+        break;
     }
   };
   const handleCheck = () => {
@@ -45,6 +51,51 @@ const AddProjectPage = () => {
     const newList = memberList.filter((member) => member.id !== creator.id);
     setMemberList(newList);
   };
+  const handleSubmitTag = async (val) => {
+    const regExpTag = /^#([\w|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|]{1,15})/g;
+    const targetVal = val.replace(/\s/gi, "");
+    let newTagList = hashtagList;
+    console.log(hashtagList);
+    if (targetVal !== "") {
+      const newTag = targetVal.substring(1);
+      regExpTag.test(targetVal) &&
+        (newTagList = await hashtagList.concat(newTag));
+    }
+    setHashtagList(newTagList);
+  };
+  const onCheckEnter = async (e) => {
+    const targetVal = e.currentTarget.value;
+    if (e.key === "Enter" && hashtagList.length < 3) {
+      e.preventDefault();
+      handleSubmitTag(targetVal);
+      setHashtag("");
+    }
+  };
+  const handleTagClick = (type) => async (e) => {
+    const targetVal = e.currentTarget.id;
+    if (type === "hashtag") {
+      const newTagList = hashtagList.filter((tag) => tag !== targetVal);
+      setHashtagList(newTagList);
+    }
+    if (type === "fieldtag") {
+      if (myFieldTagList.length === 3) {
+        const newTagList = myFieldTagList.filter(
+          (element) => element !== targetVal
+        );
+        setMyFieldTagList(newTagList);
+      } else if (
+        myFieldTagList.findIndex((element) => element === targetVal) !== -1
+      ) {
+        const newTagList = myFieldTagList.filter(
+          (element) => element !== targetVal
+        );
+        setMyFieldTagList(newTagList);
+      } else {
+        const newTagList = myFieldTagList.concat(targetVal);
+        setMyFieldTagList(newTagList);
+      }
+    }
+  };
   return (
     <>
       <Header />
@@ -56,12 +107,18 @@ const AddProjectPage = () => {
           handleInput={handleInput}
           handleCheck={handleCheck}
           handleClick={handleClick}
+          handleTagClick={handleTagClick}
+          onCheckEnter={onCheckEnter}
           isConstantRecruit={isConstantRecruit}
           recruitStartDate={recruitStartDate}
           recruitEndDate={recruitEndDate}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           simpleIntro={simpleIntro}
+          hashtag={hashtag}
+          hashtagList={hashtagList}
+          myFieldTagList={myFieldTagList}
+          setMyFieldTagList={setMyFieldTagList}
         />
       </AddProjectFormContainer>
       <AddMemberModal
