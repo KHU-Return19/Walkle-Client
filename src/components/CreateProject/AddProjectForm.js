@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { LabelText } from "../InputRow";
-import { ParticipantCard } from "./ModalCreatorCard";
+import MemberSelector from "./MemberSelector";
 import RecruitmentPeriodSelector, {
   DateInput,
   DateInputContainer,
@@ -29,18 +29,11 @@ const AddProjectForm = ({
             onChange={handleInput("title")}
           />
         </ProjectTitleContainer>
-        <AddMemberContainer>
-          <AddProjectLabelText>참여 멤버</AddProjectLabelText>
-          <AddMemberListContainer>
-            {memberList &&
-              memberList.map((creator) => (
-                <ParticipantCard creator={creator} handleClick={handleClick} />
-              ))}
-            <AddMemberButton onClick={() => setIsModalOpen(true)}>
-              + 멤버 추가
-            </AddMemberButton>
-          </AddMemberListContainer>
-        </AddMemberContainer>
+        <MemberSelector
+          memberList={memberList}
+          handleClick={handleClick}
+          setIsModalOpen={setIsModalOpen}
+        />
         <RecruitmentPeriodSelector
           isConstantRecruit={isConstantRecruit}
           handleCheck={handleCheck}
@@ -126,25 +119,6 @@ const ProjectTitleInput = styled.input`
     color: #d2d2d2;
     font-weight: 700;
   }
-`;
-
-const AddMemberContainer = styled.div``;
-
-const AddMemberListContainer = styled.div`
-  display: flex;
-`;
-
-const AddMemberButton = styled.div`
-  display: flex;
-  flex-directoin: row;
-  justify-content: center;
-  align-items: center;
-  width: 225px;
-  height: 80px;
-  border-radius: 8px;
-  background: #f5f3ff;
-  color: #7054ff;
-  cursor: pointer;
 `;
 
 export const AddProjectLabelText = styled(LabelText)`
