@@ -1,13 +1,14 @@
-import React from 'react'
-import Welcome from '../components/Welcome';
-import Header from '../components/Header';
+import React from "react";
+import Welcome from "../components/Welcome";
+import Header from "../components/Header";
 
-const LandingPage = () => {
-    return (<>
-        <Header />
-        <Welcome />
+const LandingPage = ({ userId }) => {
+  return (
+    <>
+      <Header userId={userId} />
+      <Welcome />
     </>
-    )
-}
+  );
+};
 
 export default LandingPage;

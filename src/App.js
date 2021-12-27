@@ -1,20 +1,39 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Router from './Router';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMapMarkerAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
-import './styles/App.css';
+import React from "react";
+import { RecoilRoot } from "recoil";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./Router";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faMapMarkerAlt,
+  faSearch,
+  faCheck,
+  faComment,
+  faPaperPlane,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import "./styles/App.css";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 
-library.add(faMapMarkerAlt, faSearch);
+library.add(
+  faMapMarkerAlt,
+  faSearch,
+  faCheck,
+  faComment,
+  faBookmark,
+  faPaperPlane,
+  faTimes
+);
 
 const App = () => {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </RecoilRoot>
     </div>
   );
-}
+};
 
 export default App;

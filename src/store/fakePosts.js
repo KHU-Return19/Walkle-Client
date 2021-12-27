@@ -1,0 +1,67 @@
+export const Posts = [
+  {
+    id: 1,
+    content: "lorem ipusm akdljfsl;kfjalkjflajf;lkjf",
+    writer: {
+      name: "김수한무거북이와두루미",
+      job: "브랜드 디자이너",
+      photo: "",
+    },
+    view: 20,
+    date: "2021-12-08",
+    location: "안산시 상록구 푸른동",
+    heart: 12,
+  },
+  {
+    id: 2,
+    content: "lorem ipusm akdljfsl;kfjalkjflajf;lkjf",
+    writer: {
+      name: "김수한무거북이와두루미",
+      job: "브랜드 디자이너",
+      photo: "",
+    },
+    view: 20,
+    date: "2021-12-08",
+    location: "안산시 상록구 푸른동",
+    heart: 12,
+  },
+  {
+    id: 3,
+    content: "lorem ipusm akdljfsl;kfjalkjflajf;lkjf",
+    writer: {
+      name: "김수한무거북이와두루미",
+      job: "브랜드 디자이너",
+      photo: "",
+    },
+    view: 20,
+    date: "2021-12-08",
+    location: "안산시 상록구 푸른동",
+    heart: 12,
+  },
+  {
+    id: 4,
+    content: "lorem ipusm akdljfsl;kfjalkjflajf;lkjf",
+    writer: {
+      name: "김수한무거북이와두루미",
+      job: "브랜드 디자이너",
+      photo: "",
+    },
+    view: 20,
+    date: "2021-12-08",
+    location: "안산시 상록구 푸른동",
+    heart: 12,
+  },
+  {
+    id: 5,
+    content: "lorem ipusm akdljfsl;kfjalkjflajf;lkjf",
+    writer: {
+      name: "김수한무거북이와두루미",
+      job: "브랜드 디자이너",
+      photo: "",
+    },
+    view: 20,
+    date: "2021-12-08",
+    location: "안산시 상록구 푸른동",
+    heart: 12,
+  },
+];

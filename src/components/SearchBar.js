@@ -1,34 +1,45 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SearchBar = (props) => {
-    return (
-        <StyledSearchBar>
-            <input type="text" placeholder="프로젝트명 or 태그 검색하기" />
-            <FontAwesomeIcon icon="search" onclick={props}/>
-        </StyledSearchBar>
-    )
-}
+const SearchBar = ({ placeholder, value, handleSearch }) => {
+  return (
+    <StyledSearchBar>
+      <input
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={handleSearch}
+      />
+      <FontAwesomeIcon icon="search" />
+    </StyledSearchBar>
+  );
+};
 
 export default SearchBar;
 
-const StyledSearchBar = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 650px;
-    height: 65px;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 30px;
-    background: #FAFAFA;
-    input {
-        width: 500px;
-        border: none;
-        background: #FAFAFA;
-        font-size: 1rem;
-        font-weight: 600;
-        :focus{ outline: none; }
+export const StyledSearchBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: ${(props) => (props.length === "short" ? "390px" : "33vw")};
+  height: ${(props) => (props.length === "short" ? "54px" : "6vh")};
+  min-height: 44px;
+  min-width: 375px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 100px;
+  background: #fafafa;
+  input {
+    width: 500px;
+    border: none;
+    background: #fafafa;
+    font-family: Pretendard;
+    font-size: 21px;
+    font-weight: 400;
+    :focus {
+      outline: none;
     }
+    line-height: 44px;
+  }
 `;
