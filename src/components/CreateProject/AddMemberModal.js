@@ -14,8 +14,8 @@ const AddMemberModal = ({
   setIsModalOpen,
   currentCreator,
   setCurrentCreator,
-  participants,
-  setParticipants,
+  memberList,
+  setMemberList,
 }) => {
   let filteredCreators =
     searchContent !== "" &&
@@ -24,10 +24,12 @@ const AddMemberModal = ({
         creator.name.toLowerCase().includes(searchContent.toLowerCase()) ===
         true
     );
-    const handleApprove = (creator) => {
-        const newList = participants.concat(creator);
-        setParticipants(newList);
-    }
+  const handleApprove = (creator) => {
+    let newList = memberList;
+    if (memberList.find((member) => member.id === creator.id) === undefined)
+      newList = memberList.concat(creator);
+    setMemberList(newList);
+  };
   return (
     <>
       <ModalWrapper>
@@ -47,7 +49,11 @@ const AddMemberModal = ({
               <SearchResultContainer>
                 {filteredCreators &&
                   filteredCreators.map((creator) => (
-                    <ModalCreatorCard creator={creator} currentCreator={currentCreator} setCurrentCreator={setCurrentCreator} />
+                    <ModalCreatorCard
+                      creator={creator}
+                      currentCreator={currentCreator}
+                      setCurrentCreator={setCurrentCreator}
+                    />
                   ))}
               </SearchResultContainer>
             </ModalInner>
@@ -56,7 +62,9 @@ const AddMemberModal = ({
                 <CancelButton onClick={() => setIsModalOpen(false)}>
                   취소
                 </CancelButton>
-                <ApproveButton onClick={() => handleApprove(currentCreator)}>확인</ApproveButton>
+                <ApproveButton onClick={() => handleApprove(currentCreator)}>
+                  확인
+                </ApproveButton>
               </ButtonContainer>
             </ModalFooter>
           </ModalOutlay>

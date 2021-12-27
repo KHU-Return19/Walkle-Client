@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { LabelText } from "../InputRow";
-import ModalCreatorCard from "./ModalCreatorCard";
+import { ParticipantCard } from "./ModalCreatorCard";
 import RecruitmentPeriodSelector, {
   DateInput,
   DateInputContainer,
@@ -11,12 +11,13 @@ const AddProjectForm = ({
   projectTitle,
   handleInput,
   handleCheck,
+  handleClick,
   isConstantRecruit,
   recruitStartDate,
   recruitEndDate,
   isModalOpen,
   setIsModalOpen,
-  participants,
+  memberList,
 }) => {
   return (
     <>
@@ -31,9 +32,9 @@ const AddProjectForm = ({
         <AddMemberContainer>
           <AddProjectLabelText>참여 멤버</AddProjectLabelText>
           <AddMemberListContainer>
-            {participants &&
-              participants.map((creator) => (
-                <ModalCreatorCard creator={creator} />
+            {memberList &&
+              memberList.map((creator) => (
+                <ParticipantCard creator={creator} handleClick={handleClick} />
               ))}
             <AddMemberButton onClick={() => setIsModalOpen(true)}>
               + 멤버 추가

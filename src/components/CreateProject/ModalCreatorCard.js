@@ -1,22 +1,47 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ModalCreatorCard = ({creator, currentCreator, setCurrentCreator}) => {
+const ModalCreatorCard = ({ creator, currentCreator, setCurrentCreator }) => {
   return (
     <>
-    <CardWrapper>
-    <CardContainer className={currentCreator === creator && 
-        "selected"} onClick={() => setCurrentCreator(creator)}>
-        <CardContent>
+      <CardWrapper>
+        <CardContainer
+          className={currentCreator === creator && "selected"}
+          onClick={() => setCurrentCreator(creator)}
+        >
+          <CardContent>
+            <ImageContainer />
+            <InfoContainer>
+              <Name>{creator.name}</Name>
+              <Job>{creator.job}</Job>
+            </InfoContainer>
+          </CardContent>
+        </CardContainer>
+      </CardWrapper>
+    </>
+  );
+};
+
+export const ParticipantCard = ({ creator, handleClick }) => {
+  return (
+    <>
+      <ParticipantCardContainer>
+        <ParticipantCardContent>
           <ImageContainer />
           <InfoContainer>
-            <Name>{creator.name}</Name>
+            <InfoHeader>
+              <Name>{creator.name}</Name>
+              <FontAwesomeIcon
+                className="Icon"
+                icon={["fas", "times"]}
+                onClick={() => handleClick(creator)}
+              />
+            </InfoHeader>
             <Job>{creator.job}</Job>
           </InfoContainer>
-        </CardContent>
-      </CardContainer>
-    </CardWrapper>
-
+        </ParticipantCardContent>
+      </ParticipantCardContainer>
     </>
   );
 };
@@ -24,9 +49,9 @@ const ModalCreatorCard = ({creator, currentCreator, setCurrentCreator}) => {
 export default ModalCreatorCard;
 
 const CardWrapper = styled.div`
-.selected {
+  .selected {
     border: 1px solid #7054ff;
-}
+  }
 `;
 
 const CardContainer = styled.div`
@@ -37,11 +62,23 @@ const CardContainer = styled.div`
   margin: 20px 10px 0px 10px;
 `;
 
+const ParticipantCardContainer = styled.div`
+  width: 225px;
+  height: 80px;
+  border: 1px solid #f1f1f1;
+  border-radius: 8px;
+  margin: 0px 20px 0px 0px;
+`;
+
 const CardContent = styled.div`
   width: 170px;
   height: 40px;
   display: flex;
   margin: 20px;
+`;
+
+const ParticipantCardContent = styled(CardContent)`
+  width: 185px;
 `;
 
 const ImageContainer = styled.div`
@@ -59,9 +96,21 @@ const InfoContainer = styled.div`
   padding-left: 16px;
 `;
 
-const Name = styled.div`
-  width: 114px;
+const InfoHeader = styled.div`
+  width: 129px;
   height: 18px;
+  display: flex;
+  .Icon {
+    font-size: 16px;
+    color: #8b8b8b;
+    cursor: pointer;
+  }
+`;
+
+const Name = styled.div`
+  width: 103px;
+  height: 18px;
+  padding-right: 10px;
   font-family: Pretendard;
   font-size: 18px;
   font-weight: 700;

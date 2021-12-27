@@ -5,14 +5,13 @@ import AddProjectForm from "../components/CreateProject/AddProjectForm";
 import Header from "../components/Header";
 const AddProjectPage = () => {
   const [projectTitle, setProjectTitle] = useState();
-  const [memberList, setMemberList] = useState();
+  const [memberList, setMemberList] = useState([]);
   const [isConstantRecruit, setIsConstantRecruit] = useState(false);
   const [recruitStartDate, setRecruitStartDate] = useState();
   const [recruitEndDate, setRecruitEndDate] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchContent, setSearchContent] = useState("");
   const [currentCreator, setCurrentCreator] = useState();
-  const [participants, setParticipants] = useState([]);
   const handleInput = (type) => async (event) => {
     const targetValue = event.currentTarget.value;
     switch (type) {
@@ -38,6 +37,10 @@ const AddProjectPage = () => {
     const targetVal = event.currentTarget.value;
     setSearchContent(targetVal);
   };
+  const handleClick = (creator) => {
+    const newList = memberList.filter((member) => member.id !== creator.id);
+    setMemberList(newList);
+  };
   return (
     <>
       <Header />
@@ -48,12 +51,12 @@ const AddProjectPage = () => {
           memberList={memberList}
           handleInput={handleInput}
           handleCheck={handleCheck}
+          handleClick={handleClick}
           isConstantRecruit={isConstantRecruit}
           recruitStartDate={recruitStartDate}
           recruitEndDate={recruitEndDate}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
-          participants={participants}
         />
       </AddProjectFormContainer>
       <AddMemberModal
@@ -63,8 +66,8 @@ const AddProjectPage = () => {
         handleSearch={handleSearch}
         currentCreator={currentCreator}
         setCurrentCreator={setCurrentCreator}
-        participants={participants}
-        setParticipants={setParticipants}
+        memberList={memberList}
+        setMemberList={setMemberList}
       />
     </>
   );
