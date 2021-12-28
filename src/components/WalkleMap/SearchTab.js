@@ -42,7 +42,7 @@ const SearchTab = ({
             true
         );
   let filteredProjects =
-    searchContent == ""
+    searchContent === ""
       ? localProjects
       : localProjects.filter(
           (project) =>
