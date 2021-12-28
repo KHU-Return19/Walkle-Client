@@ -4,7 +4,9 @@ import { LabelText } from "../InputRow";
 import IntroduceInput from "./IntroduceInput";
 import MemberSelector from "./MemberSelector";
 import ProjectTagSelector from "./ProjectTagSelector";
+import ProjectTitleInput from "./ProjectTitleInput";
 import RecruitmentPeriodSelector from "./RecruitmentPeriodSelector";
+import RegisterButton from "./RegisterButton";
 
 const AddProjectForm = ({
   projectTitle,
@@ -16,7 +18,6 @@ const AddProjectForm = ({
   isConstantRecruit,
   recruitStartDate,
   recruitEndDate,
-  isModalOpen,
   setIsModalOpen,
   memberList,
   simpleIntro,
@@ -26,14 +27,12 @@ const AddProjectForm = ({
 }) => {
   return (
     <>
-      <AddProjectFormContainer>
-        <ProjectTitleContainer>
-          <ProjectTitleInput
-            placeholder="프로젝트명을 입력하세요"
-            value={projectTitle}
-            onChange={handleInput("title")}
-          />
-        </ProjectTitleContainer>
+      <CreateProjectFormContainer>
+        <CoverImageContainer />
+        <ProjectTitleInput
+          projectTitle={projectTitle}
+          handleInput={handleInput}
+        />
         <MemberSelector
           memberList={memberList}
           handleClick={handleClick}
@@ -55,57 +54,28 @@ const AddProjectForm = ({
           handleTagClick={handleTagClick}
           onCheckEnter={onCheckEnter}
         />
-      </AddProjectFormContainer>
+        <RegisterButton />
+      </CreateProjectFormContainer>
     </>
   );
 };
 
 export default AddProjectForm;
 
-const AddProjectFormContainer = styled.form`
+const CreateProjectFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   width: 960px;
   margin: auto;
 `;
 
-const ProjectTitleContainer = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-  margin: 0.4rem auto;
-  margin-bottom: 0;
-  padding-left: 1.5rem;
-  border: none;
-  border-radius: 100px;
-  width: 400px;
-  height: 50px;
-  font-size: 1rem;
-  color: #313338;
-  background: #fafafa;
-  .invisible {
-    display: none;
-  }
+const CoverImageContainer = styled.div`
+  width: 100vw;
+  height: 360px;
+  background: #f1f1f1;
 `;
 
-const ProjectTitleInput = styled.input`
-  border: none;
-  width: 380px;
-  height: 50px;
-  font-family: Pretendard;
-  font-size: 38px;
-  font-weight: 700;
-  color: #313338;
-  background: #fafafa;
-  :focus {
-    outline: none;
-  }
-  ::placeholder {
-    color: #d2d2d2;
-    font-weight: 700;
-  }
-`;
-
-export const AddProjectLabelText = styled(LabelText)`
+export const CreateProjectLabelText = styled(LabelText)`
   margin-bottom: 30px;
   color: #7054ff;
   font-weight: 700;

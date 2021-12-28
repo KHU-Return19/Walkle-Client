@@ -99,7 +99,6 @@ const AddProjectPage = () => {
   return (
     <>
       <Header />
-      <CoverImageContainer />
       <AddProjectFormContainer>
         <AddProjectForm
           projectTitle={projectTitle}
@@ -136,11 +135,5 @@ const AddProjectPage = () => {
 };
 
 export default AddProjectPage;
-
-const CoverImageContainer = styled.div`
-  width: 100vw;
-  height: 360px;
-  background: #f1f1f1;
-`;
 
 const AddProjectFormContainer = styled.div``;

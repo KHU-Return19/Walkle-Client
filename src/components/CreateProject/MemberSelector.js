@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { AddProjectLabelText } from "./AddProjectForm";
+import { CreateProjectLabelText } from "./AddProjectForm";
 import { ParticipantCard } from "./ModalCreatorCard";
 
 const MemberSelector = ({ memberList, handleClick, setIsModalOpen }) => {
   return (
     <>
       <Wrapper>
-        <AddProjectLabelText>참여 멤버</AddProjectLabelText>
+        <CreateProjectLabelText>참여 멤버</CreateProjectLabelText>
         <MemberListContainer>
           {memberList &&
             memberList.map((creator) => (

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { AddProjectLabelText } from "./AddProjectForm";
+import { CreateProjectLabelText } from "./AddProjectForm";
 import { DateInput, DateInputContainer } from "./RecruitmentPeriodSelector";
 
 const IntroduceInput = ({ simpleIntro, handleInput }) => {
   return (
     <>
       <SimpleIntroduceContainer>
-        <AddProjectLabelText>한줄 소개</AddProjectLabelText>
+        <CreateProjectLabelText>한줄 소개</CreateProjectLabelText>
         <SimpleIntroduceInputContainer>
           <SimpleIntroduceInput
             placeholder="프로젝트의 한줄 소개 내용을 입력해 주세요"
@@ -17,7 +17,7 @@ const IntroduceInput = ({ simpleIntro, handleInput }) => {
         </SimpleIntroduceInputContainer>
       </SimpleIntroduceContainer>
       <DetailedIntroduceContainer>
-        <AddProjectLabelText>세부 소개</AddProjectLabelText>
+        <CreateProjectLabelText>세부 소개</CreateProjectLabelText>
         <DetailedIntroduceInputContainer>
           <DetailedIntroduceInput
             type="textarea"

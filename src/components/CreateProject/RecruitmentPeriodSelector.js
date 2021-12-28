@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { LabelText } from "../InputRow";
-import { AddProjectLabelText, SubLabelText } from "./AddProjectForm";
+import { CreateProjectLabelText, SubLabelText } from "./AddProjectForm";
 
 const RecruitmentPeriodSelector = ({
   isConstantRecruit,
@@ -14,7 +14,7 @@ const RecruitmentPeriodSelector = ({
     <>
       <RecruitmentPeriodContainer>
         <LabelTextContainer>
-          <AddProjectLabelText>모집 기간</AddProjectLabelText>
+          <CreateProjectLabelText>모집 기간</CreateProjectLabelText>
           <ConstantRecruitCheckBoxContainer>
             <ConstantRecruitCheckBox
               type="checkbox"
