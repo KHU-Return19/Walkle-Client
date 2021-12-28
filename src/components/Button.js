@@ -8,6 +8,8 @@ const StyledButton = styled.button`
   border-radius: 100px;
   width: 140px;
   height: 35px;
+  box-sizing: border-box;
+  font-family: Pretendard;
   font-size: 0.9rem;
   color: #ffffff;
   background: #7054ff;

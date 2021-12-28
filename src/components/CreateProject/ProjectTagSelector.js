@@ -14,7 +14,7 @@ import {
   IconContainer,
 } from "../Carousel/TagSlide";
 import { Input } from "../InputRow";
-import { AddProjectLabelText, SubLabelText, SubText } from "./AddProjectForm";
+import { CreateProjectLabelText, SubLabelText, SubText } from "./AddProjectForm";
 import { fieldTagListState } from "../../store/state";
 
 const ProjectTagSelector = ({
@@ -29,7 +29,7 @@ const ProjectTagSelector = ({
   return (
     <>
       <SetTagContainer>
-        <AddProjectLabelText>태그 설정</AddProjectLabelText>
+        <CreateProjectLabelText>태그 설정</CreateProjectLabelText>
         <SubLabelText>분야/검색 태그 (최대 3개)</SubLabelText>
         <SubText>
           해당 프로젝트와 관련한 태그를 선택해주세요.{"\n"}분야 태그는
