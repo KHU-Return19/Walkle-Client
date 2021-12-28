@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,59 +49,68 @@ const Header = ({ userId }) => {
 
   return (
     <StyledHeader>
-      <Link to="/"></Link>
-      <nav className="header-nav">
-        <Link
-          to="/walklemap"
-          className={
-            currentPage === "/walklemap" ? "current-page" : "nav-element"
-          }
-        >
-          워클맵
-        </Link>
-        <Link
-          to="/creators"
-          className={
-            currentPage === "/creators" ? "current-page" : "nav-element"
-          }
-        >
-          크리에이터
-        </Link>
-        <Link
-          to="/projects"
-          className={
-            currentPage === "/projects" ? "current-page" : "nav-element"
-          }
-        >
-          프로젝트
-        </Link>
-        <Link
-          to="/community"
-          className={
-            currentPage === "/community" ? "current-page" : "nav-element"
-          }
-        >
-          커뮤니티
-        </Link>
-      </nav>
-      <Link to="/addproject">
-        <AddProjectBtn>+ 프로젝트 생성</AddProjectBtn>
-      </Link>
-      <LocationInfoContainer>
-        <FontAwesomeIcon icon="map-marker-alt" className="location-marker" />
-        <LocationText>{locationInfo}</LocationText>
-      </LocationInfoContainer>
-      <Link to="/signin" className={userId && "invisible"}>
-        <SignInButton>로그인</SignInButton>
-      </Link>
-      <Link to="/profile" className={!userId && "invisible"}>
-        <ProfileImgContainer>
-          <ProfileImage
-            src={profileImg}
-            classname={!profileImg && "invisible"}
-          />
-        </ProfileImgContainer>
-      </Link>
+      <HeaderBox>
+        <nav className="header-nav">
+          <Link to="/">
+            Walkle
+          </Link>
+          <Link
+            to="/walklemap"
+            className={
+              currentPage === "/walklemap" ? "current-page" : "nav-element"
+            }
+          >
+            워클맵
+          </Link>
+          <Link
+            to="/creators"
+            className={
+              currentPage === "/creators" ? "current-page" : "nav-element"
+            }
+          >
+            크리에이터
+          </Link>
+          <Link
+            to="/projects"
+            className={
+              currentPage === "/projects" ? "current-page" : "nav-element"
+            }
+          >
+            프로젝트
+          </Link>
+          <Link
+            to="/community"
+            className={
+              currentPage === "/community" ? "current-page" : "nav-element"
+            }
+          >
+            커뮤니티
+          </Link>
+        </nav>
+        <NotNavContainer>
+          <Link to="/addproject">
+            <AddProjectBtn>+ 프로젝트 생성</AddProjectBtn>
+          </Link>
+          <LocationInfoContainer>
+            <FontAwesomeIcon
+              icon="map-marker-alt"
+              className="location-marker"
+            />
+            <LocationText>{locationInfo}</LocationText>
+          </LocationInfoContainer>
+          <Link to="/signin" className={userId && "invisible"}>
+            <SignInButton>로그인</SignInButton>
+          </Link>
+          <Link to="/profile" className={!userId && "invisible"}>
+            <ProfileImgContainer>
+              <ProfileImage
+                src={profileImg}
+                classname={!profileImg && "invisible"}
+              />
+            </ProfileImgContainer>
+          </Link>
+        </NotNavContainer>
+      </HeaderBox>
     </StyledHeader>
   );
 };
@@ -111,12 +120,11 @@ export default Header;
 const StyledHeader = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border-bottom: 1px solid #dbdbdb;
-  padding: 1rem 0rem 1rem 0rem;
   width: 100%;
   height: 64px;
+  box-sizing: border-box;
   font-size: 15px;
   font-weight: 700;
   font-family: Pretendard;
@@ -134,12 +142,19 @@ const StyledHeader = styled.div`
   .invisible {
     display: none;
   }
-  .clicked {
-    color: purple;
-  }
-  .nonclicked {
-    color: grey;
-  }
+`;
+
+const HeaderBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1352px;
+`;
+
+const NotNavContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 470px;
 `;
 
 const AddProjectBtn = styled.div`
@@ -148,9 +163,9 @@ const AddProjectBtn = styled.div`
   text-align: center;
   border: none;
   border-radius: 100px;
-  width: 140px;
+  width: 142px;
   min-width: 140px;
-  height: 35px;
+  height: 36px;
   font-size: 15px;
   font-weight: 700;
   color: #ffffff;
