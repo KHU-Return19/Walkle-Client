@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { LabelText } from "../InputRow";
+import ImageInput from "./ImageInput";
 import IntroduceInput from "./IntroduceInput";
 import MemberSelector from "./MemberSelector";
 import ProjectTagSelector from "./ProjectTagSelector";
@@ -9,12 +10,14 @@ import RecruitmentPeriodSelector from "./RecruitmentPeriodSelector";
 import RegisterButton from "./RegisterButton";
 
 const AddProjectForm = ({
+  imagePreview,
   projectTitle,
   handleInput,
   handleCheck,
   handleClick,
   handleTagClick,
   onCheckEnter,
+  onChangeFile,
   isConstantRecruit,
   recruitStartDate,
   recruitEndDate,
@@ -27,8 +30,11 @@ const AddProjectForm = ({
 }) => {
   return (
     <>
+      <ImageInput 
+        imagePreview={imagePreview}
+        onChangeFile={onChangeFile}
+      />
       <CreateProjectFormContainer>
-        <CoverImageContainer />
         <ProjectTitleInput
           projectTitle={projectTitle}
           handleInput={handleInput}
@@ -67,12 +73,6 @@ const CreateProjectFormContainer = styled.form`
   flex-direction: column;
   width: 960px;
   margin: auto;
-`;
-
-const CoverImageContainer = styled.div`
-  width: 100vw;
-  height: 360px;
-  background: #f1f1f1;
 `;
 
 export const CreateProjectLabelText = styled(LabelText)`

@@ -5,6 +5,8 @@ import AddProjectForm from "../components/CreateProject/AddProjectForm";
 import Header from "../components/Header";
 const AddProjectPage = () => {
   const [projectTitle, setProjectTitle] = useState();
+  const [coverImage, setCoverImage] = useState();
+  const [imagePreview, setImagePreview] = useState();
   const [memberList, setMemberList] = useState([]);
   const [isConstantRecruit, setIsConstantRecruit] = useState(false);
   const [recruitStartDate, setRecruitStartDate] = useState();
@@ -71,6 +73,16 @@ const AddProjectPage = () => {
       setHashtag("");
     }
   };
+  const onChangeFile = (e) => {
+    e.preventDefault();
+    let image = e.target.files[0];
+    let reader = new FileReader();
+    setCoverImage(image);
+    reader.readAsDataURL(image);
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+  };
   const handleTagClick = (type) => async (e) => {
     const targetVal = e.currentTarget.id;
     if (type === "hashtag") {
@@ -101,6 +113,7 @@ const AddProjectPage = () => {
       <Header />
       <AddProjectFormContainer>
         <AddProjectForm
+          imagePreview={imagePreview}
           projectTitle={projectTitle}
           memberList={memberList}
           handleInput={handleInput}
@@ -108,6 +121,7 @@ const AddProjectPage = () => {
           handleClick={handleClick}
           handleTagClick={handleTagClick}
           onCheckEnter={onCheckEnter}
+          onChangeFile={onChangeFile}
           isConstantRecruit={isConstantRecruit}
           recruitStartDate={recruitStartDate}
           recruitEndDate={recruitEndDate}

@@ -12,7 +12,7 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/App.css";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark, faFileImage } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
   faMapMarkerAlt,
@@ -21,7 +21,8 @@ library.add(
   faComment,
   faBookmark,
   faPaperPlane,
-  faTimes
+  faTimes,
+  faFileImage
 );
 
 const App = () => {
