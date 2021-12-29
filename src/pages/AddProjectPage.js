@@ -15,6 +15,7 @@ const AddProjectPage = () => {
   const [searchContent, setSearchContent] = useState("");
   const [currentCreator, setCurrentCreator] = useState();
   const [simpleIntro, setSimpleIntro] = useState("");
+  const [detailedIntro, setDetailedIntro] = useState();
   const [hashtag, setHashtag] = useState("");
   const [hashtagList, setHashtagList] = useState([]);
   const [myFieldTagList, setMyFieldTagList] = useState([]);
@@ -128,6 +129,7 @@ const AddProjectPage = () => {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           simpleIntro={simpleIntro}
+          setDetailedIntro={setDetailedIntro}
           hashtag={hashtag}
           hashtagList={hashtagList}
           myFieldTagList={myFieldTagList}
