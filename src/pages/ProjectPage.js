@@ -1,3 +1,97 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+import Header from "../components/Header";
+import ProjectCard from "../components/Projects/ProjectCard";
+import SearchBar from "../components/SearchBar";
+import { Projects } from "../store/fakeCreators";
+
+const ProjectPage = () => {
+  const [searchContent, setSearchContent] = useState("");
+  const handleSearch = (e) => {
+    const targetValue = e.currentTarget.value;
+    setSearchContent(targetValue);
+  };
+  return (
+    <>
+      <Header />
+      <PageWrapper>
+        <SearchBarContainer>
+          <SearchBar
+            value={searchContent}
+            placeholder={"프로젝트명 or 태그 검색하기"}
+            handleSearch={handleSearch}
+          />
+        </SearchBarContainer>
+        <RecommentContainer />
+        <FilterBox>
+          <OnGoingFilter>
+            <OnGoingCheckbox type="checkbox" />
+            <FilterLabelText>진행중인 프로젝트만 보기</FilterLabelText>
+          </OnGoingFilter>
+          <TimeFilterSelector>
+            <RecentFilter>
+              <FilterIndicator />
+              <SubFilterLabelText>최신순</SubFilterLabelText>
+            </RecentFilter>
+            <NearEndFilter>
+              <FilterIndicator />
+              <SubFilterLabelText>마감임박순</SubFilterLabelText>
+            </NearEndFilter>
+          </TimeFilterSelector>
+        </FilterBox>
+        <ProjectsContainer>
+          {Projects.map((project) => (
+            <ProjectCard />
+          ))}
+        </ProjectsContainer>
+      </PageWrapper>
+    </>
+  );
+};
+
+export default ProjectPage;
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SearchBarContainer = styled.div`
+  margin: auto;
+`;
+
+const RecommentContainer = styled.div`
+  width: 100vw;
+  height: 508px;
+  background: #c4c4c4;
+`;
+
+const FilterBox = styled.div``;
+
+const OnGoingFilter = styled.div``;
+
+const OnGoingCheckbox = styled.input``;
+
+const FilterLabelText = styled.div``;
+
+const TimeFilterSelector = styled.div``;
+
+const RecentFilter = styled.div``;
+
+const FilterIndicator = styled.div``;
+
+const SubFilterLabelText = styled(FilterLabelText)``;
+
+const NearEndFilter = styled.div``;
+
+const ProjectsContainer = styled.div`
+  width: 1380px;
+  display: flex;
+  flex-flow: row wrap;
+  margin: auto;
+`;
+
+/*
 import React from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
@@ -100,3 +194,4 @@ const InfoContainer = styled.div`
   whitespace: nowrap;
   width: 272px;
 `;
+*/
