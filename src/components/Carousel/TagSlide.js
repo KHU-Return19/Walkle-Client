@@ -20,7 +20,7 @@ import {
 } from "./SetNameJobSlide";
 import { LabelText, InputContainer, Input } from "../InputRow";
 import { TagContainer, TagText } from "../CreatorTag";
-import { TagListContainer } from "../CreatorCard";
+import { TagListContainer } from "../MapCreatorCard";
 
 const TagSlide = ({
   hashtag,

@@ -115,7 +115,7 @@ export const DateInput = styled.input`
   font-weight: 400;
   color: #313338;
   background: #fafafa;
-  :focus {
-    outline: #7054ff;
+  :focus{
+    outline: none;
   }
 `;
