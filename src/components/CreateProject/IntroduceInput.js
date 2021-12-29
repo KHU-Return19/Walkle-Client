@@ -37,12 +37,6 @@ const IntroduceInput = ({ simpleIntro, setDetailedIntro, handleInput }) => {
             setDetailedIntro(data);
           }}
         />
-        <DetailedIntroduceInputContainer>
-          <DetailedIntroduceInput
-            type="textarea"
-            placeholder="프로젝트의 세부 소개 내용을 입력해 주세요"
-          />
-        </DetailedIntroduceInputContainer>
       </DetailedIntroduceContainer>
     </>
   );
@@ -72,7 +66,3 @@ const DetailedIntroduceContainer = styled(SimpleIntroduceContainer)`
   }
 }
 `;
-
-const DetailedIntroduceInputContainer = styled(SimpleIntroduceInputContainer)``;
-
-const DetailedIntroduceInput = styled(SimpleIntroduceInput)``;
