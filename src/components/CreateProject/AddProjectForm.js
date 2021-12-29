@@ -24,16 +24,14 @@ const AddProjectForm = ({
   setIsModalOpen,
   memberList,
   simpleIntro,
+  setDetailedIntro,
   myFieldTagList,
   hashtag,
   hashtagList,
 }) => {
   return (
     <>
-      <ImageInput 
-        imagePreview={imagePreview}
-        onChangeFile={onChangeFile}
-      />
+      <ImageInput imagePreview={imagePreview} onChangeFile={onChangeFile} />
       <CreateProjectFormContainer>
         <ProjectTitleInput
           projectTitle={projectTitle}
@@ -51,7 +49,11 @@ const AddProjectForm = ({
           recruitStartDate={recruitStartDate}
           recruitEndDate={recruitEndDate}
         />
-        <IntroduceInput simpleIntro={simpleIntro} handleInput={handleInput} />
+        <IntroduceInput
+          simpleIntro={simpleIntro}
+          setDetailedIntro={setDetailedIntro}
+          handleInput={handleInput}
+        />
         <ProjectTagSelector
           myFieldTagList={myFieldTagList}
           hashtag={hashtag}
