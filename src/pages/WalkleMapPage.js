@@ -11,7 +11,7 @@ import {
   selectedCreatorState,
   selectedProjectState,
 } from "../store/state";
-import { Creators } from "../store/fakeCreators";
+import { Creators, Projects } from "../store/fakeCreators";
 import mainLogo from "../assets/mainLogo.svg";
 
 const { kakao } = window;
@@ -31,11 +31,12 @@ const WalkleMapPage = () => {
   const [searchCategory, setSearchCategory] = useState("creator");
   const [selectedCreator, setSelectedCreator] =
     useRecoilState(selectedCreatorState);
-  const selectedProject = useRecoilValue(selectedProjectState);
+  const [selectedProject, setSelectedProject] =
+    useRecoilState(selectedProjectState);
   const [searchContent, setSearchContent] = useState("");
   const [searchFilter, setSearchFilter] = useState("recent");
 
-  const renderMarker = (creator) => {
+  const renderMarker = (object, type) => {
     var content = document.createElement("div");
     let className = document.createAttribute("classname");
     className.value = "marker";
@@ -43,7 +44,7 @@ const WalkleMapPage = () => {
     let image = document.createElement("img");
     let imgClassName = document.createAttribute("classname");
     imgClassName.value =
-      selectedCreator === creator.id ? "selected" : "markerImg";
+      selectedCreator === object.id ? "selected" : "markerImg";
     let imgSrc = document.createAttribute("src");
     imgSrc.value = mainLogo;
     image.setAttributeNode(imgClassName);
@@ -51,12 +52,15 @@ const WalkleMapPage = () => {
     // 닫기 이벤트 추가
     content.appendChild(image);
     image.onclick = function () {
-      setSelectedCreator(creator);
+      type === "creator"
+        ? setSelectedCreator(object)
+        : setSelectedProject(object);
+      setSelectedObject(object.id);
     };
 
     // customoverlay 생성, 이때 map을 선언하지 않으면 지도위에 올라가지 않습니다.
     var overlay = new kakao.maps.CustomOverlay({
-      position: new kakao.maps.LatLng(creator.positionY, creator.positionX),
+      position: new kakao.maps.LatLng(object.positionY, object.positionX),
       content: content,
     });
 
@@ -78,6 +82,10 @@ const WalkleMapPage = () => {
               )
             )
           : map.panTo(new window.kakao.maps.LatLng(lat, lon));
+        Creators.forEach((creator) => {
+          const marker = renderMarker(creator, "creator");
+          marker.setMap(map);
+        });
         break;
       case "project":
         selectedProject.id
@@ -88,6 +96,10 @@ const WalkleMapPage = () => {
               )
             )
           : map.panTo(new window.kakao.maps.LatLng(lat, lon));
+        Projects.forEach((project) => {
+          const marker = renderMarker(project, "project");
+          marker.setMap(map);
+        });
         break;
     }
     // 현재 위치로 지도 중심 설정
@@ -105,10 +117,6 @@ const WalkleMapPage = () => {
       var latlng = mouseEvent.latLng;
       // 마커 위치를 클릭한 위치로 옮깁니다
       marker.setPosition(latlng);
-    });
-    Creators.forEach((creator) => {
-      const marker = renderMarker(creator);
-      marker.setMap(map);
     });
     return () => {};
   }, [selectedCreator, selectedProject]);
