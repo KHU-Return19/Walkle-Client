@@ -7,7 +7,7 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import {
   latitudeState,
   longitudeState,
-  selectedObjectState
+  selectedObjectState,
   selectedCreatorState,
   selectedProjectState,
 } from "../store/state";
@@ -48,7 +48,7 @@ const WalkleMapPage = () => {
     imgSrc.value = mainLogo;
     image.setAttributeNode(imgClassName);
     image.setAttributeNode(imgSrc);
-        // 닫기 이벤트 추가
+    // 닫기 이벤트 추가
     content.appendChild(image);
     image.onclick = function () {
       setSelectedCreator(creator);
