@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import SearchTab from "../components/WalkleMap/SearchTab";
 import Modal from "../components/WalkleMap/Modal";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import {
   latitudeState,
   longitudeState,
+  selectedObjectState
   selectedCreatorState,
   selectedProjectState,
 } from "../store/state";
@@ -15,46 +16,51 @@ import mainLogo from "../assets/mainLogo.svg";
 
 const { kakao } = window;
 
-
 const WalkleMapPage = () => {
   const options = {
     //지도를 생성할 때 필요한 기본 옵션
     center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
     level: 3, //지도의 레벨(확대, 축소 정도)
   };
-  
+
   const container = useRef(null); //지도를 담을 영역의 DOM 레퍼런스
   const lat = useRecoilValue(latitudeState);
   const lon = useRecoilValue(longitudeState);
-  const [selectedObject, setSelectedObject] = useState(0);
+  const [selectedObject, setSelectedObject] =
+    useRecoilState(selectedObjectState);
   const [searchCategory, setSearchCategory] = useState("creator");
-  const selectedCreator = useRecoilValue(selectedCreatorState);
+  const [selectedCreator, setSelectedCreator] =
+    useRecoilState(selectedCreatorState);
   const selectedProject = useRecoilValue(selectedProjectState);
   const [searchContent, setSearchContent] = useState("");
   const [searchFilter, setSearchFilter] = useState("recent");
 
   const renderMarker = (creator) => {
-    const overlay = new kakao.maps.CustomOverlay();
-    const content = document.createElement("div");
+    var content = document.createElement("div");
+    let className = document.createAttribute("classname");
+    className.value = "marker";
+    content.setAttributeNode(className);
+    let image = document.createElement("img");
+    let imgClassName = document.createAttribute("classname");
+    imgClassName.value =
+      selectedCreator === creator.id ? "selected" : "markerImg";
+    let imgSrc = document.createAttribute("src");
+    imgSrc.value = mainLogo;
+    image.setAttributeNode(imgClassName);
+    image.setAttributeNode(imgSrc);
+        // 닫기 이벤트 추가
+    content.appendChild(image);
+    image.onclick = function () {
+      setSelectedCreator(creator);
+    };
 
-    content.innerHTML = `<div className="marker" >
-    <img
-      className=${selectedObject === creator.id ? "selected" : "markerImg"}
-      id=${creator.id}
-      alt="marker"
-      src=${mainLogo}
-      onClick="${() => handleClick(creator.id)}"
-    />
-  </div>`;
-    overlay.setContent(content);
-    overlay.setPosition(
-      new kakao.maps.LatLng(creator.positionY, creator.positionX)
-    );
+    // customoverlay 생성, 이때 map을 선언하지 않으면 지도위에 올라가지 않습니다.
+    var overlay = new kakao.maps.CustomOverlay({
+      position: new kakao.maps.LatLng(creator.positionY, creator.positionX),
+      content: content,
+    });
+
     return overlay;
-  };
-
-  const handleClick = (id) => {
-    setSelectedObject(id);
   };
 
   useEffect(() => {
@@ -97,7 +103,6 @@ const WalkleMapPage = () => {
     kakao.maps.event.addListener(map, "click", function (mouseEvent) {
       // 클릭한 위도, 경도 정보를 가져옵니다
       var latlng = mouseEvent.latLng;
-
       // 마커 위치를 클릭한 위치로 옮깁니다
       marker.setPosition(latlng);
     });
@@ -120,6 +125,7 @@ const WalkleMapPage = () => {
             setSearchContent={setSearchContent}
             searchFilter={searchFilter}
             setSearchFilter={setSearchFilter}
+            setSelectedObject={setSelectedObject}
           />
           <Modal searchCategory={searchCategory} />
           <MapContainer className="mapContainer" ref={container}></MapContainer>

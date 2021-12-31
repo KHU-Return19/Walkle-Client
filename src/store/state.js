@@ -20,6 +20,12 @@ export const regionState = atom({
   default: "",
 });
 
+export const selectedObjectState = atom({
+  key: "selectedObjectState",
+  default: {},
+});
+
+
 export const selectedCreatorState = atom({
   key: "selectedCreatorState",
   default: {},

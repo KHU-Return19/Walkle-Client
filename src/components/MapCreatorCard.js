@@ -2,20 +2,25 @@ import React from "react";
 import styled from "styled-components";
 import CreatorTag from "./CreatorTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRecoilState } from "recoil";
-import { selectedCreatorState } from "../store/state";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { selectedCreatorState, selectedObjectState } from "../store/state";
 
 export const MapCreatorCard = (creator) => {
   const [selectedCreator, setSelectedCreator] =
     useRecoilState(selectedCreatorState);
+  const setSelectedObject = useSetRecoilState(selectedObjectState);
   const currentCreator = creator;
+  const handleSelect = (creator) => {
+    setSelectedCreator(creator);
+    setSelectedObject(creator.id);
+  };
   return (
     <>
       <CardSection
         className={
           selectedCreator.id === currentCreator.id && "selected-creator"
         }
-        onClick={() => setSelectedCreator(currentCreator)}
+        onClick={() => handleSelect(currentCreator)}
       >
         <CardContainer>
           <CardInnerContainer>
