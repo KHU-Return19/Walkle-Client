@@ -4,6 +4,9 @@ import { useRecoilState } from "recoil";
 import Header from "../components/Header";
 import SignUpForm from "../components/SignUpForm";
 import { userProfileState } from "../store/state";
+require("dotenv").config();
+
+const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const SignUpPage = (props) => {
   const [name, setName] = useState("");
@@ -14,15 +17,6 @@ const SignUpPage = (props) => {
   const [email, setEmail] = useState("");
   const [isValidPasswordCheck, setIsValidPasswordCheck] = useState(null);
   const [userProfile, setUserProfile] = useRecoilState(userProfileState);
-
-  useEffect(() => {
-    axios.get("/api/profile/:nickname").then((res) => {
-      const response = res.data.profile;
-      if (res.data.success) {
-        console.log(response.data);
-      }
-    });
-  });
 
   const handleValid = (password, passwordCheck) => {
     password === passwordCheck
@@ -63,20 +57,15 @@ const SignUpPage = (props) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     let body = {
-      userid: id,
+      userId: id,
       email: email,
       password: password,
-      token: "",
     };
     axios
-      .post("/api/user/register", body)
+      .post(`${SERVER_ADDRESS}/api/users/register`, body)
       .then((res) => {
-        if (res.data.success) {
-          axios.get("/api/profile/:nickname", body).then((res) => {
-            res.data.success
-              ? setUserProfile(res.data.user_data)
-              : alert(res.data.msg);
-          });
+        if (res.status >= 200 && res.status < 300) {
+          console.log(res.data);
           props.history.push("/profile");
         } else alert(res.data.msg);
       })

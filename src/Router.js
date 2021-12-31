@@ -13,7 +13,7 @@ const Router = () => {
   return (
     <Switch>
       <Route exact path="/" component={Auth(LandingPage, false)} />
-      <Route exact path="/walklemap" component={Auth(WalkleMapPage, true)} />
+      <Route exact path="/walklemap" component={Auth(WalkleMapPage, false)} />
       <Route exact path="/signin" component={Auth(SignInPage, false)} />
       <Route exact path="/signup" component={Auth(SignUpPage, false)} />
       <Route exact path="/projects" component={Auth(ProjectPage, false)} />
