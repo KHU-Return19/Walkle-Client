@@ -10,7 +10,7 @@ import {
 } from "../Carousel/TagSlide";
 
 const ProjectCard = ({ imagePreview }) => {
-  const project = Projects.find((project) => project.id === 1);
+  const project = Projects.find((project) => project.id === 8);
   const projectDDay = project.dDay && new Date(project.dDay);
   const dDay = Math.ceil(
     (new Date().getTime() - projectDDay.getTime()) / (1000 * 3600 * 24)
@@ -24,18 +24,17 @@ const ProjectCard = ({ imagePreview }) => {
           <ProjectImage src={imagePreview} />
         </CardHeader>
         <CardBody>
-          <DirectorImg />
           <DirectorInfo>{project.director}</DirectorInfo>
           <ProjectTitle>{project.name}</ProjectTitle>
           <ProjectTag>
-            <FieldTag></FieldTag>
             <HashTagListContainer>
+              <FieldTag>#분야태그</FieldTag>
               {project.tag.map((tag) => (
-                <HashtagContainer>
-                  <HashtagContentContainer>
-                    <HashtagText>{tag}</HashtagText>
-                  </HashtagContentContainer>
-                </HashtagContainer>
+                <ProjectHashtagContainer>
+                  <ProjectHashtagContentContainer>
+                    <ProjectHashtagText>{tag}</ProjectHashtagText>
+                  </ProjectHashtagContentContainer>
+                </ProjectHashtagContainer>
               ))}
             </HashTagListContainer>
           </ProjectTag>
@@ -52,11 +51,15 @@ const CardContainer = styled.div`
 `;
 
 const CardHeader = styled.div`
+  position: relative;
   width: 317px;
   height: 220px;
   border-radius: 4px;
   background: #d2d2d2;
   .Icon {
+    position: absolute;
+    left: 273px;
+    top: -4px;
     font-size: 34px;
     color: #7054ff;
   }
@@ -65,38 +68,66 @@ const CardHeader = styled.div`
 const DDayIndicator = styled.div`
   width: 63px;
   height: 31px;
+  position: absolute;
+  left: 16px;
+  top: 16px;
   background: #7054ff;
   color: #ffffff;
   border-radius: 100px;
-  display: table-cell;
-  vertical-align: middle;
   text-align: center;
   font-family: Pretendard;
   font-size: 15px;
   font-weight: 700;
-  line-height: 15px;
+  line-height: 31px;
 `;
 
 const ProjectImage = styled.div``;
 
 const CardBody = styled.div``;
 
-const DirectorImg = styled.div`
-  width: 18px;
-  height: 18px;
-  background: #d2d2d2;
-  border-radius: 100px;
+const DirectorInfo = styled.div`
+  padding-top: 19px;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #313338;
 `;
 
-const DirectorInfo = styled.div``;
-
-const ProjectTitle = styled.div``;
+const ProjectTitle = styled(DirectorInfo)`
+  padding-top: 13px;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 21px;
+`;
 
 const ProjectTag = styled.div``;
 
-const FieldTag = styled.div``;
+const FieldTag = styled(HashtagContainer)`
+  height: 27px;
+  border: none;
+  padding: 0;
+  font-family: Pretendard;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 27px;
+  color: #313338;
+`;
 
 const HashTagListContainer = styled.div`
   display: flex;
   width: 220px;
+`;
+
+const ProjectHashtagContainer = styled(HashtagContainer)`
+  height: 27px;
+  padding: 8px 12px;
+`;
+
+const ProjectHashtagContentContainer = styled(HashtagContentContainer)``;
+
+const ProjectHashtagText = styled(HashtagText)`
+  color: #8b8b8b;
+  font-size: 11px;
+  line-height: 11px;
 `;

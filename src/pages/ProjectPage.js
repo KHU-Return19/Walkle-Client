@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import Header from "../components/Header";
 import ProjectCard from "../components/Projects/ProjectCard";
@@ -57,7 +58,7 @@ const PageWrapper = styled.div`
 `;
 
 const SearchBarContainer = styled.div`
-  margin: auto;
+  margin: 56px auto;
 `;
 
 const RecommentContainer = styled.div`
@@ -66,23 +67,56 @@ const RecommentContainer = styled.div`
   background: #c4c4c4;
 `;
 
-const FilterBox = styled.div``;
+const FilterBox = styled.div`
+  width: 1352px;
+  display: flex;
+  justify-content: space-between;
+  margin: 92px auto 28px auto;
+`;
 
-const OnGoingFilter = styled.div``;
+const OnGoingFilter = styled.div`
+  width: 186px;
+  height: 20px;
+  display: flex;
+`;
 
-const OnGoingCheckbox = styled.input``;
+const OnGoingCheckbox = styled.input`
+  height: 20px;
+`;
 
-const FilterLabelText = styled.div``;
+const FilterLabelText = styled.div`
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400px;
+  padding-left: 8px;
+`;
 
-const TimeFilterSelector = styled.div``;
+const TimeFilterSelector = styled.div`
+  width: 146px;
+  height: 16px;
+  display: flex;
+`;
 
-const RecentFilter = styled.div``;
+const RecentFilter = styled.div`
+  display: flex;
+`;
 
-const FilterIndicator = styled.div``;
+const FilterIndicator = styled.div`
+  width: 5px;
+  height: 5px;
+  border-radius: 100px;
+  margin-top: 6px;
+  background-color: #8b8b8b;
+`;
 
-const SubFilterLabelText = styled(FilterLabelText)``;
+const SubFilterLabelText = styled(FilterLabelText)`
+  color: #8b8b8b;
+  padding-left: 6px;
+`;
 
-const NearEndFilter = styled.div``;
+const NearEndFilter = styled(RecentFilter)`
+  padding-left: 13px;
+`;
 
 const ProjectsContainer = styled.div`
   width: 1380px;
