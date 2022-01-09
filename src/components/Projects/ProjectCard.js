@@ -12,10 +12,12 @@ import {
 const ProjectCard = ({ project }) => {
   //const project = Projects.find((project) => project.id === 8);
   const projectDDay = project.dDay && new Date(project.dDay);
-  const dayDiff = Math.ceil(
-    (new Date().getTime() - projectDDay.getTime()) / (1000 * 3600 * 24)
-  );
-  const dDay = dayDiff >= 0 ? "모집완료" : "D" + dayDiff;
+  const dayDiff =
+    projectDDay &&
+    Math.ceil(
+      (new Date().getTime() - projectDDay.getTime()) / (1000 * 3600 * 24)
+    );
+  const dDay = dayDiff && (dayDiff >= 0 ? "모집완료" : "D" + dayDiff);
   return (
     <>
       <CardContainer>
