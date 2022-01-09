@@ -1,23 +1,38 @@
 import React from "react";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
-import { Projects } from "../../store/fakeCreators";
 import {
   HashtagContainer,
   HashtagContentContainer,
   HashtagText,
 } from "../Carousel/TagSlide";
+import { bookmarkListState } from "../../store/state";
 
 const ProjectCard = ({ project }) => {
-  //const project = Projects.find((project) => project.id === 8);
+  const [bookmarkList, setBookmarkList] = useRecoilState(bookmarkListState);
   const projectDDay = project.dDay && new Date(project.dDay);
   const dayDiff =
     projectDDay &&
     Math.ceil(
       (new Date().getTime() - projectDDay.getTime()) / (1000 * 3600 * 24)
     );
+  const isBookmarked =
+    bookmarkList.findIndex((bookmark) => bookmark.id === project.id) === -1
+      ? false
+      : true;
   const dDay = dayDiff && (dayDiff >= 0 ? "모집완료" : "D" + dayDiff);
+
+  const handleClick = () => {
+    let newList = bookmarkList;
+    isBookmarked
+      ? (newList = bookmarkList.filter(
+          (bookmark) => bookmark.id !== project.id
+        ))
+      : (newList = bookmarkList.concat(project));
+    setBookmarkList(newList);
+  };
   return (
     <>
       <CardContainer>
@@ -25,7 +40,11 @@ const ProjectCard = ({ project }) => {
           <DDayIndicator className={dDay === "모집완료" && "expired"}>
             {dDay}
           </DDayIndicator>
-          <FontAwesomeIcon className="Icon" icon={faBookmark} />
+          <FontAwesomeIcon
+            className={isBookmarked ? "bookmarked Icon" : "Icon"}
+            icon={faBookmark}
+            onClick={handleClick}
+          />
           <ProjectImage />
         </CardHeader>
         <CardBody>
@@ -66,6 +85,9 @@ const CardHeader = styled.div`
     left: 273px;
     top: -4px;
     font-size: 34px;
+    color: #f1f1f1;
+  }
+  .bookmarked {
     color: #7054ff;
   }
   .expired {

@@ -25,7 +25,6 @@ export const selectedObjectState = atom({
   default: {},
 });
 
-
 export const selectedCreatorState = atom({
   key: "selectedCreatorState",
   default: {},
@@ -77,4 +76,9 @@ export const fieldTagListState = atom({
     "무역",
     "로컬사업",
   ],
+});
+
+export const bookmarkListState = atom({
+  key: "bookmarkListState",
+  default: [],
 });
