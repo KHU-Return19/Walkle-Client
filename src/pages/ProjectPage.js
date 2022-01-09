@@ -37,7 +37,7 @@ const ProjectPage = () => {
         )
       : onGoingProjects.sort(
           (project1, project2) =>
-            calcDate(project2.dDay) - calcDate(project1.dDay)
+            calcDate(project1.dDay) - calcDate(project2.dDay)
         );
 
   const handleSearch = (e) => {
