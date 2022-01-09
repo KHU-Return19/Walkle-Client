@@ -42,7 +42,7 @@ const ProjectPage = () => {
         </FilterBox>
         <ProjectsContainer>
           {Projects.map((project) => (
-            <ProjectCard />
+            <ProjectCard project={project}/>
           ))}
         </ProjectsContainer>
       </PageWrapper>

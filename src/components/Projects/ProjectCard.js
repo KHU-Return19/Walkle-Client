@@ -9,19 +9,22 @@ import {
   HashtagText,
 } from "../Carousel/TagSlide";
 
-const ProjectCard = ({ imagePreview }) => {
-  const project = Projects.find((project) => project.id === 8);
+const ProjectCard = ({ project }) => {
+  //const project = Projects.find((project) => project.id === 8);
   const projectDDay = project.dDay && new Date(project.dDay);
-  const dDay = Math.ceil(
+  const dayDiff = Math.ceil(
     (new Date().getTime() - projectDDay.getTime()) / (1000 * 3600 * 24)
   );
+  const dDay = dayDiff >= 0 ? "모집완료" : "D" + dayDiff;
   return (
     <>
       <CardContainer>
         <CardHeader>
-          <DDayIndicator>D{dDay}</DDayIndicator>
+          <DDayIndicator className={dDay === "모집완료" && "expired"}>
+            {dDay}
+          </DDayIndicator>
           <FontAwesomeIcon className="Icon" icon={faBookmark} />
-          <ProjectImage src={imagePreview} />
+          <ProjectImage />
         </CardHeader>
         <CardBody>
           <DirectorInfo>{project.director}</DirectorInfo>
@@ -62,6 +65,12 @@ const CardHeader = styled.div`
     top: -4px;
     font-size: 34px;
     color: #7054ff;
+  }
+  .expired {
+    width: 80px;
+    height: 31px;
+    background: #313338;
+    color: #ffffff;
   }
 `;
 
