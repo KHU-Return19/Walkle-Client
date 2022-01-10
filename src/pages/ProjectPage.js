@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import Header from "../components/Header";
@@ -66,9 +65,7 @@ const ProjectPage = ({ match }) => {
         />
         <ProjectsContainer>
           {filteredProjects.map((project) => (
-            <Link to={`${match.url}/${project.id}`}>
-              <ProjectCard project={project} />
-            </Link>
+            <ProjectCard project={project} match={match} />
           ))}
         </ProjectsContainer>
       </PageWrapper>

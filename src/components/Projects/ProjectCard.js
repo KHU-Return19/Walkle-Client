@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +11,7 @@ import {
 } from "../Carousel/TagSlide";
 import { bookmarkListState } from "../../store/state";
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, match }) => {
   const [bookmarkList, setBookmarkList] = useRecoilState(bookmarkListState);
   const projectDDay = project.dDay && new Date(project.dDay);
   const dayDiff =
@@ -47,6 +48,7 @@ const ProjectCard = ({ project }) => {
           />
           <ProjectImage />
         </CardHeader>
+        <Link to={`${match.url}/${project.id}`}>
         <CardBody>
           <DirectorInfo>{project.director}</DirectorInfo>
           <ProjectTitle>{project.name}</ProjectTitle>
@@ -63,6 +65,7 @@ const ProjectCard = ({ project }) => {
             </HashTagListContainer>
           </ProjectTag>
         </CardBody>
+        </Link>
       </CardContainer>
     </>
   );
