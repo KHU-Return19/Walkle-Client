@@ -8,6 +8,7 @@ import Auth from "./hoc/auth";
 import ProjectPage from "./pages/ProjectPage";
 import ProfilePage from "./pages/ProfilePage";
 import AddProjectPage from "./pages/AddProjectPage";
+import ProjectProfile from './components/Projects/ProjectProfile';
 
 const Router = () => {
   return (
@@ -16,10 +17,11 @@ const Router = () => {
       <Route exact path="/walklemap" component={Auth(WalkleMapPage, false)} />
       <Route exact path="/signin" component={Auth(SignInPage, false)} />
       <Route exact path="/signup" component={Auth(SignUpPage, false)} />
-      <Route exact path="/projects" component={Auth(ProjectPage, false)} />
+      <Route exact path="/projects" component={ProjectPage} />
+      <Route path={"/projects/:id"} component={ProjectProfile} />
       <Route exact path="/profile" component={Auth(ProfilePage, false)} />
       <Route exact path="/addproject" component={Auth(AddProjectPage, false)} />
-      <Route path="/">404 not found</Route>
+      <Route>404 not found</Route>
     </Switch>
   );
 };

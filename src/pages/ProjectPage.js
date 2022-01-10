@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { Route, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import Header from "../components/Header";
 import ProjectCard from "../components/Projects/ProjectCard";
 import SearchBar from "../components/SearchBar";
 import { Projects } from "../store/fakeCreators";
+import ProjectProfile from "../components/Projects/ProjectProfile";
 
-const ProjectPage = () => {
+const ProjectPage = ({ match }) => {
   const [searchContent, setSearchContent] = useState("");
   const [ongoingFilter, setOngoingFilter] = useState(false);
   const [timeFilter, setTimeFilter] = useState("recent");
@@ -90,7 +92,9 @@ const ProjectPage = () => {
         </FilterBox>
         <ProjectsContainer>
           {filteredProjects.map((project) => (
-            <ProjectCard project={project} />
+            <Link to={`${match.url}/${project.id}`}>
+              <ProjectCard project={project} />
+            </Link>
           ))}
         </ProjectsContainer>
       </PageWrapper>
