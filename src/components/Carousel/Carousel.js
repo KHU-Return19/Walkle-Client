@@ -88,7 +88,6 @@ const Carousel = ({
     const regExpTag = /^#([\w|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|]{1,15})/g;
     const targetVal = val.replace(/\s/gi, "");
     let newTagList = hashtagList;
-    console.log(hashtagList);
     if (targetVal !== "") {
       const newTag = targetVal.substring(1);
       regExpTag.test(targetVal) &&
