@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import Header from "../components/Header";
 import ProjectCard from "../components/Projects/ProjectCard";
 import SearchBar from "../components/SearchBar";
 import { Projects } from "../store/fakeCreators";
-import ProjectProfile from "../components/Projects/ProjectProfile";
+import ProjectFilterSelector from "../components/Projects/ProjectFilterSelector";
 
 const ProjectPage = ({ match }) => {
   const [searchContent, setSearchContent] = useState("");
@@ -58,38 +58,12 @@ const ProjectPage = ({ match }) => {
           />
         </SearchBarContainer>
         <RecommentContainer />
-        <FilterBox>
-          <OnGoingFilter>
-            <OnGoingCheckbox
-              type="checkbox"
-              checked={ongoingFilter}
-              onChange={() => setOngoingFilter(!ongoingFilter)}
-            />
-            <FilterLabelText>진행 중인 프로젝트만 보기</FilterLabelText>
-          </OnGoingFilter>
-          <TimeFilterSelector>
-            <RecentFilter onClick={() => setTimeFilter("recent")}>
-              <FilterIndicator
-                className={timeFilter === "recent" && "selected-indicator"}
-              />
-              <SubFilterLabelText
-                className={timeFilter === "recent" && "selected-filter"}
-              >
-                최신순
-              </SubFilterLabelText>
-            </RecentFilter>
-            <NearEndFilter onClick={() => setTimeFilter("nearEnd")}>
-              <FilterIndicator
-                className={timeFilter === "nearEnd" && "selected-indicator"}
-              />
-              <SubFilterLabelText
-                className={timeFilter === "nearEnd" && "selected-filter"}
-              >
-                마감임박순
-              </SubFilterLabelText>
-            </NearEndFilter>
-          </TimeFilterSelector>
-        </FilterBox>
+        <ProjectFilterSelector
+          ongoingFilter={ongoingFilter}
+          timeFilter={timeFilter}
+          setOngoingFilter={setOngoingFilter}
+          setTimeFilter={setTimeFilter}
+        />
         <ProjectsContainer>
           {filteredProjects.map((project) => (
             <Link to={`${match.url}/${project.id}`}>
@@ -119,67 +93,12 @@ const RecommentContainer = styled.div`
   background: #c4c4c4;
 `;
 
-const FilterBox = styled.div`
-  width: 1352px;
-  display: flex;
-  justify-content: space-between;
-  margin: 92px auto 28px auto;
-`;
-
-const OnGoingFilter = styled.div`
-  width: 186px;
-  height: 20px;
-  display: flex;
-`;
-
-const OnGoingCheckbox = styled.input`
-  height: 20px;
-`;
-
-const FilterLabelText = styled.div`
-  font-family: Pretendard;
-  font-size: 16px;
-  font-weight: 400px;
-  padding-left: 8px;
-`;
-
-const TimeFilterSelector = styled.div`
-  width: 146px;
-  height: 16px;
-  display: flex;
-  cursor: pointer;
-  .selected-indicator {
-    background: #7054ff;
-  }
-  .selected-filter {
-    color: #7054ff;
-  }
-`;
-
-const RecentFilter = styled.div`
-  display: flex;
-`;
-
-const FilterIndicator = styled.div`
-  width: 5px;
-  height: 5px;
-  border-radius: 100px;
-  margin-top: 6px;
-  background-color: #8b8b8b;
-`;
-
-const SubFilterLabelText = styled(FilterLabelText)`
-  color: #8b8b8b;
-  padding-left: 6px;
-`;
-
-const NearEndFilter = styled(RecentFilter)`
-  padding-left: 13px;
-`;
-
 const ProjectsContainer = styled.div`
   width: 1380px;
   display: flex;
   flex-flow: row wrap;
   margin: auto;
+  a {
+    text-decoration: none;
+  }
 `;
