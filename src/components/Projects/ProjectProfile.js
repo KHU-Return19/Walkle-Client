@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Projects } from "../../store/fakeCreators";
 import Header from "../Header";
+import ApplicantList from "./ApplicantList";
 import ProjectMemberCard, { ProjectDirectorCard } from "./ProjectMemberCard";
 
 const ProjectProfile = ({ match, history }) => {
+  const [isManager, setIsManager] = useState(false);
   const project = Projects.find(
     (project) => String(project.id) === match.params.id
   );
@@ -14,10 +16,17 @@ const ProjectProfile = ({ match, history }) => {
       <CoverImageContainer>
         {project.image && <CoverImage />}
       </CoverImageContainer>
+      <ApplicantList applicants={project.applicants} isManager={isManager} />
       <ProjectProfileContainer>
         <Wrapper>
           <TitleContainer>
             <Title>{project.name}</Title>
+            <DevTransToManageButton
+              className={!isManager && "manager"}
+              onClick={() => setIsManager(!isManager)}
+            >
+              {!isManager ? "사용자 모드" : "관리자 모드"}
+            </DevTransToManageButton>
           </TitleContainer>
         </Wrapper>
         <HashtagListContainer>
@@ -69,9 +78,15 @@ const ProjectProfile = ({ match, history }) => {
           프로젝트의 세부 소개 내용을 입력해 주세요
         </DetailedIntroduceContainer>
         <ParticipateButtonContainer>
-          <ParticipateButton onClick={() => history.goBack()}>
+          <ParticipateButton
+            className={isManager && "invisible"}
+            onClick={() => history.goBack()}
+          >
             프로젝트 참여 신청하기
           </ParticipateButton>
+          <GoToModifyButton className={!isManager && "invisible"}>
+            프로젝트 프로필 수정하기
+          </GoToModifyButton>
         </ParticipateButtonContainer>
       </ProjectProfileContainer>
     </>
@@ -114,6 +129,10 @@ const TitleContainer = styled.div`
   height: 50px;
   font-size: 1rem;
   color: #313338;
+
+  .manager {
+    background: #313338;
+  }
 `;
 
 const Title = styled.div`
@@ -124,6 +143,22 @@ const Title = styled.div`
   font-size: 38px;
   font-weight: 700;
   color: #313338;
+`;
+
+const DevTransToManageButton = styled.div`
+  width: 60px;
+  height: 20px;
+  font-family: Pretendard;
+  font-size: 12px;
+  line-height: 12px;
+  background: #7054ff;
+  color: #ffffff;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  cursor: pointer;
 `;
 
 export const HashtagListContainer = styled.div`
@@ -261,6 +296,9 @@ const ParticipateButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 100px 0px;
+  .invisible {
+    display: none;
+  }
 `;
 
 const ParticipateButton = styled.div`
@@ -279,3 +317,5 @@ const ParticipateButton = styled.div`
   line-height: 21px;
   text-align: center;
 `;
+
+const GoToModifyButton = styled(ParticipateButton)``;
