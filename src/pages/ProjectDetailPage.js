@@ -32,7 +32,11 @@ const ProjectDetailPage = ({ match, history }) => {
         <ProjectMemberList project={project} />
         <RecruitmentPeriod project={project} />
         <ProjectIntroduce />
-        <ButtonContainer history={history} isManager={isManager} />
+        <ButtonContainer
+          history={history}
+          id={project.id}
+          isManager={isManager}
+        />
       </ProjectProfileContainer>
     </>
   );

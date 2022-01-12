@@ -88,7 +88,7 @@ const Header = ({ userId }) => {
           </Link>
         </nav>
         <NotNavContainer>
-          <Link to="/addproject">
+          <Link to="/add_project">
             <AddProjectBtn>+ 프로젝트 생성</AddProjectBtn>
           </Link>
           <LocationInfoContainer>

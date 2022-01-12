@@ -3,11 +3,12 @@ import styled from "styled-components";
 import StyledButton from "../Button";
 import { ButtonContainer } from "../Carousel/SetNameJobSlide";
 
-const RegisterButton = () => {
+const RegisterButton = ({ isEdit }) => {
   return (
     <>
       <RegisterButtonContainer>
-        <Button>프로젝트 등록하기</Button>
+        <Button className={isEdit && "invisible"}>프로젝트 등록하기</Button>
+        <Button className={!isEdit && "invisible"}>수정완료</Button>
       </RegisterButtonContainer>
     </>
   );
@@ -17,6 +18,9 @@ export default RegisterButton;
 
 const RegisterButtonContainer = styled(ButtonContainer)`
   padding: 100px 0px;
+  .invisible {
+    display: none;
+  }
 `;
 
 const Button = styled(StyledButton)`

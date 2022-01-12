@@ -9,6 +9,7 @@ import ProjectPage from "./pages/ProjectPage";
 import ProfilePage from "./pages/ProfilePage";
 import AddProjectPage from "./pages/AddProjectPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import EditProjectPage from "./pages/EditProjectPage";
 
 const Router = () => {
   return (
@@ -19,8 +20,13 @@ const Router = () => {
       <Route exact path="/signup" component={Auth(SignUpPage, false)} />
       <Route exact path="/projects" component={ProjectPage} />
       <Route path={"/projects/:id"} component={ProjectDetailPage} />
+      <Route exact path={"/project_edit/:id"} component={EditProjectPage} />
       <Route exact path="/profile" component={Auth(ProfilePage, false)} />
-      <Route exact path="/addproject" component={Auth(AddProjectPage, false)} />
+      <Route
+        exact
+        path="/add_project"
+        component={Auth(AddProjectPage, false)}
+      />
       <Route>404 not found</Route>
     </Switch>
   );

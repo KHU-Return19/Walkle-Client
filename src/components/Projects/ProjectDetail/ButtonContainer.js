@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const ButtonContainer = ({ history, isManager }) => {
+const ButtonContainer = ({ history, isManager, id }) => {
   return (
     <>
       <ParticipateButtonContainer>
@@ -11,9 +12,11 @@ const ButtonContainer = ({ history, isManager }) => {
         >
           프로젝트 참여 신청하기
         </ParticipateButton>
-        <GoToModifyButton className={!isManager && "invisible"}>
-          프로젝트 프로필 수정하기
-        </GoToModifyButton>
+        <Link to={`/project_edit/${id}`}>
+          <GoToEditButton className={!isManager && "invisible"}>
+            프로젝트 프로필 수정하기
+          </GoToEditButton>
+        </Link>
       </ParticipateButtonContainer>
     </>
   );
@@ -27,6 +30,9 @@ const ParticipateButtonContainer = styled.div`
   padding: 100px 0px;
   .invisible {
     display: none;
+  }
+  a {
+    text-decoration: none;
   }
 `;
 
@@ -47,4 +53,4 @@ const ParticipateButton = styled.div`
   text-align: center;
 `;
 
-const GoToModifyButton = styled(ParticipateButton)``;
+const GoToEditButton = styled(ParticipateButton)``;

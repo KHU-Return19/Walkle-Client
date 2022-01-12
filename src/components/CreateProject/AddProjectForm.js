@@ -28,6 +28,7 @@ const AddProjectForm = ({
   myFieldTagList,
   hashtag,
   hashtagList,
+  isEdit = false,
 }) => {
   return (
     <>
@@ -62,7 +63,7 @@ const AddProjectForm = ({
           handleTagClick={handleTagClick}
           onCheckEnter={onCheckEnter}
         />
-        <RegisterButton />
+        <RegisterButton isEdit={isEdit} />
       </CreateProjectFormContainer>
     </>
   );
