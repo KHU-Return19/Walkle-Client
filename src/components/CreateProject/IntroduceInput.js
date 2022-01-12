@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CreateProjectLabelText } from "./AddProjectForm";
-import { DateInput, DateInputContainer } from "./RecruitmentPeriodSelector";
 
 const IntroduceInput = ({ simpleIntro, setDetailedIntro, handleInput }) => {
   return (

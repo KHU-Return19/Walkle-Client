@@ -63,11 +63,8 @@ const SubLocationLabelText = styled.div`
 `;
 
 const MapContainer = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-  margin: 0.4rem auto;
-  margin-bottom: 0;
-  padding-left: 1.5rem;
+  display: flex;
+  margin: 30px;
   border: none;
   border-radius: 16px;
   width: 400px;

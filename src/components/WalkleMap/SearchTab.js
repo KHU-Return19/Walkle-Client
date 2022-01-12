@@ -60,7 +60,7 @@ const SearchTab = ({
         <SearchTabHeader>
           <SearchBarContainer>
             <SearchBar
-              length="short"
+              length="360px"
               placeholder={
                 searchCategory === "creator"
                   ? "우리 동네 크리에이터 검색하기"

@@ -5,6 +5,11 @@ export const State = atom({
   default: "",
 });
 
+export const searchContentState = atom({
+  key: "searchContentState",
+  default: "",
+});
+
 export const latitudeState = atom({
   key: "latitudeState",
   default: "",

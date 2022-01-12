@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import StyledButton from "./Button";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
   latitudeState,
