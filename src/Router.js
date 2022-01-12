@@ -8,7 +8,7 @@ import Auth from "./hoc/auth";
 import ProjectPage from "./pages/ProjectPage";
 import ProfilePage from "./pages/ProfilePage";
 import AddProjectPage from "./pages/AddProjectPage";
-import ProjectProfilePage from "./pages/ProjectProfilePage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
 
 const Router = () => {
   return (
@@ -18,7 +18,7 @@ const Router = () => {
       <Route exact path="/signin" component={Auth(SignInPage, false)} />
       <Route exact path="/signup" component={Auth(SignUpPage, false)} />
       <Route exact path="/projects" component={ProjectPage} />
-      <Route path={"/projects/:id"} component={ProjectProfilePage} />
+      <Route path={"/projects/:id"} component={ProjectDetailPage} />
       <Route exact path="/profile" component={Auth(ProfilePage, false)} />
       <Route exact path="/addproject" component={Auth(AddProjectPage, false)} />
       <Route>404 not found</Route>

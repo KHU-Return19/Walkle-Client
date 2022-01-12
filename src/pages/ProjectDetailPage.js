@@ -10,7 +10,7 @@ import RecruitmentPeriod from "../components/Projects/ProjectDetail/RecruitmentP
 import ProjectIntroduce from "../components/Projects/ProjectDetail/ProjectIntroduce";
 import ButtonContainer from "../components/Projects/ProjectDetail/ButtonContainer";
 
-const ProjectProfilePage = ({ match, history }) => {
+const ProjectDetailPage = ({ match, history }) => {
   const [isManager, setIsManager] = useState(false);
   const project = Projects.find(
     (project) => String(project.id) === match.params.id
@@ -38,7 +38,7 @@ const ProjectProfilePage = ({ match, history }) => {
   );
 };
 
-export default ProjectProfilePage;
+export default ProjectDetailPage;
 
 const ProjectProfileContainer = styled.div`
   display: flex;
