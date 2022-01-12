@@ -36,7 +36,6 @@ const MemberListContainer = styled.div`
 
 const AddMemberButton = styled.div`
   display: flex;
-  flex-directoin: row;
   justify-content: center;
   align-items: center;
   width: 225px;

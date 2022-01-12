@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import StyledButton from "../Button";
 import { ButtonContainer } from "../Carousel/SetNameJobSlide";
 import { StyledSearchBar } from "../SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -144,14 +143,26 @@ const ModalFooter = styled.div`
   height: 131px;
 `;
 
-const ApproveButton = styled(StyledButton)`
-  font-family: Pretendard;
-  font-size: 21px;
-  line-height: 21px;
+const ApproveButton = styled.div`
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  border: none;
+  border-radius: 100px;
   width: 117px;
   height: 61px;
   padding: 20px 40px;
   margin: 20px 10px;
+  box-sizing: border-box;
+  font-family: Pretendard;
+  font-size: 21px;
+  line-height: 21px;
+  color: #ffffff;
+  background: #7054ff;
+  :hover {
+    opacity: 0.8;
+    transition: 0.3s;
+  }
 `;
 
 const CancelButton = styled(ApproveButton)`

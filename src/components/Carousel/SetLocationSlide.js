@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { LabelText, InputContainer, Input } from "../InputRow";
 import {
   HeadText,
   HeadTextContainer,
@@ -13,32 +12,30 @@ import {
 } from "./SetNameJobSlide";
 
 const representText = "대표 위치를 {'\n'} 등록해 보세요";
-const addAnotherText = "다른 위치도{'\n'}추가할 수 있어요"
+const addAnotherText = "다른 위치도{'\n'}추가할 수 있어요";
 
-const SetLocationSlide = ({toggleSlide}) => {
+const SetLocationSlide = ({ toggleSlide }) => {
   return (
     <>
       <SlideContainer>
         <HeadTextContainer>
           <HeadText>다른 위치도{"\n"}추가할 수 있어요</HeadText>
-          </HeadTextContainer>
-          <InputForm>
-            <InputRowContainer>
-              <LocationLabelText>위치등록</LocationLabelText>
-              <SubLocationLabelText>
-                운영시설/회사/작업공간 등 크리에이터가 주로 활동하는 지역을
-                선택해주세요.
-              </SubLocationLabelText>
-            </InputRowContainer>
-            <MapContainer></MapContainer>
-          </InputForm>
-          <ButtonContainer>
+        </HeadTextContainer>
+        <InputForm>
+          <InputRowContainer>
+            <LocationLabelText>위치등록</LocationLabelText>
+            <SubLocationLabelText>
+              운영시설/회사/작업공간 등 크리에이터가 주로 활동하는 지역을
+              선택해주세요.
+            </SubLocationLabelText>
+          </InputRowContainer>
+          <MapContainer></MapContainer>
+        </InputForm>
+        <ButtonContainer>
           <PrevSlideButton onClick={toggleSlide("prev")}>
             이전으로
           </PrevSlideButton>
-          <NextSlideButton type="submit">
-            등록완료
-          </NextSlideButton>
+          <NextSlideButton type="submit">등록완료</NextSlideButton>
         </ButtonContainer>
       </SlideContainer>
     </>
@@ -47,18 +44,38 @@ const SetLocationSlide = ({toggleSlide}) => {
 
 export default SetLocationSlide;
 
-const LocationLabelText = styled(LabelText)`
+const LocationLabelText = styled.div`
   margin-bottom: 10px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  color: #8b8b8b;
 `;
 
-const SubLocationLabelText = styled(LabelText)`
+const SubLocationLabelText = styled.div`
+  margin-bottom: 1rem;
+  font-family: Pretendard;
   font-size: 13px;
+  font-weight: 500;
   line-height: 21px;
+  color: #8b8b8b;
   white-space: pre-wrap;
 `;
 
-const MapContainer = styled(InputContainer)`
+const MapContainer = styled.div`
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0.4rem auto;
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+  border: none;
+  border-radius: 16px;
   width: 400px;
   height: 400px;
-  border-radius: 16px;
+  font-size: 1rem;
+  color: #313338;
+  background: #fafafa;
+  .invisible {
+    display: none;
+  }
 `;

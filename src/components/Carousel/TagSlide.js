@@ -18,9 +18,7 @@ import {
   NextSlideButton,
   InputRowContainer,
 } from "./SetNameJobSlide";
-import { LabelText, InputContainer, Input } from "../InputRow";
-import { TagContainer, TagText } from "../CreatorTag";
-import { TagListContainer } from "../MapCreatorCard";
+import { Input } from "../InputRow";
 
 const TagSlide = ({
   hashtag,
@@ -155,14 +153,22 @@ const TagSlide = ({
 
 export default TagSlide;
 
-const TagLabelText = styled(LabelText)`
+const TagLabelText = styled.div`
   margin-bottom: 10px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  color: #8b8b8b;
 `;
 
-const TagLabelSubText = styled(LabelText)`
+const TagLabelSubText = styled.div`
+  margin-bottom: 1rem;
+  font-family: Pretendard;
   font-size: 13px;
   line-height: 21px;
   white-space: pre-wrap;
+  font-weight: 500;
+  color: #8b8b8b;
 `;
 
 const TagInputRow = styled.div``;
@@ -179,19 +185,38 @@ export const FieldTagListContainer = styled.div`
   }
 `;
 
-export const FieldTagContainer = styled(TagContainer)`
-  height: 50px;
+export const FieldTagContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding: 16px 20px;
+
+  position: static;
+  height: 50px;
+
+  border: 1px solid #d2d2d2;
+  box-sizing: border-box;
+  border-radius: 100px;
+
+  font-size: 11px;
   line-height: 18px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
   margin: 0px 10px 16px 0px;
 `;
 
-export const FieldTag = styled(TagText)`
+export const FieldTag = styled.span`
+  font-family: Pretendard;
   font-size: 18px;
+  font-style: normal;
   font-weight: 500;
+  line-height: 11px;
+  color: #8b8b8b;
 `;
 
-export const HashtagListContainer = styled(TagListContainer)`
+export const HashtagListContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: left;
@@ -199,11 +224,25 @@ export const HashtagListContainer = styled(TagListContainer)`
   padding: 0;
 `;
 
-export const HashtagContainer = styled(TagContainer)`
+export const HashtagContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+
+  position: static;
   height: 36px;
+
+  border: 1px solid #d2d2d2;
+  box-sizing: border-box;
+  border-radius: 100px;
+
   font-size: 16px;
   line-height: 16px;
-  padding: 10px 16px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
   margin: 16px 10px 0px 0px;
 `;
 
@@ -214,13 +253,30 @@ export const HashtagContentContainer = styled.div`
   align-items: center;
 `;
 
-export const HashtagInputContainer = styled(InputContainer)`
+export const HashtagInputContainer = styled.div`
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0.4rem auto;
   margin-top: 16px;
+  padding-left: 1.5rem;
+  border: none;
+  border-radius: 100px;
+  width: 400px;
+  height: 50px;
+  font-size: 1rem;
+  color: #313338;
+  background: #fafafa;
+  .invisible {
+    display: none;
+  }
 `;
 
-export const HashtagText = styled(TagText)`
+export const HashtagText = styled.span`
+  font-family: Pretendard;
+  font-style: normal;
   font-weight: 500;
   line-height: 16px;
+  color: #8b8b8b;
 `;
 
 export const IconContainer = styled.div`

@@ -51,9 +51,7 @@ const Header = ({ userId }) => {
     <StyledHeader>
       <HeaderBox>
         <nav className="header-nav">
-          <Link to="/">
-            Walkle
-          </Link>
+          <Link to="/">Walkle</Link>
           <Link
             to="/walklemap"
             className={
@@ -202,11 +200,23 @@ const LocationText = styled.span`
   font-weight: 500;
 `;
 
-const SignInButton = styled(StyledButton)`
-  width: 80px;
+const SignInButton = styled.div`
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  border: none;
   border-radius: 10px;
   margin-right: 1rem;
+  width: 80px;
+  height: 35px;
+  box-sizing: border-box;
   font-family: Pretendard;
   font-size: 15px;
   font-weight: 600;
+  color: #ffffff;
+  background: #7054ff;
+  :hover {
+    opacity: 0.8;
+    transition: 0.3s;
+  }
 `;

@@ -98,10 +98,21 @@ const IntroduceInputRowContainer = styled.div`
   margin: 20px 30px;
 `;
 
-const LongInputContainer = styled(InputContainer)`
+const LongInputContainer = styled.div`
   display: flex;
-  height: 200px;
+  margin: 0.4rem auto;
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+  border: none;
   border-radius: 20px;
+  width: 400px;
+  height: 200px;
+  font-size: 1rem;
+  color: #313338;
+  background: #fafafa;
+  .invisible {
+    display: none;
+  }
   .invisible {
     display: none;
   }

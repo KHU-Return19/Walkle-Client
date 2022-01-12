@@ -118,7 +118,7 @@ const Carousel = ({
   return (
     <>
       <CarouselContainer>
-        <PageIndicator currentSlide={currentSlide}/>
+        <PageIndicator currentSlide={currentSlide} />
         <SlideContainer ref={slideRef}>
           <SetNameJobSlide
             nickname={nickname}
@@ -147,9 +147,7 @@ const Carousel = ({
             handleInput={handleInput}
             toggleSlide={toggleSlide}
           />
-          <SetLocationSlide 
-            toggleSlide={toggleSlide}
-          />
+          <SetLocationSlide toggleSlide={toggleSlide} />
         </SlideContainer>
       </CarouselContainer>
     </>

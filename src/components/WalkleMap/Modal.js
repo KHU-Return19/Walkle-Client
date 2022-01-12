@@ -50,7 +50,7 @@ const Modal = ({ searchCategory }) => {
           {TagList &&
             TagList.map((subject) => (
               <ModalTagContainer>
-                <ModalTagText>{subject}</ModalTagText>
+                <TagText>{subject}</TagText>
               </ModalTagContainer>
             ))}
         </TagListContainer>
@@ -107,11 +107,27 @@ const TagListContainer = styled.div`
   padding: 20px 12px 8px 0px;
 `;
 
-const ModalTagContainer = styled(TagContainer)`
+const ModalTagContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+
+  position: static;
+  height: 27px;
+
+  border: 1px solid #d2d2d2;
+  box-sizing: border-box;
+  border-radius: 100px;
+
+  font-size: 11px;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
   margin: 0px 4px 4px 4px;
 `;
-
-const ModalTagText = styled(TagText)``;
 
 const ExitButton = styled.div`
   font-size: 1.5rem;
@@ -119,7 +135,7 @@ const ExitButton = styled.div`
   position: relative;
   left: 447px;
   top: 30px;
-  right; 30px;
+  right: 30px;
   width: 24px;
   height: 24px;
   text-align: center;

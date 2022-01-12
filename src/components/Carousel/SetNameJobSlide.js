@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import StyledButton from "../Button";
-import { LabelText, InputContainer, Input } from "../InputRow";
+import { LabelText, Input } from "../InputRow";
 
 const SetNameJobSlide = ({
   nickname,
@@ -106,7 +105,19 @@ export const InputRow = styled.div`
   margin: 20px 0px;
 `;
 
-const NameJobInputContainer = styled(InputContainer)`
+const NameJobInputContainer = styled.div`
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0.4rem auto;
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+  border: none;
+  border-radius: 100px;
+  width: 400px;
+  height: 50px;
+  font-size: 1rem;
+  color: #313338;
+  background: #fafafa;
   .invisible {
     display: none;
   }
@@ -141,17 +152,30 @@ export const FailComment = styled(SuccessComment)`
   color: #f24822;
 `;
 export const ButtonContainer = styled.div`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const NextSlideButton = styled(StyledButton)`
-  margin: 40px 10px 10px 10px;
+export const NextSlideButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 100px;
   width: 123px;
   height: 50px;
-  border-radius: 100px;
+  margin: 40px 10px 10px 10px;
+  box-sizing: border-box;
   font-family: Pretendard;
   font-size: 18px;
   font-weight: 600;
+  color: #ffffff;
+  background: #7054ff;
+  :hover {
+    opacity: 0.8;
+    transition: 0.3s;
+  }
 `;
 
 export const PrevSlideButton = styled(NextSlideButton)`

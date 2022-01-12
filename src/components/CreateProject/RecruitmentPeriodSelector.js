@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { LabelText } from "../InputRow";
 import { CreateProjectLabelText, SubLabelText } from "./AddProjectForm";
 
 const RecruitmentPeriodSelector = ({
@@ -75,11 +74,13 @@ const ConstantRecruitCheckBoxContainer = styled.div`
 
 const ConstantRecruitCheckBox = styled.input``;
 
-const ConstantRecruitLabelText = styled(LabelText)`
-  line-height: 16px;
+const ConstantRecruitLabelText = styled.div`
+  margin: 0;
+  font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
-  margin: 0;
+  color: #8b8b8b;
+  line-height: 16px;
   padding-left: 8px;
 `;
 
@@ -115,7 +116,7 @@ export const DateInput = styled.input`
   font-weight: 400;
   color: #313338;
   background: #fafafa;
-  :focus{
+  :focus {
     outline: none;
   }
 `;

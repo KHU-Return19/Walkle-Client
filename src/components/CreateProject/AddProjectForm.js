@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { LabelText } from "../InputRow";
 import ImageInput from "./ImageInput";
 import IntroduceInput from "./IntroduceInput";
 import MemberSelector from "./MemberSelector";
@@ -78,14 +77,18 @@ const CreateProjectFormContainer = styled.form`
   margin: auto;
 `;
 
-export const CreateProjectLabelText = styled(LabelText)`
+export const CreateProjectLabelText = styled.div`
   margin-bottom: 30px;
-  color: #7054ff;
+  font-family: Pretendard;
+  font-size: 16px;
   font-weight: 700;
+  color: #7054ff;
 `;
 
-export const SubLabelText = styled(LabelText)`
+export const SubLabelText = styled(CreateProjectLabelText)`
   margin-bottom: 20px;
+  color: #8b8b8b;
+  font-weight: 500;
 `;
 
 export const SubText = styled(SubLabelText)``;
