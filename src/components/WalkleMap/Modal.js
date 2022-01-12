@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { selectedCreatorState, selectedProjectState } from "../../store/state";
 import { useRecoilState } from "recoil";
-import { TagContainer, TagText } from "../CreatorTag";
+import { TagText } from "../CreatorTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Modal = ({ searchCategory }) => {

@@ -10,6 +10,7 @@ import {
   selectedObjectState,
   selectedCreatorState,
   selectedProjectState,
+  searchContentState,
 } from "../store/state";
 import { Creators, Projects } from "../store/fakeCreators";
 import mainLogo from "../assets/mainLogo.svg";
@@ -33,7 +34,8 @@ const WalkleMapPage = () => {
     useRecoilState(selectedCreatorState);
   const [selectedProject, setSelectedProject] =
     useRecoilState(selectedProjectState);
-  const [searchContent, setSearchContent] = useState("");
+  const globalSearchContent = useRecoilValue(searchContentState);
+  const [searchContent, setSearchContent] = useState(globalSearchContent);
   const [searchFilter, setSearchFilter] = useState("recent");
 
   const renderMarker = (object, type) => {

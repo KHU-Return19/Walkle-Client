@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SearchBar = ({ length, placeholder, value, handleSearch }) => {
+const SearchBar = ({ placeholder, value, handleSearch }) => {
   return (
-    <StyledSearchBar length={length}>
+    <StyledSearchBar>
       <input
         type="text"
         placeholder={placeholder}
         value={value}
         onChange={handleSearch}
       />
-      <FontAwesomeIcon icon="search" />
+      <FontAwesomeIcon className="icon" icon="search" />
     </StyledSearchBar>
   );
 };
@@ -22,18 +22,19 @@ export const StyledSearchBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: ${(props) => props.length && props.length};
-  height: 54px;
-  min-height: 44px;
-  min-width: 375px;
+  width: 656px;
+  height: 64px;
   padding-left: 30px;
   padding-right: 30px;
+  border: 1px solid #d2d2d2;
+  box-sizing: border-box;
   border-radius: 100px;
   background: #fafafa;
   input {
-    width: 500px;
+    width: 550px;
     border: none;
     background: #fafafa;
+    color: #313338;
     font-family: Pretendard;
     font-size: 21px;
     font-weight: 400;
@@ -41,5 +42,11 @@ export const StyledSearchBar = styled.div`
       outline: none;
     }
     line-height: 44px;
+    placeholder {
+      color: #8b8b8b;
+    }
+  }
+  .icon {
+    font-size: 21px;
   }
 `;
