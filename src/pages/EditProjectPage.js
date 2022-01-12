@@ -16,7 +16,7 @@ const EditProjectPage = ({ match }) => {
   const [memberList, setMemberList] = useState(project.member);
   const [isConstantRecruit, setIsConstantRecruit] = useState(false);
   const [recruitStartDate, setRecruitStartDate] = useState(project.initialDate);
-  const [recruitEndDate, setRecruitEndDate] = useState(project.recruitEndDate);
+  const [recruitEndDate, setRecruitEndDate] = useState(project.dDay);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchContent, setSearchContent] = useState("");
   const [currentCreator, setCurrentCreator] = useState();

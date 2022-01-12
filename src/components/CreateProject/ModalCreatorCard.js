@@ -66,8 +66,9 @@ const ParticipantCardContainer = styled.div`
   width: 225px;
   height: 80px;
   border: 1px solid #f1f1f1;
+  box-sizing: border-box;
   border-radius: 8px;
-  margin: 0px 20px 0px 0px;
+  margin: 0px 20px 20px 0px;
 `;
 
 const CardContent = styled.div`

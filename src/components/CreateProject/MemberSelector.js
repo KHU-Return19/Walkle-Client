@@ -30,6 +30,8 @@ const Wrapper = styled.div`
 
 const MemberListContainer = styled.div`
   display: flex;
+  width: 980px;
+  flex-wrap: wrap;
 `;
 
 const AddMemberButton = styled.div`
