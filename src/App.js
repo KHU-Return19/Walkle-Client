@@ -11,6 +11,8 @@ import {
   faPaperPlane,
   faTimes,
   faPen,
+  faCommentAlt,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/App.css";
 import { faBookmark, faFileImage } from "@fortawesome/free-regular-svg-icons";
@@ -24,7 +26,9 @@ library.add(
   faPaperPlane,
   faTimes,
   faFileImage,
-  faPen
+  faPen,
+  faCommentAlt,
+  faHeart
 );
 
 const App = () => {

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchBar from "../components/Community/SearchBar";
 import Header from "../components/Header";
 import { Posts } from "../store/fakePosts";
+import PostCard from '../components/Community/PostCard';
 
 const CommunityPage = () => {
   const [searchContent, setSearchContent] = useState("");
@@ -26,7 +27,9 @@ const CommunityPage = () => {
             <FontAwesomeIcon className="icon" icon="pen" />
           </WritePostButton>
         </PageHeader>
-        <PostList></PostList>
+        <PostList>
+          {Posts.map(post => <PostCard post={post} />)}
+        </PostList>
       </Wrapper>
     </>
   );
@@ -46,7 +49,7 @@ const Wrapper = styled.div`
 const PageHeader = styled.div`
   display: flex;
   align-items: center;
-  margin: auto;
+  margin: 56px auto 86px auto;
 `;
 
 const WritePostButton = styled.div`
@@ -69,4 +72,8 @@ const WritePostButton = styled.div`
   }
 `;
 
-const PostList = styled.div``;
+const PostList = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+`;
