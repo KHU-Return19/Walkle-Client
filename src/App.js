@@ -13,6 +13,7 @@ import {
   faPen,
   faCommentAlt,
   faHeart,
+  faLevelUpAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/App.css";
 import { faBookmark, faFileImage } from "@fortawesome/free-regular-svg-icons";
@@ -28,7 +29,8 @@ library.add(
   faFileImage,
   faPen,
   faCommentAlt,
-  faHeart
+  faHeart,
+  faLevelUpAlt
 );
 
 const App = () => {

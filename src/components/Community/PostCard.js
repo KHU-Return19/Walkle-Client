@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Comment from "./Comment";
 
 const PostCard = ({ post }) => {
   const [isExtended, setIsExtended] = useState(false);
@@ -19,9 +20,15 @@ const PostCard = ({ post }) => {
         <PostBody>
           <Content>{post.content}</Content>
           <PostInfo>
-            <InfoElement>조회 {post.view}</InfoElement>
-            <InfoElement>공감 {post.heart}</InfoElement>
-            <InfoElement>댓글 1</InfoElement>
+            <InfoBox>
+              <InfoElement>조회 {post.view}</InfoElement>
+              <InfoElement>공감 {post.heart}</InfoElement>
+              <InfoElement>댓글 1</InfoElement>
+            </InfoBox>
+            <InfoBox>
+              <FontAwesomeIcon className="Icon" icon="map-marker-alt" />
+              <InfoElement className="location">{post.location}</InfoElement>
+            </InfoBox>
           </PostInfo>
         </PostBody>
         <PostFooter>
@@ -43,7 +50,10 @@ const PostCard = ({ post }) => {
               <LikeButton className={isLiked && "Liked"}>공감하기</LikeButton>
             </LikeButtonContainer>
           </ButtonSector>
-          <CommentList></CommentList>
+          <CommentList>
+            {post.comments &&
+              post.comments.map((comment) => <Comment comment={comment} />)}
+          </CommentList>
           <CommentWriter>
             <CommentInput placeholder="댓글을 작성해주세요" />
             <FontAwesomeIcon className="Icon" icon={["fas", "paper-plane"]} />
@@ -113,7 +123,23 @@ const Content = styled(Name)`
 `;
 const PostInfo = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
+
+const InfoBox = styled.div`
+  display: flex;
+  .Icon {
+    font-size: 11px;
+    line-height: 11px;
+    color: #8b8b8b;
+  }
+  .location {
+    font-size: 11px;
+    line-height: 11px;
+    padding: 0px 0px 0px 5px;
+  }
+`;
+
 const InfoElement = styled(Name)`
   font-weight: 500;
   font-size: 12px;

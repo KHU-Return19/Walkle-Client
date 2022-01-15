@@ -12,6 +12,22 @@ export const Posts = [
     date: "2021-12-08",
     location: "안산시 상록구 푸른동",
     heart: 12,
+    comments: [
+      {
+        name: "김수한무",
+        content: "리액트 개고수가 되고 싶어요!",
+        reply: [
+          {
+            name: "김수한무거북이와두루미",
+            content: "공식 문서 위주로 자바스크립트부터 공부하세요",
+          },
+        ],
+      },
+      {
+        name: "지나가던사람",
+        content: "강의 하나 추천해드릴까요?",
+      },
+    ],
   },
   {
     id: 2,
