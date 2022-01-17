@@ -4,14 +4,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchBar from "../components/Community/SearchBar";
 import Header from "../components/Header";
 import { Posts } from "../store/fakePosts";
-import PostCard from '../components/Community/PostCard';
+import PostCard from "../components/Community/PostCard";
+import WriteModal from "../components/Community/WriteModal";
 
 const CommunityPage = () => {
   const [searchContent, setSearchContent] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [fileName, setFileName] = useState("게시물에 추가");
+  const searchedPosts = Posts.filter(
+    (post) =>
+      post.content.toLowerCase().includes(searchContent.toLowerCase()) === true
+  );
   const handleSearch = (e) => {
     const targetValue = e.currentTarget.value;
     setSearchContent(targetValue);
+  };
+  const handleModalOpen = () => {
+    document.body.style.overflow = "hidden";
+    setIsModalOpen(true);
   };
   return (
     <>
@@ -23,13 +33,21 @@ const CommunityPage = () => {
             value={searchContent}
             handleSearch={handleSearch}
           />
-          <WritePostButton onClick={() => setIsModalOpen(true)}>
+          <WritePostButton onClick={() => handleModalOpen()}>
             <FontAwesomeIcon className="icon" icon="pen" />
           </WritePostButton>
         </PageHeader>
         <PostList>
-          {Posts.map(post => <PostCard post={post} />)}
+          {searchedPosts.map((post) => (
+            <PostCard post={post} />
+          ))}
         </PostList>
+        <WriteModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          name="김수한무거북이"
+          fileName={fileName}
+        />
       </Wrapper>
     </>
   );
