@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CreatorTag from "./CreatorTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +8,7 @@ import { selectedCreatorState, selectedObjectState } from "../store/state";
 export const MapCreatorCard = (creator) => {
   const [selectedCreator, setSelectedCreator] =
     useRecoilState(selectedCreatorState);
+  const [isHover, setIsHover] = useState(false);
   const setSelectedObject = useSetRecoilState(selectedObjectState);
   const currentCreator = creator;
   const handleSelect = (creator) => {
@@ -20,11 +21,17 @@ export const MapCreatorCard = (creator) => {
         className={
           selectedCreator.id === currentCreator.id && "selected-creator"
         }
+        onMouseOver={() => setIsHover(true)}
+        onMouseOut={() => setIsHover(false)}
         onClick={() => handleSelect(currentCreator)}
       >
         <CardContainer>
           <CardInnerContainer>
             <ImageContainer>
+              <SeeMoreOutlay className={!isHover && "invisible"}>
+                <MoreIcon>+</MoreIcon>
+                <MoreText>더보기</MoreText>
+              </SeeMoreOutlay>
               <CreatorImg />
             </ImageContainer>
             <InfoContainer>
@@ -72,7 +79,36 @@ const CardInnerContainer = styled.div`
   align-items: flex-start;
 `;
 
-const ImageContainer = styled.div``;
+const ImageContainer = styled.div`
+  position: relative;
+`;
+
+const SeeMoreOutlay = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 120px;
+  height: 120px;
+  background: #d2d2d2;
+  opacity: 0.7;
+  color: #ffffff;
+`;
+
+const MoreIcon = styled.span`
+  white-space: pre-wrap;
+  text-align: center;
+  font-size: 60px;
+`;
+
+const MoreText = styled.span`
+  white-space: pre-wrap;
+  text-align: center;
+  font-family: Pretendard;
+`;
 
 const CreatorImg = styled.div`
   width: 100px;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CreatorTag from "./CreatorTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +8,7 @@ import { selectedProjectState } from "../store/state";
 export const MapProjectCard = (project) => {
   const [selectedProject, setSelectedProject] =
     useRecoilState(selectedProjectState);
+  const [isHover, setIsHover] = useState(false);
   const currentProject = project;
   const projectDDay = project.dDay && new Date(project.dDay);
   const dDay = Math.ceil(
@@ -20,19 +21,23 @@ export const MapProjectCard = (project) => {
         className={
           selectedProject.id === currentProject.id && "selected-project"
         }
+        onMouseOver={() => setIsHover(true)}
+        onMouseOut={() => setIsHover(false)}
         onClick={() => setSelectedProject(currentProject)}
       >
         <CardContainer>
           <CardInnerContainer>
             <ImageContainer>
+              <SeeMoreOutlay className={!isHover && "invisible"}>
+                <MoreIcon>+</MoreIcon>
+                <MoreText>더보기</MoreText>
+              </SeeMoreOutlay>
               <ProjectImg />
             </ImageContainer>
             <InfoContainer>
               <CardHeader>
                 <ProjectName>{project.name}</ProjectName>
-                <ProjectDDay>
-                  {dDay < 0 ? "D" + dDay  : "모집완료"}
-                </ProjectDDay>
+                <ProjectDDay>{dDay < 0 ? "D" + dDay : "모집완료"}</ProjectDDay>
               </CardHeader>
               <ProjectIntroText>{project.intro}</ProjectIntroText>
               <TagListContainer>
@@ -75,7 +80,36 @@ const CardInnerContainer = styled.div`
   align-items: flex-start;
 `;
 
-const ImageContainer = styled.div``;
+const ImageContainer = styled.div`
+  position: relative;
+`;
+
+const SeeMoreOutlay = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 120px;
+  height: 120px;
+  background: #d2d2d2;
+  opacity: 0.7;
+  color: #ffffff;
+`;
+
+const MoreIcon = styled.span`
+  white-space: pre-wrap;
+  text-align: center;
+  font-size: 60px;
+`;
+
+const MoreText = styled.span`
+  white-space: pre-wrap;
+  text-align: center;
+  font-family: Pretendard;
+`;
 
 const ProjectImg = styled.div`
   width: 100px;
