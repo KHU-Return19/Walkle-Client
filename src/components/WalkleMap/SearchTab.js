@@ -60,8 +60,8 @@ const SearchTab = ({
       ? sortProjects(findLocalObject(Projects))
       : ObjectList;
     return searchContent === ""
-      ? findLocalObject(sortedObjectList)
-      : findLocalObject(sortedObjectList).filter(
+      ? sortProjects(Projects)
+      : sortProjects(Projects).filter(
           (element) =>
             element.name.toLowerCase().includes(searchContent.toLowerCase()) ===
             true
