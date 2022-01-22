@@ -5,10 +5,13 @@ import Comment from "./Comment";
 
 const PostCard = ({ post }) => {
   const [isExtended, setIsExtended] = useState(false);
+  const [textExtended, setTextExtended] = useState(
+    post.content.length > 267 ? false : true
+  );
   const [isLiked, setIsLiked] = useState(false);
   return (
     <>
-      <Wrapper extended={isExtended}>
+      <Wrapper extended={isExtended || textExtended}>
         <PostHeader>
           <ProfileImg />
           <CreatorInfo>
@@ -18,7 +21,15 @@ const PostCard = ({ post }) => {
           <WrittenDate>{post.date}</WrittenDate>
         </PostHeader>
         <PostBody>
-          <Content>{post.content}</Content>
+          <Content className={textExtended ? "" : "close"}>
+            {post.content}
+          </Content>
+          <SeeMore
+            onClick={() => setTextExtended(true)}
+            className={textExtended ? "invisible" : ""}
+          >
+            <SeeMoreText>더보기</SeeMoreText>
+          </SeeMore>
           <PostInfo>
             <InfoBox>
               <InfoElement>조회 {post.view}</InfoElement>
@@ -50,13 +61,13 @@ const PostCard = ({ post }) => {
               <LikeButton className={isLiked && "Liked"}>공감하기</LikeButton>
             </LikeButtonContainer>
           </ButtonSector>
-          <CommentList>
+          <CommentList className={isExtended ? "" : "invisible"}>
             {post.comments &&
               post.comments.map((comment) => (
                 <Comment key={comment} comment={comment} />
               ))}
           </CommentList>
-          <CommentWriter>
+          <CommentWriter className={isExtended ? "" : "invisible"}>
             <CommentInput placeholder="댓글을 작성해주세요" />
             <FontAwesomeIcon className="Icon" icon={["fas", "paper-plane"]} />
           </CommentWriter>
@@ -76,7 +87,7 @@ const Wrapper = styled.div`
   transition: 0.5s;
   background: #ffffff;
   margin-bottom: 45px;
-  padding: 37.76px;
+  padding: 37.76px 37.76px 10px 37.76px;
   border: 1px solid #d2d2d2;
   box-sizing: border-box;
   border-radius: 16px;
@@ -115,14 +126,42 @@ const Job = styled(Name)`
 const WrittenDate = styled(Job)`
   margin: 9px 0px 0px 15.41px;
 `;
-const PostBody = styled.div``;
+const PostBody = styled.div`
+  .invisible {
+    display: none;
+  }
+  p.close {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 0px;
+  }
+`;
 
-const Content = styled(Name)`
+const Content = styled.p`
+  font-family: Pretendard;
   font-weight: 400;
   font-size: 16px;
   line-height: 28px;
+  color: #313338;
   margin-bottom: 35px;
 `;
+
+const SeeMore = styled(Content)`
+  display: flex;
+  justify-content: right;
+  margin-bottom: 0px;
+`;
+
+const SeeMoreText = styled(Content)`
+  width: 42px;
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 0px;
+`;
+
 const PostInfo = styled.div`
   display: flex;
   justify-content: space-between;
@@ -154,6 +193,9 @@ const PostFooter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  .invisible {
+    display: none;
+  }
 `;
 const ButtonSector = styled(PostFooter)`
   flex-direction: row;
@@ -205,6 +247,7 @@ const CommentWriter = styled.div`
   box-sizing: border-box;
   border-radius: 30px;
   margin-top: 30px;
+  margin-bottom: 20px;
   .Icon {
     font-size: 24px;
     color: #d2d2d2;
