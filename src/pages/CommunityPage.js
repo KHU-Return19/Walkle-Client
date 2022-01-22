@@ -37,11 +37,13 @@ const CommunityPage = () => {
             <FontAwesomeIcon className="icon" icon="pen" />
           </WritePostButton>
         </PageHeader>
-        <PostList>
-          {searchedPosts.map((post) => (
-            <PostCard key={post} post={post} />
-          ))}
-        </PostList>
+        <PostListOutlay>
+          <PostList>
+            {searchedPosts.map((post) => (
+              <PostCard key={post} post={post} />
+            ))}
+          </PostList>
+        </PostListOutlay>
         <WriteModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
@@ -90,8 +92,23 @@ const WritePostButton = styled.div`
   }
 `;
 
+const PostListOutlay = styled.div`
+  margin: auto;
+  height: 750px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #8b8b8b;
+    border-radius: 100px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+`;
+
 const PostList = styled.div`
   display: flex;
   flex-direction: column;
-  margin: auto;
 `;
