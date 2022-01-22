@@ -10,7 +10,7 @@ import { Creators, Projects } from "../../store/fakeCreators";
 import { useRecoilValue } from "recoil";
 import { latitudeState, longitudeState, regionState } from "../../store/state";
 
-// 현재 위치에 상관없는 ui 확인을 위해 <CardContainer /> 컴포넌트에 filteredCreators, filteredProjects 대신 Creators 와 Projects 원본 사용중. 후에 개발이 완료되면 다시 변경 요망
+// 현재 위치에 상관없는 ui 확인을 위해 sortProjects() 함수에 findLocalObject() 함수가 들어가야 할 자리에 Projects가 들어가 있음
 
 const ABOUT3KM_X = 0.0337;
 const ABOUT3KM_Y = 0.027;
@@ -42,14 +42,14 @@ const SearchTab = ({
     switch (searchFilter) {
       default:
       case "recent":
-        return projects.sort(
+        return Projects.sort(
           (project1, project2) =>
             calcDate(project1.initialDate) - calcDate(project2.initialDate)
         );
       case "view":
-        return projects;
+        return Projects;
       case "upToDate":
-        return findLocalObject(Projects).sort(
+        return Projects.sort(
           (project1, project2) =>
             calcDate(project1.dDay) - calcDate(project2.dDay)
         );
