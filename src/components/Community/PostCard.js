@@ -52,7 +52,9 @@ const PostCard = ({ post }) => {
           </ButtonSector>
           <CommentList>
             {post.comments &&
-              post.comments.map((comment) => <Comment comment={comment} />)}
+              post.comments.map((comment) => (
+                <Comment key={comment} comment={comment} />
+              ))}
           </CommentList>
           <CommentWriter>
             <CommentInput placeholder="댓글을 작성해주세요" />

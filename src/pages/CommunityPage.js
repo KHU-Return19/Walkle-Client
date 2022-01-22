@@ -9,7 +9,7 @@ import WriteModal from "../components/Community/WriteModal";
 
 const CommunityPage = () => {
   const [searchContent, setSearchContent] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [fileName, setFileName] = useState("게시물에 추가");
   const searchedPosts = Posts.filter(
     (post) =>
@@ -39,7 +39,7 @@ const CommunityPage = () => {
         </PageHeader>
         <PostList>
           {searchedPosts.map((post) => (
-            <PostCard post={post} />
+            <PostCard key={post} post={post} />
           ))}
         </PostList>
         <WriteModal

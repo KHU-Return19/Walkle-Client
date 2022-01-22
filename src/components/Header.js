@@ -119,7 +119,7 @@ const StyledHeader = styled.div`
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #dbdbdb;
-  width: 100%;
+  width: 100vw;
   height: 64px;
   box-sizing: border-box;
   font-size: 15px;
