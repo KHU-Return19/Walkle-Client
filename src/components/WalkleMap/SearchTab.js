@@ -42,14 +42,14 @@ const SearchTab = ({
     switch (searchFilter) {
       default:
       case "recent":
-        return Projects.sort(
+        return projects.sort(
           (project1, project2) =>
             calcDate(project1.initialDate) - calcDate(project2.initialDate)
         );
       case "view":
-        return Projects;
+        return projects;
       case "upToDate":
-        return Projects.sort(
+        return projects.sort(
           (project1, project2) =>
             calcDate(project1.dDay) - calcDate(project2.dDay)
         );
@@ -57,11 +57,11 @@ const SearchTab = ({
   };
   const findSearchedObject = (ObjectList) => {
     const sortedObjectList = ObjectList[0].initialDate
-      ? sortProjects(findLocalObject(Projects))
+      ? sortProjects(findLocalObject(ObjectList))
       : ObjectList;
     return searchContent === ""
-      ? sortProjects(Projects)
-      : sortProjects(Projects).filter(
+      ? sortProjects(ObjectList)
+      : sortProjects(ObjectList).filter(
           (element) =>
             element.name.toLowerCase().includes(searchContent.toLowerCase()) ===
             true
