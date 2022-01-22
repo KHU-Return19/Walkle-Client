@@ -30,7 +30,9 @@ export const MapProjectCard = (project) => {
             <InfoContainer>
               <CardHeader>
                 <ProjectName>{project.name}</ProjectName>
-                <ProjectDDay>D{dDay}</ProjectDDay>
+                <ProjectDDay>
+                  {dDay < 0 ? "D" + dDay  : "모집완료"}
+                </ProjectDDay>
               </CardHeader>
               <ProjectIntroText>{project.intro}</ProjectIntroText>
               <TagListContainer>
