@@ -73,7 +73,7 @@ const WalkleMapPage = () => {
     const map = new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
     switch (searchCategory) {
       default:
-          map.panTo(new window.kakao.maps.LatLng(lat, lon));
+        map.panTo(new window.kakao.maps.LatLng(lat, lon));
         break;
       case "creator":
         selectedCreator.id

@@ -18,6 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/App.css";
 import { faBookmark, faFileImage } from "@fortawesome/free-regular-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faMapMarkerAlt,
@@ -32,7 +33,8 @@ library.add(
   faCommentAlt,
   faHeart,
   faLevelUpAlt,
-  faImages
+  faImages,
+  faInstagram
 );
 
 const App = () => {
