@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Comment from "./Comment";
 
@@ -18,7 +19,9 @@ const PostCard = ({ post }) => {
             <Name>{post.writer.name}</Name>
             <Job>{post.writer.job}</Job>
           </CreatorInfo>
-          <WrittenDate>{post.date}</WrittenDate>
+          <WrittenDate>
+            {moment(post.date, "YYYY-MM-DD").format("YYYY. MM. DD")}
+          </WrittenDate>
         </PostHeader>
         <PostBody>
           <Content className={textExtended ? "" : "close"}>

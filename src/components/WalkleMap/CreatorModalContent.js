@@ -5,6 +5,7 @@ import { Projects } from "../../store/fakeCreators";
 import { Posts } from "../../store/fakePosts";
 import { TagText } from "../CreatorTag";
 import ProjectCard from "../Projects/ProjectCard";
+import ModalCommunityCard from "./ModalCommunityCard";
 
 const CreatorModalContent = ({ creator }) => {
   const [tabCategory, setTabCategory] = useState("project");
@@ -63,7 +64,7 @@ const CreatorModalContent = ({ creator }) => {
       {tabCategory === "community" && (
         <PostList>
           {Posts.map((post) => (
-            <></>
+            <ModalCommunityCard post={post} />
           ))}
         </PostList>
       )}
