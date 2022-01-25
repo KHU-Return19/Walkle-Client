@@ -116,7 +116,8 @@ const ModalTagContainer = styled.div`
 `;
 
 const MemberListContainer = styled.div`
-  margin: 40px 0px 0px 30px;
+  margin: 40px 30px 0px 30px;
+  width: 440px;
 `;
 
 const LabelText = styled.div`
@@ -129,6 +130,7 @@ const LabelText = styled.div`
 
 const MemberList = styled.div`
   display: flex;
+  width: 440px;
   overflow-x: overlay;
   padding-bottom: 20px;
   ::-webkit-scrollbar {
