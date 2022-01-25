@@ -5,8 +5,11 @@ const RegisterButton = ({ isEdit }) => {
   return (
     <>
       <RegisterButtonContainer>
-        <Button className={isEdit && "invisible"}>프로젝트 등록하기</Button>
-        <Button className={!isEdit && "invisible"}>수정완료</Button>
+        {isEdit ? (
+          <Button>프로젝트 등록하기</Button>
+        ) : (
+          <Button>수정완료</Button>
+        )}
       </RegisterButtonContainer>
     </>
   );
@@ -19,9 +22,6 @@ const RegisterButtonContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 100px 0px;
-  .invisible {
-    display: none;
-  }
 `;
 
 const Button = styled.div`

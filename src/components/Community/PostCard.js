@@ -24,12 +24,11 @@ const PostCard = ({ post }) => {
           <Content className={textExtended ? "" : "close"}>
             {post.content}
           </Content>
-          <SeeMore
-            onClick={() => setTextExtended(true)}
-            className={textExtended ? "invisible" : ""}
-          >
-            <SeeMoreText>더보기</SeeMoreText>
-          </SeeMore>
+          {textExtended === false && (
+            <SeeMore onClick={() => setTextExtended(true)}>
+              <SeeMoreText>더보기</SeeMoreText>
+            </SeeMore>
+          )}
           <PostInfo>
             <InfoBox>
               <InfoElement>조회 {post.view}</InfoElement>
@@ -61,16 +60,23 @@ const PostCard = ({ post }) => {
               <LikeButton className={isLiked && "Liked"}>공감하기</LikeButton>
             </LikeButtonContainer>
           </ButtonSector>
-          <CommentList className={isExtended ? "" : "invisible"}>
-            {post.comments &&
-              post.comments.map((comment) => (
-                <Comment key={comment} comment={comment} />
-              ))}
-          </CommentList>
-          <CommentWriter className={isExtended ? "" : "invisible"}>
-            <CommentInput placeholder="댓글을 작성해주세요" />
-            <FontAwesomeIcon className="Icon" icon={["fas", "paper-plane"]} />
-          </CommentWriter>
+          {isExtended && (
+            <>
+              <CommentList>
+                {post.comments &&
+                  post.comments.map((comment) => (
+                    <Comment key={comment} comment={comment} />
+                  ))}
+              </CommentList>
+              <CommentWriter>
+                <CommentInput placeholder="댓글을 작성해주세요" />
+                <FontAwesomeIcon
+                  className="Icon"
+                  icon={["fas", "paper-plane"]}
+                />
+              </CommentWriter>
+            </>
+          )}
         </PostFooter>
       </Wrapper>
     </>
@@ -127,9 +133,6 @@ const WrittenDate = styled(Job)`
   margin: 9px 0px 0px 15.41px;
 `;
 const PostBody = styled.div`
-  .invisible {
-    display: none;
-  }
   p.close {
     display: -webkit-box;
     overflow: hidden;
@@ -193,9 +196,6 @@ const PostFooter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .invisible {
-    display: none;
-  }
 `;
 const ButtonSector = styled(PostFooter)`
   flex-direction: row;

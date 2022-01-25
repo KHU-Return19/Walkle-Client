@@ -57,7 +57,7 @@ const WalkleMapPage = () => {
       type === "creator"
         ? setSelectedCreator(object)
         : setSelectedProject(object);
-      setSelectedObject(object.id);
+      setSelectedObject(object);
     };
 
     // customoverlay 생성, 이때 map을 선언하지 않으면 지도위에 올라가지 않습니다.
@@ -137,7 +137,7 @@ const WalkleMapPage = () => {
             setSearchFilter={setSearchFilter}
             setSelectedObject={setSelectedObject}
           />
-          <Modal searchCategory={searchCategory} />
+          {selectedObject.id && <Modal searchCategory={searchCategory} />}
           <MapContainer className="mapContainer" ref={container}></MapContainer>
         </MapPageContainer>
       </PageContainer>
@@ -157,9 +157,6 @@ const PageContainer = styled.div`
 
 const MapPageContainer = styled.div`
   display: flex;
-  .invisible {
-    display: none;
-  }
 `;
 
 const MapContainer = styled.div`

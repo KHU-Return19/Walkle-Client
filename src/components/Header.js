@@ -41,9 +41,8 @@ const Header = ({ userId }) => {
         const location = res.data.documents[0];
         setLocationInfo(location.address_name);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
+    console.log(userId);
   }, [latitude, longitude]);
 
   return (
@@ -95,17 +94,17 @@ const Header = ({ userId }) => {
             />
             <LocationText>{locationInfo}</LocationText>
           </LocationInfoContainer>
-          <Link to="/signin" className={userId && "invisible"}>
-            <SignInButton>로그인</SignInButton>
-          </Link>
-          <Link to="/profile" className={!userId && "invisible"}>
-            <ProfileImgContainer>
-              <ProfileImage
-                src={profileImg}
-                classname={!profileImg && "invisible"}
-              />
-            </ProfileImgContainer>
-          </Link>
+          {userId ? (
+            <Link to="/profile">
+              <ProfileImgContainer>
+                {profileImg && <ProfileImage src={profileImg} />}
+              </ProfileImgContainer>
+            </Link>
+          ) : (
+            <Link to="/signin">
+              <SignInButton>로그인</SignInButton>
+            </Link>
+          )}
         </NotNavContainer>
       </HeaderBox>
     </StyledHeader>
@@ -135,9 +134,6 @@ const StyledHeader = styled.div`
   .nav-element {
     color: #313338;
     padding: 1rem;
-  }
-  .invisible {
-    display: none;
   }
 `;
 

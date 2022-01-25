@@ -13,7 +13,7 @@ export const MapCreatorCard = (creator) => {
   const currentCreator = creator;
   const handleSelect = (creator) => {
     setSelectedCreator(creator);
-    setSelectedObject(creator.id);
+    setSelectedObject(creator);
   };
   return (
     <>
@@ -28,10 +28,12 @@ export const MapCreatorCard = (creator) => {
         <CardContainer>
           <CardInnerContainer>
             <ImageContainer>
-              <SeeMoreOutlay className={!isHover && "invisible"}>
-                <MoreIcon>+</MoreIcon>
-                <MoreText>더보기</MoreText>
-              </SeeMoreOutlay>
+              {isHover && (
+                <SeeMoreOutlay>
+                  <MoreIcon>+</MoreIcon>
+                  <MoreText>더보기</MoreText>
+                </SeeMoreOutlay>
+              )}
               <CreatorImg />
             </ImageContainer>
             <InfoContainer>

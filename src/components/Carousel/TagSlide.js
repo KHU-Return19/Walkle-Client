@@ -266,9 +266,6 @@ export const HashtagInputContainer = styled.div`
   font-size: 1rem;
   color: #313338;
   background: #fafafa;
-  .invisible {
-    display: none;
-  }
 `;
 
 export const HashtagText = styled.span`

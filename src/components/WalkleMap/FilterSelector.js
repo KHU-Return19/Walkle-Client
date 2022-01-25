@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const FilterSelector = ({ searchCategory, searchFilter, setSearchFilter }) => {
+const FilterSelector = ({ searchFilter, setSearchFilter }) => {
   return (
     <>
-      <FilterSelectorContainer
-        className={searchCategory === "creator" && "invisible"}
-      >
+      <FilterSelectorContainer>
         <FilterSelectorBox onClick={() => setSearchFilter("recent")}>
           <FilterIndicator
             className={searchFilter === "recent" && "selected-indicator"}

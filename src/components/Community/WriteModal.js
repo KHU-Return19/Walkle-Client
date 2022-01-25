@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const WriteModal = ({ isModalOpen, setIsModalOpen, name, fileName }) => {
+const WriteModal = ({ setIsModalOpen, name, fileName }) => {
   const placeholder = `${name} 크리에이터님, 오늘은 어떤 이야기를 나눠볼까요?`;
   const handleModalClose = () => {
     document.body.style.overflow = "unset";
@@ -10,45 +10,37 @@ const WriteModal = ({ isModalOpen, setIsModalOpen, name, fileName }) => {
   };
   return (
     <>
-      <ModalWrapper>
-        <ModalBackground className={!isModalOpen && "invisible"}>
-          <ModalOutlay>
-            <FontAwesomeIcon
-              icon="times"
-              className="close-button"
-              onClick={() => handleModalClose()}
-            />
-            <ModalHeader>
-              <ProfileImg />
-              <Name>{name}</Name>
-            </ModalHeader>
-            <ModalInner>
-              <AddImageBar>
-                <FileName>{fileName}</FileName>
-                <AddImageIcon>
-                  <ImageInput type="file" />
-                  <FontAwesomeIcon className="Icon" icon="images" />
-                </AddImageIcon>
-              </AddImageBar>
-              <PostContent placeholder={placeholder} />
-            </ModalInner>
-            <ModalFooter>
-              <SubmitButton>게시물 올리기</SubmitButton>
-            </ModalFooter>
-          </ModalOutlay>
-        </ModalBackground>
-      </ModalWrapper>
+      <ModalBackground>
+        <ModalOutlay>
+          <FontAwesomeIcon
+            icon="times"
+            className="close-button"
+            onClick={() => handleModalClose()}
+          />
+          <ModalHeader>
+            <ProfileImg />
+            <Name>{name}</Name>
+          </ModalHeader>
+          <ModalInner>
+            <AddImageBar>
+              <FileName>{fileName}</FileName>
+              <AddImageIcon>
+                <ImageInput type="file" />
+                <FontAwesomeIcon className="Icon" icon="images" />
+              </AddImageIcon>
+            </AddImageBar>
+            <PostContent placeholder={placeholder} />
+          </ModalInner>
+          <ModalFooter>
+            <SubmitButton>게시물 올리기</SubmitButton>
+          </ModalFooter>
+        </ModalOutlay>
+      </ModalBackground>
     </>
   );
 };
 
 export default WriteModal;
-
-const ModalWrapper = styled.div`
-  .invisible {
-    display: none;
-  }
-`;
 
 const ModalBackground = styled.div`
   display: flex;

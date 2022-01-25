@@ -24,25 +24,18 @@ const InputRow = ({
             placeholder={placeholder}
             required
           />
-          <SuccessText
-            className={
-              value === "" ? "invisible" : isValid !== true && "invisible"
-            }
-          >
-            <FontAwesomeIcon icon="check" />
-          </SuccessText>
+          {value !== "" && isValid === true && (
+            <SuccessText>
+              <FontAwesomeIcon icon="check" />
+            </SuccessText>
+          )}
         </InputContainer>
         <CommentContainer>
-          <SuccessComment
-            className={
-              value === "" ? "invisible" : isValid !== true && "invisible"
-            }
-          >
-            {successComment}
-          </SuccessComment>
-          <FailComment className={isValid !== false && "invisible"}>
-            {failComment}
-          </FailComment>
+          {value !== "" && isValid === true && (
+            <SuccessComment>{successComment}</SuccessComment>
+          )}
+
+          {isValid === false && <FailComment>{failComment}</FailComment>}
         </CommentContainer>
       </InputRowBox>
     </>
@@ -55,9 +48,6 @@ const InputRowBox = styled.div`
   display: flex;
   flex-direction: column;
   height: 107px;
-  .invisible {
-    display: none;
-  }
 `;
 export const LabelText = styled.div`
   margin-bottom: 1rem;
@@ -79,9 +69,6 @@ export const InputContainer = styled.div`
   font-size: 1rem;
   color: #313338;
   background: #fafafa;
-  .invisible {
-    display: none;
-  }
 `;
 export const Input = styled.input`
   border: none;
@@ -106,9 +93,6 @@ const SuccessText = styled.span`
 const CommentContainer = styled.div`
   text-align: right;
   line-height: 21px;
-  .invisible {
-    display: none;
-  }
 `;
 
 const SuccessComment = styled(SuccessText)`

@@ -10,72 +10,68 @@ const CreatorModalContent = ({ creator }) => {
   const [tabCategory, setTabCategory] = useState("project");
   return (
     <>
-      <Wrapper>
-        <MainTextContainer>
-          <ProfileImg />
-          <MainText>{creator.name}</MainText>
-        </MainTextContainer>
-        <SubTextContainer>
-          <SubText>{creator.job}</SubText>
-        </SubTextContainer>
-        <TagListContainer>
-          {creator.tag &&
-            creator.tag.map((subject) => (
-              <ModalTagContainer>
-                <TagText>{subject}</TagText>
-              </ModalTagContainer>
-            ))}
-        </TagListContainer>
-        <IntroContainer>
-          <SubText>{creator.intro}</SubText>
-        </IntroContainer>
-        <SnsLinkContainer>
-          <FontAwesomeIcon className="Icon" icon={["fab", "instagram"]} />
-          <SubText>InstagramID</SubText>
-        </SnsLinkContainer>
-        <ButtonContainer>
-          <FollowButton>+ 팔로우하기</FollowButton>
-          <ChattingButton>
-            <FontAwesomeIcon className="Icon" icon={["fas", "paper-plane"]} />
-            채팅하기
-          </ChattingButton>
-        </ButtonContainer>
-        <TabContainer>
-          <Tab
-            className={tabCategory === "project" && "selected"}
-            onClick={() => setTabCategory("project")}
-          >
-            project
-          </Tab>
-          <Tab
-            className={tabCategory === "community" && "selected"}
-            onClick={() => setTabCategory("community")}
-          >
-            community
-          </Tab>
-        </TabContainer>
-        <ProjectList className={tabCategory !== "project" && "invisible"}>
+      <MainTextContainer>
+        <ProfileImg />
+        <MainText>{creator.name}</MainText>
+      </MainTextContainer>
+      <SubTextContainer>
+        <SubText>{creator.job}</SubText>
+      </SubTextContainer>
+      <TagListContainer>
+        {creator.tag &&
+          creator.tag.map((subject) => (
+            <ModalTagContainer>
+              <TagText>{subject}</TagText>
+            </ModalTagContainer>
+          ))}
+      </TagListContainer>
+      <IntroContainer>
+        <SubText>{creator.intro}</SubText>
+      </IntroContainer>
+      <SnsLinkContainer>
+        <FontAwesomeIcon className="Icon" icon={["fab", "instagram"]} />
+        <SubText>InstagramID</SubText>
+      </SnsLinkContainer>
+      <ButtonContainer>
+        <FollowButton>+ 팔로우하기</FollowButton>
+        <ChattingButton>
+          <FontAwesomeIcon className="Icon" icon={["fas", "paper-plane"]} />
+          채팅하기
+        </ChattingButton>
+      </ButtonContainer>
+      <TabContainer>
+        <Tab
+          className={tabCategory === "project" && "selected"}
+          onClick={() => setTabCategory("project")}
+        >
+          project
+        </Tab>
+        <Tab
+          className={tabCategory === "community" && "selected"}
+          onClick={() => setTabCategory("community")}
+        >
+          community
+        </Tab>
+      </TabContainer>
+      {tabCategory === "project" && (
+        <ProjectList>
           {Projects.map((project) => (
             <ProjectCard project={project} match={{ url: "/projects" }} />
           ))}
         </ProjectList>
-        <PostList className={tabCategory !== "community" && "invisible"}>
+      )}
+      {tabCategory === "community" && (
+        <PostList>
           {Posts.map((post) => (
             <></>
           ))}
         </PostList>
-      </Wrapper>
+      )}
     </>
   );
 };
 
 export default CreatorModalContent;
-
-const Wrapper = styled.div`
-  .invisible {
-    display: none;
-  }
-`;
 
 const ProfileImg = styled.div`
   position: absolute;

@@ -2,39 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import ApplicantCard from "./ApplicantCard";
 
-const ApplicantList = ({ applicants, isManager }) => {
+const ApplicantList = ({ applicants }) => {
   return (
     <>
-      <Wrapper>
-        <Outlay className={!isManager && "invisible"}>
-          <Header>
-            <HeadText>프로젝트 지원자 명단</HeadText>
-            <ApplicantCount>{applicants && applicants.length}</ApplicantCount>
-          </Header>
-          <Body>
-            <Applicants className="scroll">
-              {applicants.length === 0 ? (
-                <NoApplicantText>프로젝트 지원자가 없어요!</NoApplicantText>
-              ) : (
-                applicants.map((applicant) => (
-                  <ApplicantCard applicant={applicant} />
-                ))
-              )}
-            </Applicants>
-          </Body>
-        </Outlay>
-      </Wrapper>
+      <Outlay>
+        <Header>
+          <HeadText>프로젝트 지원자 명단</HeadText>
+          <ApplicantCount>{applicants && applicants.length}</ApplicantCount>
+        </Header>
+        <Body>
+          <Applicants className="scroll">
+            {applicants.length === 0 ? (
+              <NoApplicantText>프로젝트 지원자가 없어요!</NoApplicantText>
+            ) : (
+              applicants.map((applicant) => (
+                <ApplicantCard applicant={applicant} />
+              ))
+            )}
+          </Applicants>
+        </Body>
+      </Outlay>
     </>
   );
 };
 
 export default ApplicantList;
-
-const Wrapper = styled.div`
-  .invisible {
-    display: none;
-  }
-`;
 
 const Outlay = styled.div`
   position: absolute;

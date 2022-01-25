@@ -1,14 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { selectedCreatorState, selectedProjectState } from "../../store/state";
+import {
+  selectedCreatorState,
+  selectedObjectState,
+  selectedProjectState,
+} from "../../store/state";
 import { useSetRecoilState } from "recoil";
 
 const CategorySelector = ({ searchCategory, setSearchCategory }) => {
   const setSelectedCreator = useSetRecoilState(selectedCreatorState);
   const setSelectedProject = useSetRecoilState(selectedProjectState);
+  const setSelectedObject = useSetRecoilState(selectedObjectState);
   const handleClick = async (category) => {
     await setSelectedCreator("");
     await setSelectedProject("");
+    await setSelectedObject({});
     setSearchCategory(category);
   };
   return (

@@ -96,11 +96,12 @@ const SearchTab = ({
             searchCategory={searchCategory}
             setSearchCategory={setSearchCategory}
           />
-          <FilterSelector
-            searchCategory={searchCategory}
-            searchFilter={searchFilter}
-            setSearchFilter={setSearchFilter}
-          />
+          {searchCategory === "project" && (
+            <FilterSelector
+              searchFilter={searchFilter}
+              setSearchFilter={setSearchFilter}
+            />
+          )}
         </SelectorContainer>
         <CardContainer className="scroll">
           {searchCategory === "creator"

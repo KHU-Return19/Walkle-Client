@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CreatorTag from "./CreatorTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRecoilState } from "recoil";
-import { selectedProjectState } from "../store/state";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { selectedObjectState, selectedProjectState } from "../store/state";
 
 export const MapProjectCard = (project) => {
   const [selectedProject, setSelectedProject] =
     useRecoilState(selectedProjectState);
+  const setSelectedObject = useSetRecoilState(selectedObjectState);
   const [isHover, setIsHover] = useState(false);
   const currentProject = project;
   const projectDDay = project.dDay && new Date(project.dDay);
   const dDay = Math.ceil(
     (new Date().getTime() - projectDDay.getTime()) / (1000 * 3600 * 24)
   );
+  const handleSelect = (project) => {
+    setSelectedProject(project);
+    setSelectedObject(project);
+  };
 
   return (
     <>
@@ -23,15 +28,17 @@ export const MapProjectCard = (project) => {
         }
         onMouseOver={() => setIsHover(true)}
         onMouseOut={() => setIsHover(false)}
-        onClick={() => setSelectedProject(currentProject)}
+        onClick={() => handleSelect(currentProject)}
       >
         <CardContainer>
           <CardInnerContainer>
             <ImageContainer>
-              <SeeMoreOutlay className={!isHover && "invisible"}>
-                <MoreIcon>+</MoreIcon>
-                <MoreText>더보기</MoreText>
-              </SeeMoreOutlay>
+              {isHover && (
+                <SeeMoreOutlay>
+                  <MoreIcon>+</MoreIcon>
+                  <MoreText>더보기</MoreText>
+                </SeeMoreOutlay>
+              )}
               <ProjectImg />
             </ImageContainer>
             <InfoContainer>

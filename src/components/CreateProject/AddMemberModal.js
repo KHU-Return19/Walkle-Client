@@ -9,7 +9,6 @@ import ModalCreatorCard from "./ModalCreatorCard";
 const AddMemberModal = ({
   searchContent,
   handleSearch,
-  isModalOpen,
   setIsModalOpen,
   currentCreator,
   setCurrentCreator,
@@ -31,55 +30,47 @@ const AddMemberModal = ({
   };
   return (
     <>
-      <ModalWrapper>
-        <ModalBackground className={!isModalOpen && "invisible"}>
-          <ModalOutlay>
-            <ModalHeader />
-            <ModalInner>
-              <SearchBar>
-                <SearchInput
-                  type="text"
-                  placeholder="멤버 이름 검색"
-                  value={searchContent}
-                  onChange={handleSearch}
-                />
-                <FontAwesomeIcon icon="search" />
-              </SearchBar>
-              <SearchResultContainer>
-                {filteredCreators &&
-                  filteredCreators.map((creator) => (
-                    <ModalCreatorCard
-                      creator={creator}
-                      currentCreator={currentCreator}
-                      setCurrentCreator={setCurrentCreator}
-                    />
-                  ))}
-              </SearchResultContainer>
-            </ModalInner>
-            <ModalFooter>
-              <ButtonContainer>
-                <CancelButton onClick={() => setIsModalOpen(false)}>
-                  취소
-                </CancelButton>
-                <ApproveButton onClick={() => handleApprove(currentCreator)}>
-                  확인
-                </ApproveButton>
-              </ButtonContainer>
-            </ModalFooter>
-          </ModalOutlay>
-        </ModalBackground>
-      </ModalWrapper>
+      <ModalBackground>
+        <ModalOutlay>
+          <ModalHeader />
+          <ModalInner>
+            <SearchBar>
+              <SearchInput
+                type="text"
+                placeholder="멤버 이름 검색"
+                value={searchContent}
+                onChange={handleSearch}
+              />
+              <FontAwesomeIcon icon="search" />
+            </SearchBar>
+            <SearchResultContainer>
+              {filteredCreators &&
+                filteredCreators.map((creator) => (
+                  <ModalCreatorCard
+                    creator={creator}
+                    currentCreator={currentCreator}
+                    setCurrentCreator={setCurrentCreator}
+                  />
+                ))}
+            </SearchResultContainer>
+          </ModalInner>
+          <ModalFooter>
+            <ButtonContainer>
+              <CancelButton onClick={() => setIsModalOpen(false)}>
+                취소
+              </CancelButton>
+              <ApproveButton onClick={() => handleApprove(currentCreator)}>
+                확인
+              </ApproveButton>
+            </ButtonContainer>
+          </ModalFooter>
+        </ModalOutlay>
+      </ModalBackground>
     </>
   );
 };
 
 export default AddMemberModal;
-
-const ModalWrapper = styled.div`
-  .invisible {
-    display: none;
-  }
-`;
 
 const ModalBackground = styled.div`
   box-sizing: border-box;

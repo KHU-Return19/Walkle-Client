@@ -44,12 +44,13 @@ const CommunityPage = () => {
             ))}
           </PostList>
         </PostListOutlay>
-        <WriteModal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          name="김수한무거북이"
-          fileName={fileName}
-        />
+        {isModalOpen && (
+          <WriteModal
+            setIsModalOpen={setIsModalOpen}
+            name="김수한무거북이"
+            fileName={fileName}
+          />
+        )}
       </Wrapper>
     </>
   );

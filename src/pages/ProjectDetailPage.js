@@ -21,7 +21,7 @@ const ProjectDetailPage = ({ match, history }) => {
       <CoverImageContainer>
         {project.image && <CoverImage />}
       </CoverImageContainer>
-      <ApplicantList applicants={project.applicants} isManager={isManager} />
+      {isManager && <ApplicantList applicants={project.applicants} />}
       <ProjectProfileContainer>
         <ProjectTitle
           project={project}

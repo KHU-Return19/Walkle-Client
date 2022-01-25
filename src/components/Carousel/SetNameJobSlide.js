@@ -31,14 +31,14 @@ const SetNameJobSlide = ({
                   placeholder="닉네임을 입력하세요"
                   required
                 />
-                <SuccessText className={isValid !== true && "invisible"}>
-                  <FontAwesomeIcon icon="check" />
-                </SuccessText>
+                {isValid && (
+                  <SuccessText>
+                    <FontAwesomeIcon icon="check" />
+                  </SuccessText>
+                )}
               </NameJobInputContainer>
               <CommentContainer>
-                <FailComment className={isValid !== false && "invisible"}>
-                  {failComment}
-                </FailComment>
+                {isValid === false && <FailComment>{failComment}</FailComment>}
               </CommentContainer>
             </InputRow>
             <InputRow>
@@ -51,9 +51,11 @@ const SetNameJobSlide = ({
                   placeholder="직업을 입력하세요"
                   required
                 />
-                <SuccessText className={job === "" && "invisible"}>
-                  <FontAwesomeIcon icon="check" />
-                </SuccessText>
+                {job !== "" && (
+                  <SuccessText>
+                    <FontAwesomeIcon icon="check" />
+                  </SuccessText>
+                )}
               </NameJobInputContainer>
               <CommentContainer></CommentContainer>
             </InputRow>
@@ -118,9 +120,6 @@ const NameJobInputContainer = styled.div`
   font-size: 1rem;
   color: #313338;
   background: #fafafa;
-  .invisible {
-    display: none;
-  }
 `;
 
 export const SuccessText = styled.span`
@@ -133,9 +132,6 @@ export const CommentContainer = styled.div`
   height: 20px;
   text-align: right;
   line-height: 21px;
-  .invisible {
-    display: none;
-  }
   .success {
     color: #7054ff;
   }

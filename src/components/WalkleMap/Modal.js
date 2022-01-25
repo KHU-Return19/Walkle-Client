@@ -17,11 +17,7 @@ const Modal = ({ searchCategory }) => {
   };
   return (
     <>
-      <ModalContainer
-        className={
-          selectedCreator.id || selectedProject.id ? "visible" : "invisible"
-        }
-      >
+      <ModalContainer>
         <ImageContainer>
           <ExitButton>
             <FontAwesomeIcon

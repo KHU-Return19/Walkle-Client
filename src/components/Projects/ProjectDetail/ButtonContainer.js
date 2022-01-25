@@ -6,17 +6,15 @@ const ButtonContainer = ({ history, isManager, id }) => {
   return (
     <>
       <ParticipateButtonContainer>
-        <ParticipateButton
-          className={isManager && "invisible"}
-          onClick={() => history.goBack()}
-        >
-          프로젝트 참여 신청하기
-        </ParticipateButton>
-        <Link to={`/project_edit/${id}`}>
-          <GoToEditButton className={!isManager && "invisible"}>
-            프로젝트 프로필 수정하기
-          </GoToEditButton>
-        </Link>
+        {isManager ? (
+          <Link to={`/project_edit/${id}`}>
+            <GoToEditButton>프로젝트 프로필 수정하기</GoToEditButton>
+          </Link>
+        ) : (
+          <ParticipateButton onClick={() => history.goBack()}>
+            프로젝트 참여 신청하기
+          </ParticipateButton>
+        )}
       </ParticipateButtonContainer>
     </>
   );
@@ -28,9 +26,6 @@ const ParticipateButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 100px 0px;
-  .invisible {
-    display: none;
-  }
   a {
     text-decoration: none;
   }

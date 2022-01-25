@@ -136,16 +136,17 @@ const AddProjectPage = () => {
           setMyFieldTagList={setMyFieldTagList}
         />
       </AddProjectFormContainer>
-      <AddMemberModal
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-        searchContent={searchContent}
-        handleSearch={handleSearch}
-        currentCreator={currentCreator}
-        setCurrentCreator={setCurrentCreator}
-        memberList={memberList}
-        setMemberList={setMemberList}
-      />
+      {isModalOpen && (
+        <AddMemberModal
+          setIsModalOpen={setIsModalOpen}
+          searchContent={searchContent}
+          handleSearch={handleSearch}
+          currentCreator={currentCreator}
+          setCurrentCreator={setCurrentCreator}
+          memberList={memberList}
+          setMemberList={setMemberList}
+        />
+      )}
     </>
   );
 };

@@ -63,14 +63,14 @@ const IntroduceMeSlide = ({
                   placeholder="인스타그램 프로필 URL을 입력해주세요"
                   required
                 />
-                <SuccessText className={isValid !== true && "invisible"}>
-                  <FontAwesomeIcon icon="check" />
-                </SuccessText>
+                {isValid && (
+                  <SuccessText>
+                    <FontAwesomeIcon icon="check" />
+                  </SuccessText>
+                )}
               </InputContainer>
               <CommentContainer>
-                <FailComment className={isValid !== false && "invisible"}>
-                  {failComment}
-                </FailComment>
+                {isValid === false && <FailComment>{failComment}</FailComment>}
               </CommentContainer>
             </IntroduceInputRow>
           </IntroduceInputRowContainer>
@@ -110,12 +110,6 @@ const LongInputContainer = styled.div`
   font-size: 1rem;
   color: #313338;
   background: #fafafa;
-  .invisible {
-    display: none;
-  }
-  .invisible {
-    display: none;
-  }
 `;
 
 const LongInput = styled.textarea`
