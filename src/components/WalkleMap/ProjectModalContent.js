@@ -65,6 +65,7 @@ const MainTextContainer = styled.div`
   position: relative;
   padding-top: 55px;
   text-align: center;
+  height: 26px;
 `;
 const MainText = styled.span`
   font-family: Pretendard;
@@ -76,6 +77,7 @@ const MainText = styled.span`
 const SubTextContainer = styled.div`
   padding-top: 10px;
   text-align: center;
+  height: 15px;
 `;
 
 const SubText = styled(MainText)`
@@ -90,7 +92,8 @@ const TagListContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px 12px 8px 0px;
+  padding: 20px 0px 0px 0px;
+  height: 27px;
 `;
 
 const ModalTagContainer = styled.div`
@@ -118,6 +121,7 @@ const ModalTagContainer = styled.div`
 const MemberListContainer = styled.div`
   margin: 40px 30px 0px 30px;
   width: 440px;
+  height: 125px;
 `;
 
 const LabelText = styled.div`
@@ -145,7 +149,10 @@ const MemberList = styled.div`
   }
 `;
 
-const RecruitmentPeriodContainer = styled(MemberListContainer)``;
+const RecruitmentPeriodContainer = styled(MemberListContainer)`
+  height: 104px;
+  margin: 60px 30px 0px 30px;
+`;
 
 const StartEndContainer = styled.div`
   display: flex;
@@ -162,7 +169,7 @@ const DateContainer = styled.div`
   margin-bottom: 0;
   border: none;
   width: 84px;
-  height: 18px;
+  min-height: 18px;
   font-family: Pretendard;
   font-size: 18px;
   font-weight: 400;
@@ -177,7 +184,9 @@ const SubLabelText = styled.div`
   color: #8b8b8b;
 `;
 
-const SimpleIntroduceContainer = styled(MemberListContainer)``;
+const SimpleIntroduceContainer = styled(MemberListContainer)`
+  min-height: 66px;
+`;
 
 const SimpleIntro = styled.div`
   display: table-cell;
@@ -193,6 +202,8 @@ const SimpleIntro = styled.div`
   color: #313338;
 `;
 
-const DetailedIntroduceContainer = styled(MemberListContainer)``;
+const DetailedIntroduceContainer = styled(MemberListContainer)`
+  min-height: 66px;
+`;
 
 const DetailedIntro = styled(SimpleIntro)``;

@@ -15,6 +15,7 @@ import {
   faHeart,
   faLevelUpAlt,
   faImages,
+  faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/App.css";
 import { faBookmark, faFileImage } from "@fortawesome/free-regular-svg-icons";
@@ -34,7 +35,8 @@ library.add(
   faHeart,
   faLevelUpAlt,
   faImages,
-  faInstagram
+  faInstagram,
+  faExternalLinkAlt
 );
 
 const App = () => {
