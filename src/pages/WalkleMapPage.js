@@ -38,7 +38,29 @@ const WalkleMapPage = () => {
   const [searchContent, setSearchContent] = useState(globalSearchContent);
   const [searchFilter, setSearchFilter] = useState("recent");
 
-  const renderMarker = (object, type) => {
+  const renderProjectMarker = async (project, map) => {
+    await map.panTo(
+      new window.kakao.maps.LatLng(
+        selectedProject.positionY,
+        selectedProject.positionX
+      )
+    );
+    project.member.forEach((member) => {
+      let polyline = new kakao.maps.Polyline({
+        path: [
+          new kakao.maps.LatLng(project.positionY, project.positionX),
+          new kakao.maps.LatLng(member.positionY, member.positionX),
+        ],
+        strokeWeight: 2,
+        strokeColor: "#7054FF",
+        strokeOpacity: 1,
+        strokeStyle: "dashed",
+      });
+      polyline.setMap(map);
+    });
+  };
+
+  const renderMarker = (object, type, map) => {
     var content = document.createElement("div");
     let className = document.createAttribute("classname");
     className.value = "marker";
@@ -91,15 +113,10 @@ const WalkleMapPage = () => {
         break;
       case "project":
         selectedProject.id
-          ? map.panTo(
-              new window.kakao.maps.LatLng(
-                selectedProject.positionY,
-                selectedProject.positionX
-              )
-            )
+          ? renderProjectMarker(selectedProject, map)
           : map.panTo(new window.kakao.maps.LatLng(lat, lon));
         Projects.forEach((project) => {
-          const marker = renderMarker(project, "project");
+          const marker = renderMarker(project, "project", map);
           marker.setMap(map);
         });
         break;
@@ -108,18 +125,10 @@ const WalkleMapPage = () => {
     // 지도를 클릭한 위치에 표출할 마커입니다
     var marker = new kakao.maps.Marker({
       // 지도 중심좌표에 마커를 생성합니다
-      position: map.getCenter(),
+      position: new window.kakao.maps.LatLng(lat, lon),
     });
     // 지도에 마커를 표시합니다
     marker.setMap(map);
-    // 지도에 클릭 이벤트를 등록합니다
-    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-    kakao.maps.event.addListener(map, "click", function (mouseEvent) {
-      // 클릭한 위도, 경도 정보를 가져옵니다
-      var latlng = mouseEvent.latLng;
-      // 마커 위치를 클릭한 위치로 옮깁니다
-      marker.setPosition(latlng);
-    });
     return () => {};
   }, [selectedCreator, selectedProject]);
 
