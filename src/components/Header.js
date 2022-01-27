@@ -42,7 +42,6 @@ const Header = ({ userId }) => {
         setLocationInfo(location.address_name);
       })
       .catch((error) => {});
-    console.log(userId);
   }, [latitude, longitude]);
 
   return (
