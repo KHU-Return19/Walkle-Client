@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Carousel from "../components/Carousel/Carousel";
+import { useRecoilState } from "recoil";
+import { locationListState } from "../store/state";
 
 const ProfilePage = (props) => {
   const [gender, setGender] = useState("여");
@@ -13,6 +15,7 @@ const ProfilePage = (props) => {
   const [hashtag, setHashtag] = useState("");
   const [isValidNickname, setIsValidNickname] = useState();
   const [isValidInstagramUrl, setIsValidInstagramUrl] = useState();
+  const [location, setLocation] = useRecoilState(locationListState);
 
   return (
     <>
@@ -28,6 +31,7 @@ const ProfilePage = (props) => {
         hashtag={hashtag}
         isValidNickname={isValidNickname}
         isValidInstagramUrl={isValidInstagramUrl}
+        location={location}
         setGender={setGender}
         setIntroduce={setIntroduce}
         setPhoto={setPhoto}
@@ -38,6 +42,7 @@ const ProfilePage = (props) => {
         setHashtag={setHashtag}
         setIsValidNickname={setIsValidNickname}
         setIsValidInstagramUrl={setIsValidInstagramUrl}
+        setLocation={setLocation}
       />
     </>
   );

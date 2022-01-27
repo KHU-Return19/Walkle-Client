@@ -60,7 +60,7 @@ const WalkleMapPage = () => {
     });
   };
 
-  const renderMarker = (object, type, map) => {
+  const renderMarker = (object, type) => {
     var content = document.createElement("div");
     let className = document.createAttribute("classname");
     className.value = "marker";

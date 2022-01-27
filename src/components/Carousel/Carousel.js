@@ -21,6 +21,7 @@ const Carousel = ({
   hashtag,
   isValidNickname,
   isValidInstagramUrl,
+  location,
   setNickname,
   setJob,
   setAge,
@@ -31,6 +32,7 @@ const Carousel = ({
   setHashtag,
   setIsValidNickname,
   setIsValidInstagramUrl,
+  setLocation,
 }) => {
   const [hashtagList, setHashtagList] = useRecoilState(profileHashtagListState);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -147,7 +149,11 @@ const Carousel = ({
             handleInput={handleInput}
             toggleSlide={toggleSlide}
           />
-          <SetLocationSlide toggleSlide={toggleSlide} />
+          <SetLocationSlide
+            toggleSlide={toggleSlide}
+            location={location}
+            setLocation={setLocation}
+          />
         </SlideContainer>
       </CarouselContainer>
     </>

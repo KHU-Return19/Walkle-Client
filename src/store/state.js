@@ -87,3 +87,8 @@ export const bookmarkListState = atom({
   key: "bookmarkListState",
   default: [],
 });
+
+export const locationListState = atom({
+  key: "locationListState",
+  default: [],
+});
