@@ -10,6 +10,7 @@ import {
   regionState,
 } from "../store/state";
 import axios from "axios";
+import MainLogo from "../assets/WalkleLogo.svg";
 require("dotenv").config();
 
 const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
@@ -47,8 +48,10 @@ const Header = ({ userId }) => {
   return (
     <StyledHeader>
       <HeaderBox>
-        <nav className="header-nav">
-          <Link to="/">Walkle</Link>
+        <NavBar>
+          <Link to="/">
+            <Logo src={MainLogo} />
+          </Link>
           <Link
             to="/walklemap"
             className={
@@ -81,7 +84,7 @@ const Header = ({ userId }) => {
           >
             커뮤니티
           </Link>
-        </nav>
+        </NavBar>
         <NotNavContainer>
           <Link to="/add_project">
             <AddProjectBtn>+ 프로젝트 생성</AddProjectBtn>
@@ -141,6 +144,18 @@ const HeaderBox = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 1352px;
+`;
+
+const NavBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 532px;
+`;
+
+const Logo = styled.img`
+  width: 84px;
+  height: 32px;
 `;
 
 const NotNavContainer = styled.div`
