@@ -13,7 +13,7 @@ import {
   searchContentState,
 } from "../store/state";
 import { Creators, Projects } from "../store/fakeCreators";
-import mainLogo from "../assets/mainLogo.svg";
+import MapMarker from "../assets/map_marker.svg";
 
 const { kakao } = window;
 
@@ -68,9 +68,9 @@ const WalkleMapPage = () => {
     let image = document.createElement("img");
     let imgClassName = document.createAttribute("classname");
     imgClassName.value =
-      selectedCreator === object.id ? "selected" : "markerImg";
+      selectedObject === object.id ? "selected" : "markerImg";
     let imgSrc = document.createAttribute("src");
-    imgSrc.value = mainLogo;
+    imgSrc.value = MapMarker;
     image.setAttributeNode(imgClassName);
     image.setAttributeNode(imgSrc);
     // 닫기 이벤트 추가
@@ -172,24 +172,19 @@ const MapContainer = styled.div`
   float: left;
   width: 74vw;
   .marker {
-    :hover {
-      color: #ffffff;
+    .selected {
+      transform: scale(1.5) translateY(-20px);
+      transition: 0.1s;
     }
   }
   img {
+    transform: translateY(-20px);
     width: 50px;
     height: 50px;
     fill: white;
     :hover {
-      transform: scale(1.5);
+      transform: scale(1.5) translateY(-20px);
       transition: 0.1s;
-      filter: invert(34%) sepia(56%) saturate(4881%) hue-rotate(238deg)
-        brightness(104%) contrast(102%);
     }
-  }
-  .marker > .selected {
-    transform: scale(1.5);
-    filter: invert(34%) sepia(56%) saturate(4881%) brightness(104%)
-      contrast(102%);
   }
 `;
