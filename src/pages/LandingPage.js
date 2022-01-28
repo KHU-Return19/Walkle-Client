@@ -6,12 +6,12 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { searchContentState } from "../store/state";
 import WalkleLogo from "../assets/walkle_logo_img.svg";
-import MolyImg from "../assets/moly_img.svg";
+import MolyImg from "../assets/moly_with_hole.svg";
 import LandingThumb from "../assets/landing_thumb_01.svg";
 import CreatorSlide from "../components/Landing/CreatorSlide";
 import CommunitySlide from "../components/Landing/CommunitySlide";
 import Footer from "../components/Footer";
-import FinalSlide from '../components/Landing/FinalSlide';
+import FinalSlide from "../components/Landing/FinalSlide";
 
 const LandingPage = ({ userId }) => {
   const history = useHistory();
