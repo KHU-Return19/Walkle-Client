@@ -7,6 +7,7 @@ import SetNameJobSlide from "./SetNameJobSlide";
 import TagSlide from "./TagSlide";
 import SetLocationSlide from "./SetLocationSlide";
 import PageIndicator from "./PageIndicator";
+import CompleteSlide from "./CompleteSlide";
 
 const TOTAL_SLIDES = 3;
 
@@ -36,6 +37,7 @@ const Carousel = ({
 }) => {
   const [hashtagList, setHashtagList] = useRecoilState(profileHashtagListState);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
   const slideRef = useRef(null);
   const handleInput = (type) => async (event) => {
     const targetVal = event.currentTarget.value;
@@ -121,40 +123,44 @@ const Carousel = ({
     <>
       <CarouselContainer>
         <PageIndicator currentSlide={currentSlide} />
-        <SlideContainer ref={slideRef}>
-          <SetNameJobSlide
-            nickname={nickname}
-            setNickname={setNickname}
-            job={job}
-            setJob={setJob}
-            handleInput={handleInput}
-            isValid={isValidNickname}
-            failComment="영어(대/소문자), 숫자, 특수문자를 포함해 주세요"
-            toggleSlide={toggleSlide}
-          />
-          <IntroduceMeSlide
-            introduce={introduce}
-            setIntroduce={setIntroduce}
-            instagramUrl={instagramUrl}
-            isValid={isValidInstagramUrl}
-            failComment="잘못된 주소입니다"
-            handleInput={handleInput}
-            toggleSlide={toggleSlide}
-          />
-          <TagSlide
-            hashtag={hashtag}
-            setHashtag={setHashtag}
-            hashtagList={hashtagList}
-            handleSubmitTag={handleSubmitTag}
-            handleInput={handleInput}
-            toggleSlide={toggleSlide}
-          />
-          <SetLocationSlide
-            toggleSlide={toggleSlide}
-            location={location}
-            setLocation={setLocation}
-          />
-        </SlideContainer>
+        {!isComplete && (
+          <SlideContainer ref={slideRef}>
+            <SetNameJobSlide
+              nickname={nickname}
+              setNickname={setNickname}
+              job={job}
+              setJob={setJob}
+              handleInput={handleInput}
+              isValid={isValidNickname}
+              failComment="영어(대/소문자), 숫자, 특수문자를 포함해 주세요"
+              toggleSlide={toggleSlide}
+            />
+            <IntroduceMeSlide
+              introduce={introduce}
+              setIntroduce={setIntroduce}
+              instagramUrl={instagramUrl}
+              isValid={isValidInstagramUrl}
+              failComment="잘못된 주소입니다"
+              handleInput={handleInput}
+              toggleSlide={toggleSlide}
+            />
+            <TagSlide
+              hashtag={hashtag}
+              setHashtag={setHashtag}
+              hashtagList={hashtagList}
+              handleSubmitTag={handleSubmitTag}
+              handleInput={handleInput}
+              toggleSlide={toggleSlide}
+            />
+            <SetLocationSlide
+              toggleSlide={toggleSlide}
+              location={location}
+              setLocation={setLocation}
+              setIsComplete={setIsComplete}
+            />
+          </SlideContainer>
+        )}
+        {isComplete && <CompleteSlide />}
       </CarouselContainer>
     </>
   );

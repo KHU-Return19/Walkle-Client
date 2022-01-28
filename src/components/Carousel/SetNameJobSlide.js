@@ -92,6 +92,7 @@ export const HeadText = styled.span`
   font-weight: 700;
   line-height: 36px;
   white-space: pre-wrap;
+  text-align: center;
 `;
 export const InputForm = styled.div`
   width: 460px;

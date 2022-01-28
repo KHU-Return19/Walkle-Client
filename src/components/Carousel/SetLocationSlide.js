@@ -16,17 +16,16 @@ import {
   SlideContainer,
   ButtonContainer,
   PrevSlideButton,
-  NextSlideButton,
 } from "./SetNameJobSlide";
 require("dotenv").config();
 
 const { kakao } = window;
 const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
 
-const representText = "대표 위치를 {'\n'} 등록해 보세요";
-const addAnotherText = "다른 위치도{'\n'}추가할 수 있어요";
+const representText = "대표 위치를\n등록해 보세요";
+const addAnotherText = "다른 위치도\n추가할 수 있어요";
 
-const SetLocationSlide = ({ toggleSlide }) => {
+const SetLocationSlide = ({ toggleSlide, setIsComplete }) => {
   const options = {
     //지도를 생성할 때 필요한 기본 옵션
     center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
@@ -93,7 +92,7 @@ const SetLocationSlide = ({ toggleSlide }) => {
     <>
       <SlideContainer>
         <HeadTextContainer>
-          <HeadText>다른 위치도{"\n"}추가할 수 있어요</HeadText>
+          <HeadText>{representText}</HeadText>
         </HeadTextContainer>
         <InputForm>
           <InputRowContainer>
@@ -125,7 +124,9 @@ const SetLocationSlide = ({ toggleSlide }) => {
           <PrevSlideButton onClick={toggleSlide("prev")}>
             이전으로
           </PrevSlideButton>
-          <NextSlideButton type="submit">등록완료</NextSlideButton>
+          <RegisterButton type="submit" onClick={() => setIsComplete(true)}>
+            프로필 등록
+          </RegisterButton>
         </ButtonContainer>
       </SlideContainer>
     </>
@@ -237,5 +238,26 @@ export const IconContainer = styled.div`
     color: #8b8b8b;
     margin-left: 10px;
     cursor: pointer;
+  }
+`;
+
+const RegisterButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 100px;
+  width: 142px;
+  height: 50px;
+  margin: 40px 10px 10px 10px;
+  box-sizing: border-box;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #7054ff;
+  :hover {
+    opacity: 0.8;
+    transition: 0.3s;
   }
 `;

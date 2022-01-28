@@ -69,7 +69,7 @@ const TagSlide = ({
     <>
       <SlideContainer>
         <HeadTextContainer>
-          <HeadText>대표 태그를 {"\n"} 설정해 보세요</HeadText>
+          <HeadText>대표 태그를{"\n"}설정해 보세요</HeadText>
         </HeadTextContainer>
         <InputForm>
           <InputRowContainer>
