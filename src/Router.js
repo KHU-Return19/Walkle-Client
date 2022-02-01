@@ -11,12 +11,14 @@ import AddProjectPage from "./pages/AddProjectPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import EditProjectPage from "./pages/EditProjectPage";
 import CommunityPage from "./pages/CommunityPage";
+import CreatorsPage from "./pages/CreatorsPage";
 
 const Router = () => {
   return (
     <Switch>
       <Route exact path="/" component={Auth(LandingPage, false)} />
       <Route exact path="/walklemap" component={Auth(WalkleMapPage, false)} />
+      <Route exact path="/creators" component={CreatorsPage} />
       <Route exact path="/signin" component={Auth(SignInPage, false)} />
       <Route exact path="/signup" component={Auth(SignUpPage, false)} />
       <Route exact path="/projects" component={ProjectPage} />
