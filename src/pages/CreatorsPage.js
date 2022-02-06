@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CreatorCard from "../components/Creators/CreatorCard";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { Creators } from "../store/fakeCreators";
@@ -36,6 +37,7 @@ const CreatorsPage = ({ match }) => {
           ))}
         </CreatorsContainer>
       </PageWrapper>
+      <Footer />
     </>
   );
 };

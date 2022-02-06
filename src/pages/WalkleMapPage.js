@@ -14,6 +14,7 @@ import {
 } from "../store/state";
 import { Creators, Projects } from "../store/fakeCreators";
 import MapMarker from "../assets/map_marker.svg";
+import Footer from "../components/Footer";
 
 const { kakao } = window;
 
@@ -149,6 +150,7 @@ const WalkleMapPage = () => {
           {selectedObject.id && <Modal searchCategory={searchCategory} />}
           <MapContainer className="mapContainer" ref={container}></MapContainer>
         </MapPageContainer>
+        <Footer />
       </PageContainer>
     </>
   );

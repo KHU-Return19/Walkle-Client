@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AddMemberModal from "../components/CreateProject/AddMemberModal";
 import AddProjectForm from "../components/CreateProject/AddProjectForm";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ApplicantList from "../components/Projects/ProjectDetail/ApplicantList";
 import { Projects } from "../store/fakeCreators";
@@ -155,6 +156,7 @@ const EditProjectPage = ({ match }) => {
           setMemberList={setMemberList}
         />
       )}
+      <Footer />
     </>
   );
 };

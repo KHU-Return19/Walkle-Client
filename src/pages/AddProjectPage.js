@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AddMemberModal from "../components/CreateProject/AddMemberModal";
 import AddProjectForm from "../components/CreateProject/AddProjectForm";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 const AddProjectPage = () => {
   const [projectTitle, setProjectTitle] = useState();
@@ -147,6 +148,7 @@ const AddProjectPage = () => {
           setMemberList={setMemberList}
         />
       )}
+      <Footer />
     </>
   );
 };

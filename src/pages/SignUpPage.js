@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import Header from "../components/Header";
 import SignUpForm from "../components/SignUpForm";
 import { userProfileState } from "../store/state";
+import Footer from "../components/Footer";
 require("dotenv").config();
 
 const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
@@ -88,6 +89,7 @@ const SignUpPage = (props) => {
         onSubmitHandler={onSubmitHandler}
         isValidPasswordCheck={isValidPasswordCheck}
       />
+      <Footer />
     </>
   );
 };

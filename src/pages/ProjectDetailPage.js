@@ -9,6 +9,7 @@ import ProjectMemberList from "../components/Projects/ProjectDetail/ProjectMembe
 import RecruitmentPeriod from "../components/Projects/ProjectDetail/RecruitmentPeriod";
 import ProjectIntroduce from "../components/Projects/ProjectDetail/ProjectIntroduce";
 import ButtonContainer from "../components/Projects/ProjectDetail/ButtonContainer";
+import Footer from "../components/Footer";
 
 const ProjectDetailPage = ({ match, history }) => {
   const [isManager, setIsManager] = useState(false);
@@ -38,6 +39,7 @@ const ProjectDetailPage = ({ match, history }) => {
           isManager={isManager}
         />
       </ProjectProfileContainer>
+      <Footer />
     </>
   );
 };

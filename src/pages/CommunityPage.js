@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import { Posts } from "../store/fakePosts";
 import PostCard from "../components/Community/PostCard";
 import WriteModal from "../components/Community/WriteModal";
+import Footer from "../components/Footer";
 
 const CommunityPage = () => {
   const [searchContent, setSearchContent] = useState("");
@@ -52,6 +53,7 @@ const CommunityPage = () => {
           />
         )}
       </Wrapper>
+      <Footer />
     </>
   );
 };

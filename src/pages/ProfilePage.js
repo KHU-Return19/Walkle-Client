@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Carousel from "../components/Carousel/Carousel";
 import { useRecoilState } from "recoil";
 import { locationListState } from "../store/state";
+import Footer from "../components/Footer";
 
 const ProfilePage = (props) => {
   const [gender, setGender] = useState("여");
@@ -44,6 +45,7 @@ const ProfilePage = (props) => {
         setIsValidInstagramUrl={setIsValidInstagramUrl}
         setLocation={setLocation}
       />
+      <Footer />
     </>
   );
 };
