@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as CloseIcon } from "../../assets/close_gray.svg";
+import { ReactComponent as ImagesIcon } from "../../assets/images.svg";
 
 const WriteModal = ({ setIsModalOpen, name, fileName }) => {
   const placeholder = `${name} 크리에이터님, 오늘은 어떤 이야기를 나눠볼까요?`;
@@ -12,8 +14,7 @@ const WriteModal = ({ setIsModalOpen, name, fileName }) => {
     <>
       <ModalBackground>
         <ModalOutlay>
-          <FontAwesomeIcon
-            icon="times"
+          <CloseIcon
             className="close-button"
             onClick={() => handleModalClose()}
           />
@@ -26,7 +27,7 @@ const WriteModal = ({ setIsModalOpen, name, fileName }) => {
               <FileName>{fileName}</FileName>
               <AddImageIcon>
                 <ImageInput type="file" />
-                <FontAwesomeIcon className="Icon" icon="images" />
+                <ImagesIcon />
               </AddImageIcon>
             </AddImageBar>
             <PostContent placeholder={placeholder} />
@@ -75,8 +76,8 @@ const ModalOutlay = styled.div`
   border-radius: 10px;
   .close-button {
     position: absolute;
-    top: 28px;
-    left: 707px;
+    top: 33px;
+    left: 712px;
     color: #8b8b8b;
     font-size: 21px;
     cursor: pointer;
@@ -129,10 +130,7 @@ const ImageInput = styled.input`
 
 const AddImageIcon = styled.label`
   cursor: pointer;
-  .Icon {
-    color: #7054ff;
-    font-size: 20px;
-  }
+  padding-top: 4px;
 `;
 
 const FileName = styled.div`

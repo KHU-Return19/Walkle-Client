@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as SearchIcon } from "../../assets/magnifying_glass.svg";
 
 const SearchBar = ({ placeholder, value, handleSearch }) => {
   return (
@@ -11,7 +11,7 @@ const SearchBar = ({ placeholder, value, handleSearch }) => {
         value={value}
         onChange={handleSearch}
       />
-      <FontAwesomeIcon className="icon" icon="search" />
+      <SearchIcon />
     </StyledSearchBar>
   );
 };
@@ -45,8 +45,5 @@ export const StyledSearchBar = styled.div`
     placeholder {
       color: #8b8b8b;
     }
-  }
-  .icon {
-    font-size: 21px;
   }
 `;

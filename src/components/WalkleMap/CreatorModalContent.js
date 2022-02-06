@@ -6,6 +6,8 @@ import { Posts } from "../../store/fakePosts";
 import { TagText } from "../CreatorTag";
 import ProjectCard from "../Projects/ProjectCard";
 import ModalCommunityCard from "./ModalCommunityCard";
+import { ReactComponent as PlaneIcon } from "../../assets/paper_plane.svg";
+import { ReactComponent as PlusIcon } from "../../assets/plus.svg";
 
 const CreatorModalContent = ({ creator }) => {
   const [tabCategory, setTabCategory] = useState("project");
@@ -34,9 +36,12 @@ const CreatorModalContent = ({ creator }) => {
         <SubText>InstagramID</SubText>
       </SnsLinkContainer>
       <ButtonContainer>
-        <FollowButton>+ 팔로우하기</FollowButton>
+        <FollowButton>
+          <FollowIcon />
+          팔로우하기
+        </FollowButton>
         <ChattingButton>
-          <FontAwesomeIcon className="Icon" icon={["fas", "paper-plane"]} />
+          <SendIcon className="icon" />
           채팅하기
         </ChattingButton>
       </ButtonContainer>
@@ -163,6 +168,10 @@ const ButtonContainer = styled.div`
   margin: 10px 0px;
 `;
 
+const FollowIcon = styled(PlusIcon)`
+  padding-right: 10px;
+`;
+
 const FollowButton = styled.div`
   display: flex;
   flex-direction: row;
@@ -185,8 +194,13 @@ const FollowButton = styled.div`
 
 const ChattingButton = styled(FollowButton)`
   background: #7054ff;
-  .Icon {
-    padding-right: 10px;
+`;
+
+const SendIcon = styled(PlaneIcon)`
+  width: 16.75px;
+  padding-right: 10px;
+  path {
+    fill: #ffffff;
   }
 `;
 

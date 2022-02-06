@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CreatorTag from "./CreatorTag";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as PlaneIcon } from "../assets/paper_plane.svg";
+import { ReactComponent as FlagIcon } from "../assets/bookmark.svg";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { selectedCreatorState, selectedObjectState } from "../store/state";
 
@@ -49,8 +50,8 @@ export const MapCreatorCard = (creator) => {
             </InfoContainer>
           </CardInnerContainer>
           <IconContainer>
-            <FontAwesomeIcon className="Icon" icon={["far", "bookmark"]} />
-            <FontAwesomeIcon className="Icon" icon="paper-plane" />
+            <BookmarkIcon />
+            <SendIcon />
           </IconContainer>
         </CardContainer>
       </CardSection>
@@ -151,11 +152,18 @@ const IconContainer = styled.div`
   align-items: flex-start;
   padding: 0px;
   color: #8b8b8b;
+`;
 
-  .Icon {
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    margin: 0px 8px;
+const BookmarkIcon = styled(FlagIcon)`
+  margin: 0px 11px;
+  path {
+    fill: #8b8b8b;
+  }
+`;
+
+const SendIcon = styled(PlaneIcon)`
+  margin: 0px 11px;
+  path {
+    fill: #8b8b8b;
   }
 `;

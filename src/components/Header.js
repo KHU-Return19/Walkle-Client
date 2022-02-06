@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as PinIcon } from "../assets/pin.svg";
+import { ReactComponent as PlusIcon } from "../assets/plus.svg";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
   latitudeState,
@@ -87,13 +88,13 @@ const Header = ({ userId }) => {
         </NavBar>
         <NotNavContainer>
           <Link to="/add_project">
-            <AddProjectBtn>+ 프로젝트 생성</AddProjectBtn>
+            <AddProjectBtn>
+              <PlusIcon />
+              <BtnText>프로젝트 생성</BtnText>
+            </AddProjectBtn>
           </Link>
           <LocationInfoContainer>
-            <FontAwesomeIcon
-              icon="map-marker-alt"
-              className="location-marker"
-            />
+            <PinIcon className="location-marker" />
             <LocationText>{locationInfo}</LocationText>
           </LocationInfoContainer>
           {userId ? (
@@ -165,22 +166,27 @@ const NotNavContainer = styled.div`
 `;
 
 const AddProjectBtn = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 100px;
   width: 142px;
   min-width: 140px;
   height: 36px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #ffffff;
   background: #7054ff;
   :hover {
     opacity: 0.8;
     transition: 0.3s;
   }
+`;
+
+const BtnText = styled.div`
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  padding-left: 9px;
 `;
 
 const ProfileImgContainer = styled.div`
@@ -199,8 +205,9 @@ const LocationInfoContainer = styled.div`
   align-items: center;
   padding: 0px;
   > .location-marker {
+    width: 14px;
     padding: 0px 5px;
-    color: #3d2c95;
+    fill: #3d2c95;
   }
 `;
 

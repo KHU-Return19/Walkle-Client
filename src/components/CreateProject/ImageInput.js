@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as ImageIcon } from "../../assets/image.svg";
 
 const ImageInput = ({ imagePreview, onChangeFile }) => {
   return (
@@ -8,7 +8,7 @@ const ImageInput = ({ imagePreview, onChangeFile }) => {
       <CoverImageContainer>
         <CoverImage src={imagePreview} />
         <ImageInputWrapper>
-          <FontAwesomeIcon className="Icon" icon={["far", "file-image"]} />
+          <ImageIcon />
           <Image
             type="file"
             id="cover-image"
@@ -25,20 +25,20 @@ export default ImageInput;
 
 const CoverImageContainer = styled.div`
   width: 100vw;
-  height: 360px;
+  height: 508px;
   background: #f1f1f1;
 `;
 
 const CoverImage = styled.img`
   width: 100vw;
-  height: 360px;
+  height: 508px;
   object-fit: contain;
 `;
 
 const ImageInputWrapper = styled.label`
   position: absolute;
   left: 72%;
-  top: 334px;
+  top: 482px;
   width: 50px;
   height: 50px;
   display: flex;

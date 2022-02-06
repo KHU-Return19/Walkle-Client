@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as WriteIcon } from "../assets/pen.svg";
 import SearchBar from "../components/Community/SearchBar";
 import Header from "../components/Header";
 import { Posts } from "../store/fakePosts";
@@ -34,7 +34,7 @@ const CommunityPage = () => {
             handleSearch={handleSearch}
           />
           <WritePostButton onClick={() => handleModalOpen()}>
-            <FontAwesomeIcon className="icon" icon="pen" />
+            <WriteIcon />
           </WritePostButton>
         </PageHeader>
         <PostListOutlay>
@@ -83,10 +83,6 @@ const WritePostButton = styled.div`
   border-radius: 100px;
   margin-left: 34px;
   cursor: pointer;
-  .icon {
-    font-size: 20px;
-    color: #ffffff;
-  }
   :hover {
     opacity: 0.8;
     transition: 0.3s;
@@ -105,7 +101,6 @@ const PostListOutlay = styled.div`
     border-radius: 100px;
   }
   ::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
   }
 `;
 

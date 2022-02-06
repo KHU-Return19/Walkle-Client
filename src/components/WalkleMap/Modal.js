@@ -6,7 +6,8 @@ import {
   selectedProjectState,
 } from "../../store/state";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as CloseIcon } from "../../assets/close.svg";
+import { ReactComponent as OpenInNewIcon } from "../../assets/open_in_new.svg";
 import CreatorModalContent from "./CreatorModalContent";
 import ProjectModalContent from "./ProjectModalContent";
 
@@ -26,14 +27,11 @@ const Modal = ({ searchCategory }) => {
     <>
       <ModalContainer>
         <ImageContainer>
-          <ShareButton>
-            <FontAwesomeIcon
-              className="Icon"
-              icon={["fas", "external-link-alt"]}
-            />
-          </ShareButton>
+          <OpenInNewTabButton>
+            <OpenInNewIcon />
+          </OpenInNewTabButton>
           <ExitButton onClick={() => handleClick()}>
-            <FontAwesomeIcon className="Icon" icon={["fas", "times"]} />
+            <CloseIcon />
           </ExitButton>
         </ImageContainer>
         {searchCategory === "creator" ? (
@@ -91,6 +89,6 @@ const ExitButton = styled.div`
   cursor: pointer;
 `;
 
-const ShareButton = styled(ExitButton)`
+const OpenInNewTabButton = styled(ExitButton)`
   left: 30px;
 `;

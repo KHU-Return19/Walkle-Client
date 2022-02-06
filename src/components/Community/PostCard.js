@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import moment from "moment";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as CommentIcon } from "../../assets/comment.svg";
+import { ReactComponent as LikeIcon } from "../../assets/heart.svg";
+import { ReactComponent as PinIcon } from "../../assets/pin.svg";
+import { ReactComponent as SendIcon } from "../../assets/paper_plane.svg";
 import Comment from "./Comment";
 
 const PostCard = ({ post }) => {
@@ -39,7 +42,7 @@ const PostCard = ({ post }) => {
               <InfoElement>댓글 1</InfoElement>
             </InfoBox>
             <InfoBox>
-              <FontAwesomeIcon className="Icon" icon="map-marker-alt" />
+              <PinIcon className="Icon" />
               <InfoElement className="location">{post.location}</InfoElement>
             </InfoBox>
           </PostInfo>
@@ -47,19 +50,13 @@ const PostCard = ({ post }) => {
         <PostFooter>
           <ButtonSector>
             <WriteButtonContainer onClick={() => setIsExtended(!isExtended)}>
-              <FontAwesomeIcon
-                className={isExtended ? "Icon Extended" : "Icon"}
-                icon={["fas", "comment-alt"]}
-              />
+              <CommentIcon fill={isExtended ? "#7054ff" : "#8b8b8b"} />
               <WriteCommentButton className={isExtended && "Extended"}>
                 댓글작성
               </WriteCommentButton>
             </WriteButtonContainer>
             <LikeButtonContainer onClick={() => setIsLiked(!isLiked)}>
-              <FontAwesomeIcon
-                className={isLiked ? "Icon Liked" : "Icon"}
-                icon={["fas", "heart"]}
-              />
+              <LikeIcon fill={isLiked ? "#7054ff" : "#8b8b8b"} />
               <LikeButton className={isLiked && "Liked"}>공감하기</LikeButton>
             </LikeButtonContainer>
           </ButtonSector>
@@ -73,10 +70,7 @@ const PostCard = ({ post }) => {
               </CommentList>
               <CommentWriter>
                 <CommentInput placeholder="댓글을 작성해주세요" />
-                <FontAwesomeIcon
-                  className="Icon"
-                  icon={["fas", "paper-plane"]}
-                />
+                <SendIcon className="Icon" />
               </CommentWriter>
             </>
           )}
@@ -176,9 +170,10 @@ const PostInfo = styled.div`
 const InfoBox = styled.div`
   display: flex;
   .Icon {
-    font-size: 11px;
     line-height: 11px;
-    color: #8b8b8b;
+    width: 8px;
+    height: 11.6px;
+    fill: #8b8b8b;
   }
   .location {
     font-size: 11px;
@@ -213,10 +208,6 @@ const WriteButtonContainer = styled(PostFooter)`
   height: 44px;
   margin-top: 9px;
   cursor: pointer;
-  .Icon {
-    font-size: 15px;
-    color: #8b8b8b;
-  }
   .Extended {
     color: #7054ff;
   }
@@ -252,8 +243,7 @@ const CommentWriter = styled.div`
   margin-top: 30px;
   margin-bottom: 20px;
   .Icon {
-    font-size: 24px;
-    color: #d2d2d2;
+    fill: #d2d2d2;
     padding-left: 10px;
   }
 `;

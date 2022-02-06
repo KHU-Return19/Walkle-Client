@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Comment = ({ comment }) => {
   return (
@@ -14,25 +13,6 @@ const Comment = ({ comment }) => {
           <Content>{comment.content}</Content>
           <WriteButton>댓글작성</WriteButton>
         </Body>
-        {comment.reply &&
-          comment.reply.map((reply) => (
-            <Reply>
-              <FontAwesomeIcon
-                className="Icon"
-                icon={["fas", "level-up-alt"]}
-              />
-              <ReplyWrapper>
-                <Header>
-                  <ProfileImg />
-                  <Name>{reply.name}</Name>
-                </Header>
-                <Body>
-                  <Content>{reply.content}</Content>
-                  <WriteButton>댓글작성</WriteButton>
-                </Body>
-              </ReplyWrapper>
-            </Reply>
-          ))}
       </Wrapper>
     </>
   );
@@ -79,18 +59,4 @@ const Content = styled.div`
 const WriteButton = styled(Content)`
   color: #8b8b8b;
   cursor: pointer;
-`;
-const Reply = styled.div`
-  display: flex;
-  margin: 5px 0px 0px 5px;
-  .Icon {
-    margin-top: 34px;
-    transform: rotate(90deg);
-    font-size: 15px;
-    color: #d2d2d2;
-  }
-`;
-
-const ReplyWrapper = styled(Wrapper)`
-  margin-left: 12px;
 `;
