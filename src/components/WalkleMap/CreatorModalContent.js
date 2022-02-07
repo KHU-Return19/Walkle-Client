@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Projects } from "../../store/fakeCreators";
@@ -8,6 +7,7 @@ import ProjectCard from "../Projects/ProjectCard";
 import ModalCommunityCard from "./ModalCommunityCard";
 import { ReactComponent as PlaneIcon } from "../../assets/paper_plane.svg";
 import { ReactComponent as PlusIcon } from "../../assets/plus.svg";
+import { ReactComponent as InstagramIcon } from "../../assets/instagram.svg";
 
 const CreatorModalContent = ({ creator }) => {
   const [tabCategory, setTabCategory] = useState("project");
@@ -32,7 +32,7 @@ const CreatorModalContent = ({ creator }) => {
         <SubText>{creator.intro}</SubText>
       </IntroContainer>
       <SnsLinkContainer>
-        <FontAwesomeIcon className="Icon" icon={["fab", "instagram"]} />
+        <InstagramIcon className="sns-icon" />
         <SubText>InstagramID</SubText>
       </SnsLinkContainer>
       <ButtonContainer>
@@ -154,10 +154,8 @@ const SnsLinkContainer = styled(SubTextContainer)`
   align-items: center;
   justify-content: center;
   padding: 12px 0px;
-  .Icon {
-    color: #d2d2d2;
+  .sns-icon {
     padding-right: 7px;
-    font-size: 19px;
   }
 `;
 
@@ -190,6 +188,11 @@ const FollowButton = styled.div`
   color: #ffffff;
   width: 187.5px;
   height: 50px;
+
+  :hover {
+    opacity: 0.8;
+    transition: 0.5s;
+  }
 `;
 
 const ChattingButton = styled(FollowButton)`

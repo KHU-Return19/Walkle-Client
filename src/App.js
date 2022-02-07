@@ -2,42 +2,7 @@ import React from "react";
 import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./Router";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faMapMarkerAlt,
-  faSearch,
-  faCheck,
-  faComment,
-  faPaperPlane,
-  faTimes,
-  faPen,
-  faCommentAlt,
-  faHeart,
-  faLevelUpAlt,
-  faImages,
-  faExternalLinkAlt,
-} from "@fortawesome/free-solid-svg-icons";
 import "./styles/App.css";
-import { faBookmark, faFileImage } from "@fortawesome/free-regular-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-
-library.add(
-  faMapMarkerAlt,
-  faSearch,
-  faCheck,
-  faComment,
-  faBookmark,
-  faPaperPlane,
-  faTimes,
-  faFileImage,
-  faPen,
-  faCommentAlt,
-  faHeart,
-  faLevelUpAlt,
-  faImages,
-  faInstagram,
-  faExternalLinkAlt
-);
 
 const App = () => {
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import styled from "styled-components";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import {
   latitudeState,
   longitudeState,
@@ -109,10 +109,7 @@ const SetLocationSlide = ({ toggleSlide, setIsComplete }) => {
                   <HashtagContentContainer>
                     <HashtagText>{address.address}</HashtagText>
                     <IconContainer onClick={handleClick} id={address.address}>
-                      <FontAwesomeIcon
-                        className="Icon"
-                        icon={["fas", "times"]}
-                      />
+                      <DeleteIcon className="Icon" />
                     </IconContainer>
                   </HashtagContentContainer>
                 </HashtagContainer>
@@ -234,8 +231,10 @@ export const IconContainer = styled.div`
   background: none;
   line-height: 9px;
   .Icon {
-    font-size: 12px;
-    color: #8b8b8b;
+    width: 12px;
+    height: 12px;
+    fill: #8b8b8b;
+    stroke: #8b8b8b;
     margin-left: 10px;
     cursor: pointer;
   }

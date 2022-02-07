@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { ReactComponent as BookmarkIcon } from "../../assets/flag.svg";
 import {
   HashtagContainer,
   HashtagContentContainer,
@@ -30,9 +29,8 @@ const CreatorCard = ({ creator, match }) => {
     <>
       <CardContainer>
         <CardHeader>
-          <FontAwesomeIcon
+          <BookmarkIcon
             className={isBookmarked ? "bookmarked Icon" : "Icon"}
-            icon={faBookmark}
             onClick={handleClick}
           />
           <CreatorImage />
@@ -75,11 +73,10 @@ const CardHeader = styled.div`
     position: absolute;
     left: 273px;
     top: -4px;
-    font-size: 34px;
-    color: #f1f1f1;
+    fill: #f1f1f1;
   }
   .bookmarked {
-    color: #7054ff;
+    fill: #7054ff;
   }
   .expired {
     width: 80px;

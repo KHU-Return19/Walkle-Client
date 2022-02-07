@@ -1,7 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
+import { ReactComponent as CommentIcon } from "../../assets/comment.svg";
+import { ReactComponent as LikeIcon } from "../../assets/heart.svg";
+import { ReactComponent as PinIcon } from "../../assets/pin.svg";
 
 const ModalCommunityCard = ({ post }) => {
   return (
@@ -12,19 +14,16 @@ const ModalCommunityCard = ({ post }) => {
         <Footer>
           <InfoContainer>
             <Comment>
-              <FontAwesomeIcon icon="comment-alt" />
+              <CommentIcon fill="#8b8b8b" />
               <Text>{post.comments && post.comments.length}</Text>
             </Comment>
             <Like>
-              <FontAwesomeIcon icon="heart" />
+              <LikeIcon fill="#8b8b8b" />
               <Text>{post.heart}</Text>
             </Like>
           </InfoContainer>
           <GeoInfoContainer>
-            <FontAwesomeIcon
-              icon="map-marker-alt"
-              className="location-marker"
-            />
+            <PinIcon className="Icon" />
             <Text>{post.location}</Text>
           </GeoInfoContainer>
         </Footer>
@@ -99,4 +98,10 @@ const Like = styled(Comment)``;
 const GeoInfoContainer = styled(Comment)`
   font-size: 11px;
   line-height: 11px;
+  .Icon {
+    line-height: 11px;
+    width: 8px;
+    height: 11.6px;
+    fill: #8b8b8b;
+  }
 `;

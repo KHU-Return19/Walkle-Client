@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ButtonContainer } from "../Carousel/SetNameJobSlide";
 import { StyledSearchBar } from "../SearchBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as SearchIcon } from "../../assets/magnifying_glass.svg";
 import { Creators } from "../../store/fakeCreators";
 import ModalCreatorCard from "./ModalCreatorCard";
 
@@ -41,7 +41,7 @@ const AddMemberModal = ({
                 value={searchContent}
                 onChange={handleSearch}
               />
-              <FontAwesomeIcon icon="search" />
+              <SearchIcon />
             </SearchBar>
             <SearchResultContainer>
               {filteredCreators &&

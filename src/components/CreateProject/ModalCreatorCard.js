@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as DeleteIcon } from "../../assets/close_gray.svg";
 
 const ModalCreatorCard = ({ creator, currentCreator, setCurrentCreator }) => {
   return (
@@ -32,9 +32,8 @@ export const ParticipantCard = ({ creator, handleClick }) => {
           <InfoContainer>
             <InfoHeader>
               <Name>{creator.name}</Name>
-              <FontAwesomeIcon
+              <DeleteIcon
                 className="Icon"
-                icon={["fas", "times"]}
                 onClick={() => handleClick(creator)}
               />
             </InfoHeader>
@@ -102,8 +101,9 @@ const InfoHeader = styled.div`
   height: 18px;
   display: flex;
   .Icon {
-    font-size: 16px;
-    color: #8b8b8b;
+    fill: #8b8b8b;
+    width: 11px;
+    height: 11px;
     cursor: pointer;
   }
 `;

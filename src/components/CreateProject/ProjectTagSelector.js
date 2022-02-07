@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import {
   FieldTag,
   HashtagContainer,
@@ -74,10 +74,7 @@ const ProjectTagSelector = ({
                   <HashtagContentContainer>
                     <HashtagText>{tag}</HashtagText>
                     <IconContainer onClick={handleTagClick("hashtag")} id={tag}>
-                      <FontAwesomeIcon
-                        className="Icon"
-                        icon={["fas", "times"]}
-                      />
+                      <DeleteIcon className="Icon" />
                     </IconContainer>
                   </HashtagContentContainer>
                 </ProjectHashtagContainer>
@@ -151,5 +148,7 @@ const ProjectHashtagContainer = styled(HashtagContainer)`
   span,
   .Icon {
     color: #7054ff;
+    fill: #7054ff;
+    stroke: #7054ff;
   }
 `;

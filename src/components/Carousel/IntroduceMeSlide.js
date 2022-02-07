@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as CheckIcon } from "../../assets/check.svg";
 import {
   SlideContainer,
   HeadTextContainer,
@@ -65,7 +65,7 @@ const IntroduceMeSlide = ({
                 />
                 {isValid && (
                   <SuccessText>
-                    <FontAwesomeIcon icon="check" />
+                    <CheckIcon />
                   </SuccessText>
                 )}
               </InputContainer>

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactComponent as CloseIcon } from "../../assets/close_gray.svg";
 import { ReactComponent as ImagesIcon } from "../../assets/images.svg";
 
@@ -79,7 +78,8 @@ const ModalOutlay = styled.div`
     top: 33px;
     left: 712px;
     color: #8b8b8b;
-    font-size: 21px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
   }
 `;

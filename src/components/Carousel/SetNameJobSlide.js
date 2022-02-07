@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as CheckIcon } from "../../assets/check.svg";
 import { LabelText, Input } from "../InputRow";
 
 const SetNameJobSlide = ({
@@ -33,7 +33,7 @@ const SetNameJobSlide = ({
                 />
                 {isValid && (
                   <SuccessText>
-                    <FontAwesomeIcon icon="check" />
+                    <CheckIcon />
                   </SuccessText>
                 )}
               </NameJobInputContainer>
@@ -53,7 +53,7 @@ const SetNameJobSlide = ({
                 />
                 {job !== "" && (
                   <SuccessText>
-                    <FontAwesomeIcon icon="check" />
+                    <CheckIcon />
                   </SuccessText>
                 )}
               </NameJobInputContainer>

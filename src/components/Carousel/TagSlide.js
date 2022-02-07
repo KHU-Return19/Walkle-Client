@@ -6,7 +6,7 @@ import {
   profileFieldTagListState,
   profileHashtagListState,
 } from "../../store/state";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import {
   SlideContainer,
   HeadTextContainer,
@@ -125,10 +125,7 @@ const TagSlide = ({
                             onClick={handleClick("hashtag")}
                             id={tag}
                           >
-                            <FontAwesomeIcon
-                              className="Icon"
-                              icon={["fas", "times"]}
-                            />
+                            <DeleteIcon className="Icon" />
                           </IconContainer>
                         </HashtagContentContainer>
                       </HashtagContainer>
@@ -280,8 +277,10 @@ export const IconContainer = styled.div`
   background: none;
   line-height: 9px;
   .Icon {
-    font-size: 12px;
-    color: #8b8b8b;
+    width: 12px;
+    height: 12px;
+    fill: #8b8b8b;
+    stroke: #8b8b8b;
     margin-left: 10px;
     cursor: pointer;
   }

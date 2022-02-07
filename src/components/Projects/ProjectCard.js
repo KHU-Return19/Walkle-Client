@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { ReactComponent as BookmarkIcon } from "../../assets/flag.svg";
 import {
   HashtagContainer,
   HashtagContentContainer,
@@ -41,30 +40,29 @@ const ProjectCard = ({ project, match }) => {
           <DDayIndicator className={dDay === "모집완료" && "expired"}>
             {dDay}
           </DDayIndicator>
-          <FontAwesomeIcon
+          <BookmarkIcon
             className={isBookmarked ? "bookmarked Icon" : "Icon"}
-            icon={faBookmark}
             onClick={handleClick}
           />
           <ProjectImage />
         </CardHeader>
         <Link to={`${match.url}/${project.id}`}>
-        <CardBody>
-          <DirectorInfo>{project.director}</DirectorInfo>
-          <ProjectTitle>{project.name}</ProjectTitle>
-          <ProjectTag>
-            <HashTagListContainer>
-              <FieldTag>#분야태그</FieldTag>
-              {project.tag.map((tag) => (
-                <ProjectHashtagContainer>
-                  <ProjectHashtagContentContainer>
-                    <ProjectHashtagText>{tag}</ProjectHashtagText>
-                  </ProjectHashtagContentContainer>
-                </ProjectHashtagContainer>
-              ))}
-            </HashTagListContainer>
-          </ProjectTag>
-        </CardBody>
+          <CardBody>
+            <DirectorInfo>{project.director}</DirectorInfo>
+            <ProjectTitle>{project.name}</ProjectTitle>
+            <ProjectTag>
+              <HashTagListContainer>
+                <FieldTag>#분야태그</FieldTag>
+                {project.tag.map((tag) => (
+                  <ProjectHashtagContainer>
+                    <ProjectHashtagContentContainer>
+                      <ProjectHashtagText>{tag}</ProjectHashtagText>
+                    </ProjectHashtagContentContainer>
+                  </ProjectHashtagContainer>
+                ))}
+              </HashTagListContainer>
+            </ProjectTag>
+          </CardBody>
         </Link>
       </CardContainer>
     </>
@@ -87,11 +85,11 @@ const CardHeader = styled.div`
     position: absolute;
     left: 273px;
     top: -4px;
-    font-size: 34px;
-    color: #f1f1f1;
+    fill: #f1f1f1;
+    cursor: pointer;
   }
   .bookmarked {
-    color: #7054ff;
+    fill: #7054ff;
   }
   .expired {
     width: 80px;

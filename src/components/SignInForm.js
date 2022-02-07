@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import StyledButton from "./Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as KakaoIcon } from "../assets/kakao.svg";
 
 const SignInForm = ({ id, password, handleInput, onSubmitHandler }) => {
   return (
@@ -39,7 +39,7 @@ const SignInForm = ({ id, password, handleInput, onSubmitHandler }) => {
             <EmailSignUpBtn>이메일로 가입하기</EmailSignUpBtn>
           </Link>
           <KaKaoSignUpBtn>
-            <FontAwesomeIcon icon="comment" style={{ margin: "0px 10px" }} />
+            <KakaoIcon style={{ margin: "0px 10px" }} />
             카카오로 가입하기
           </KaKaoSignUpBtn>
         </SocialSignInFormBox>
@@ -148,6 +148,9 @@ const EmailSignUpBtn = styled(StyledButton)`
 `;
 
 const KaKaoSignUpBtn = styled(EmailSignUpBtn)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #fee500;
   color: #313338;
 `;

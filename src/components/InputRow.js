@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as CheckIcon } from "../assets/check.svg";
 
 const InputRow = ({
   labelText,
@@ -26,7 +26,7 @@ const InputRow = ({
           />
           {value !== "" && isValid === true && (
             <SuccessText>
-              <FontAwesomeIcon icon="check" />
+              <CheckIcon />
             </SuccessText>
           )}
         </InputContainer>
