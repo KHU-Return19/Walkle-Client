@@ -48,7 +48,7 @@ export default Modal;
 
 const ModalContainer = styled.div`
   min-width: 500px;
-  height: calc(100vh - 64px);
+  height: 1016px;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);

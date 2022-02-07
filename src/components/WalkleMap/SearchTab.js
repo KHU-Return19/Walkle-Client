@@ -121,7 +121,7 @@ export default SearchTab;
 
 const SearchTabContainer = styled.div`
   float: left;
-  height: calc(100vh - 64px);
+  height: 1016px;
   width: 26vw;
   min-width: 500px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -146,6 +146,7 @@ const SearchTabContainer = styled.div`
 const SearchTabHeader = styled.div`
   width: 470px;
   height: 166px;
+  box-sizing: border-box;
   left: 0px;
   padding-left: 30px;
 
@@ -169,5 +170,5 @@ const CardContainer = styled.div`
   .selected-project {
     background: #f5f3ff;
   }
-  height: 655px;
+  height: 775px;
 `;
