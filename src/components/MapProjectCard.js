@@ -9,7 +9,6 @@ export const MapProjectCard = (project) => {
   const [selectedProject, setSelectedProject] =
     useRecoilState(selectedProjectState);
   const setSelectedObject = useSetRecoilState(selectedObjectState);
-  const [isHover, setIsHover] = useState(false);
   const currentProject = project;
   const projectDDay = project.dDay && new Date(project.dDay);
   const dDay = Math.ceil(
@@ -26,19 +25,11 @@ export const MapProjectCard = (project) => {
         className={
           selectedProject.id === currentProject.id && "selected-project"
         }
-        onMouseOver={() => setIsHover(true)}
-        onMouseOut={() => setIsHover(false)}
         onClick={() => handleSelect(currentProject)}
       >
         <CardContainer>
           <CardInnerContainer>
             <ImageContainer>
-              {isHover && (
-                <SeeMoreOutlay>
-                  <MoreIcon>+</MoreIcon>
-                  <MoreText>더보기</MoreText>
-                </SeeMoreOutlay>
-              )}
               <ProjectImg />
             </ImageContainer>
             <InfoContainer>

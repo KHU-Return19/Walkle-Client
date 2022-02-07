@@ -9,7 +9,6 @@ import { selectedCreatorState, selectedObjectState } from "../store/state";
 export const MapCreatorCard = (creator) => {
   const [selectedCreator, setSelectedCreator] =
     useRecoilState(selectedCreatorState);
-  const [isHover, setIsHover] = useState(false);
   const setSelectedObject = useSetRecoilState(selectedObjectState);
   const currentCreator = creator;
   const handleSelect = (creator) => {
@@ -22,19 +21,11 @@ export const MapCreatorCard = (creator) => {
         className={
           selectedCreator.id === currentCreator.id && "selected-creator"
         }
-        onMouseOver={() => setIsHover(true)}
-        onMouseOut={() => setIsHover(false)}
         onClick={() => handleSelect(currentCreator)}
       >
         <CardContainer>
           <CardInnerContainer>
             <ImageContainer>
-              {isHover && (
-                <SeeMoreOutlay>
-                  <MoreIcon>+</MoreIcon>
-                  <MoreText>더보기</MoreText>
-                </SeeMoreOutlay>
-              )}
               <CreatorImg />
             </ImageContainer>
             <InfoContainer>
