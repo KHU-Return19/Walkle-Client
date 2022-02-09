@@ -4,6 +4,9 @@
 2. walkle-client 폴더에 .env 생성, `REACT_APP_REST_API_KEY` 와 `REACT_APP_API_KEY` 환경변수 선언, app key는 프론트 팀에게 문의
 3. `npm start` 실행
 
+## 개발 경과 확인용 배포 페이지
+https://mrmirror21.github.io/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
