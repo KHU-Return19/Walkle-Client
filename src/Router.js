@@ -19,13 +19,13 @@ const Router = () => {
       <Route exact path="/" component={Auth(LandingPage, false)} />
       <Route exact path="/walklemap" component={Auth(WalkleMapPage, false)} />
       <Route exact path="/creators" component={CreatorsPage} />
-      <Route exact path="/signin" component={Auth(SignInPage, false)} />
-      <Route exact path="/signup" component={Auth(SignUpPage, false)} />
+      <Route exact path="/signin" component={SignInPage} />
+      <Route exact path="/signup" component={SignUpPage} />
       <Route exact path="/projects" component={ProjectPage} />
       <Route path={"/projects/:id"} component={ProjectDetailPage} />
       <Route exact path={"/project_edit/:id"} component={EditProjectPage} />
       <Route exact path="/community" component={CommunityPage} />
-      <Route exact path="/profile" component={Auth(ProfilePage, false)} />
+      <Route exact path="/profile" component={ProfilePage} />
       <Route
         exact
         path="/add_project"

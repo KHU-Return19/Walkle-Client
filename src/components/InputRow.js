@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as CheckIcon } from "../assets/check.svg";
+import { ReactComponent as SendIcon } from "../assets/paper_plane.svg";
 
 const InputRow = ({
   labelText,
@@ -11,6 +12,8 @@ const InputRow = ({
   successComment,
   failComment,
   isValid,
+  isEmail,
+  onSubmit,
 }) => {
   return (
     <>
@@ -28,6 +31,9 @@ const InputRow = ({
             <SuccessText>
               <CheckIcon />
             </SuccessText>
+          )}
+          {isEmail && isValid !== true && (
+            <SendIcon fill="#8b8b8b" className="send-icon" onClick={onSubmit} />
           )}
         </InputContainer>
         <CommentContainer>
@@ -57,8 +63,8 @@ export const LabelText = styled.div`
   color: #8b8b8b;
 `;
 export const InputContainer = styled.div`
-  display: table-cell;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
   margin: 0.4rem auto;
   margin-bottom: 0;
   padding-left: 1.5rem;
@@ -69,12 +75,20 @@ export const InputContainer = styled.div`
   font-size: 1rem;
   color: #313338;
   background: #fafafa;
+  .send-icon {
+    cursor: pointer;
+    :hover {
+      opacity: 0.8;
+      transition: 0.5s;
+    }
+  }
 `;
 export const Input = styled.input`
   border: none;
   border-radius: 100px;
   width: 330px;
   height: 50px;
+  margin-right: 20px;
   font-family: Pretendard;
   font-size: 18px;
   color: #313338;

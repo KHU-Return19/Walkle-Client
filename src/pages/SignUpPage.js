@@ -13,6 +13,7 @@ const SignUpPage = (props) => {
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [authNum, setAuthNum] = useState("");
+  const [messageId, setMessageId] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [email, setEmail] = useState("");
@@ -55,24 +56,39 @@ const SignUpPage = (props) => {
     }
   };
 
-  const onSubmitHandler = (event) => {
+  const signUp = (event) => {
     event.preventDefault();
     let body = {
-      userId: id,
+      loginId: id,
+      name: name,
       email: email,
       password: password,
+      messageId: messageId,
+      number: Number(authNum),
     };
     axios
-      .post(`${SERVER_ADDRESS}/api/users/register`, body)
+      .post(`http://${SERVER_ADDRESS}/api/users/register`, body)
       .then((res) => {
-        if (res.status >= 200 && res.status < 300) {
-          console.log(res.data);
+        if (res.data._id) {
+          alert("회원가입이 완료되었습니다");
           props.history.push("/profile");
         } else alert(res.data.msg);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const sendAuthMail = async () => {
+    try {
+      const res = await axios.post(`http://${SERVER_ADDRESS}/api/mail`, {
+        email: email,
+      });
+      setMessageId(res.data.messageId);
+    } catch (err) {
+      console.log(err);
+      alert("유효하지 않은 이메일 주소입니다.");
+    }
   };
 
   return (
@@ -85,8 +101,10 @@ const SignUpPage = (props) => {
         passwordCheck={passwordCheck}
         email={email}
         authNum={authNum}
+        messageId={messageId}
         handleInput={handleInput}
-        onSubmitHandler={onSubmitHandler}
+        onSubmitHandler={signUp}
+        sendAuthMail={sendAuthMail}
         isValidPasswordCheck={isValidPasswordCheck}
       />
       <Footer />

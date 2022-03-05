@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import StyledButton from "./Button";
 import InputRow from "./InputRow";
@@ -9,10 +8,12 @@ const SignUpForm = ({
   id,
   password,
   email,
+  messageId,
   passwordCheck,
   authNum,
   handleInput,
   onSubmitHandler,
+  sendAuthMail,
   isValidPasswordCheck,
 }) => {
   return (
@@ -34,6 +35,9 @@ const SignUpForm = ({
             value={email}
             onChange={handleInput("email")}
             placeholder="이메일을 입력해주세요"
+            isEmail={true}
+            isValid={messageId ? true : false}
+            onSubmit={sendAuthMail}
             successComment="이메일로 인증번호가 발송되었습니다"
           />
           <InputRow
@@ -70,11 +74,9 @@ const SignUpForm = ({
             failComment="비밀번호가 다릅니다"
             isValid={isValidPasswordCheck}
           />
-          <Link to="/profile">
-            <ToProfilePageBtn type="submit">
-              프로필 등록하러 가기
-            </ToProfilePageBtn>
-          </Link>
+          <ToProfilePageBtn type="submit">
+            프로필 등록하러 가기
+          </ToProfilePageBtn>
         </SignUpFormBox>
       </SignUpContainer>
       ;
