@@ -8,6 +8,7 @@ import {
   latitudeState,
   longitudeState,
   userProfileState,
+  userIDState,
   regionState,
 } from "../store/state";
 import axios from "axios";
@@ -16,10 +17,11 @@ require("dotenv").config();
 
 const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
 
-const Header = ({ userId }) => {
+const Header = () => {
   const [locationInfo, setLocationInfo] = useRecoilState(regionState);
   const [latitude, setLatitude] = useRecoilState(latitudeState);
   const [longitude, setLongitude] = useRecoilState(longitudeState);
+  const userId = useRecoilValue(userIDState);
   const profileImg = useRecoilValue(userProfileState).picture;
   let currentPage = window.location.pathname;
 
@@ -43,7 +45,9 @@ const Header = ({ userId }) => {
         const location = res.data.documents[0];
         setLocationInfo(location.address_name);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
   }, [latitude, longitude]);
 
   return (
@@ -97,7 +101,7 @@ const Header = ({ userId }) => {
             <PinIcon className="location-marker" />
             <LocationText>{locationInfo}</LocationText>
           </LocationInfoContainer>
-          {userId ? (
+          {userId._id ? (
             <Link to="/profile">
               <ProfileImgContainer>
                 {profileImg && <ProfileImage src={profileImg} />}
@@ -162,6 +166,7 @@ const Logo = styled.img`
 const NotNavContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 470px;
 `;
 
