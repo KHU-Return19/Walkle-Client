@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import styled from "styled-components";
 import axios from "axios";
@@ -24,8 +24,12 @@ const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
 
 const representText = "대표 위치를\n등록해 보세요";
 const addAnotherText = "다른 위치도\n추가할 수 있어요";
+const representSubText =
+  "운영시설/회사/작업공간 등 크리에이터가 주로 활동하는 지역을 선택해주세요.";
+const addAnotherSubText =
+  "대표 위치 이외에 관심이 있는 지역을 최대 2개까지 등록해보세요.";
 
-const SetLocationSlide = ({ toggleSlide, setIsComplete }) => {
+const SetLocationSlide = ({ toggleSlide, handleSubmit }) => {
   const options = {
     //지도를 생성할 때 필요한 기본 옵션
     center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
@@ -35,37 +39,41 @@ const SetLocationSlide = ({ toggleSlide, setIsComplete }) => {
   const lat = useRecoilValue(latitudeState);
   const lon = useRecoilValue(longitudeState);
   const [location, setLocation] = useRecoilState(locationListState);
+  const [locationList, setLocationList] = useState([]);
+  const locationListRef = useRef();
+  locationListRef.current = locationList;
+
   const handleClick = (e) => {
     const targetVal = e.currentTarget.id;
-    const newLocationList = location.filter(
+    const newLocationList = locationList.filter(
       (element) => element.address !== targetVal
     );
-    setLocation(newLocationList);
+    setLocationList(newLocationList);
   };
-  const getLocation = (latlng, locationInfo) => {
-    axios
-      .get(
-        `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${latlng.La}&y=${latlng.Ma}`,
-        {
-          headers: {
-            Authorization: `KakaoAK ${REST_API_KEY}`,
-          },
-        }
-      )
-      .then((res) => {
-        const address = [
-          {
-            address: res.data.documents[0].address_name,
-            location: latlng,
-          },
-        ];
-        const result = locationInfo.concat(address);
-        setLocation(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+  const addNewLocation = (newLocation, latlng) => {
+    const addressList = [...locationListRef.current];
+    const newAddressList = addressList.concat([
+      { address: newLocation, location: latlng },
+    ]);
+    setLocationList(newAddressList);
   };
+
+  const getLocation = async (latlng) => {
+    const {
+      data: { documents },
+    } = await axios.get(
+      `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${latlng.La}&y=${latlng.Ma}`,
+      {
+        headers: {
+          Authorization: `KakaoAK ${REST_API_KEY}`,
+        },
+      }
+    );
+    const newLocation = documents[1].address_name;
+    addNewLocation(newLocation, latlng);
+  };
+
   useEffect(() => {
     const map = new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
     // 현재 위치로 지도 중심 설정
@@ -79,10 +87,10 @@ const SetLocationSlide = ({ toggleSlide, setIsComplete }) => {
     marker.setMap(map);
     kakao.maps.event.addListener(map, "click", function (mouseEvent) {
       // 클릭한 위도, 경도 정보를 가져옵니다
-      var latlng = mouseEvent.latLng;
+      const latlng = mouseEvent.latLng;
       // 마커 위치를 클릭한 위치로 옮깁니다
       marker.setPosition(latlng);
-      getLocation(latlng, location);
+      locationListRef.current.length < 2 && getLocation(latlng, locationList);
     });
 
     return () => {};
@@ -92,19 +100,20 @@ const SetLocationSlide = ({ toggleSlide, setIsComplete }) => {
     <>
       <SlideContainer>
         <HeadTextContainer>
-          <HeadText>{representText}</HeadText>
+          <HeadText>
+            {locationList.length < 1 ? representText : addAnotherText}
+          </HeadText>
         </HeadTextContainer>
         <InputForm>
           <InputRowContainer>
             <LocationLabelText>위치등록</LocationLabelText>
             <SubLocationLabelText>
-              운영시설/회사/작업공간 등 크리에이터가 주로 활동하는 지역을
-              선택해주세요.
+              {locationList.length < 1 ? representSubText : addAnotherSubText}
             </SubLocationLabelText>
           </InputRowContainer>
           <LocationTagContainer>
-            {location &&
-              location.map((address) => (
+            {locationList &&
+              locationList.map((address) => (
                 <HashtagContainer>
                   <HashtagContentContainer>
                     <HashtagText>{address.address}</HashtagText>
@@ -121,7 +130,7 @@ const SetLocationSlide = ({ toggleSlide, setIsComplete }) => {
           <PrevSlideButton onClick={toggleSlide("prev")}>
             이전으로
           </PrevSlideButton>
-          <RegisterButton type="submit" onClick={() => setIsComplete(true)}>
+          <RegisterButton type="submit" onClick={() => handleSubmit}>
             프로필 등록
           </RegisterButton>
         </ButtonContainer>
@@ -194,7 +203,7 @@ export const HashtagContainer = styled.div`
   flex: none;
   order: 1;
   flex-grow: 0;
-  margin: 16px 10px 0px 0px;
+  margin: 0px 10px 0px 0px;
 `;
 
 export const HashtagContentContainer = styled.div`
