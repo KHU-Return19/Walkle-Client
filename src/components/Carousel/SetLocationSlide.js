@@ -11,8 +11,7 @@ import {
 import {
   HeadText,
   HeadTextContainer,
-  InputForm,
-  InputRowContainer,
+  InputForm, 
   SlideContainer,
   ButtonContainer,
   PrevSlideButton,
@@ -53,10 +52,14 @@ const SetLocationSlide = ({ toggleSlide, handleSubmit }) => {
 
   const addNewLocation = (newLocation, latlng) => {
     const addressList = [...locationListRef.current];
-    const newAddressList = addressList.concat([
-      { address: newLocation, location: latlng },
-    ]);
-    setLocationList(newAddressList);
+    const addressSet = addressList.filter(
+      (address) => address.address !== newLocation
+    );
+    const result = addressSet.concat({
+      address: newLocation,
+      location: latlng,
+    });
+    setLocationList(result);
   };
 
   const getLocation = async (latlng) => {
@@ -90,7 +93,7 @@ const SetLocationSlide = ({ toggleSlide, handleSubmit }) => {
       const latlng = mouseEvent.latLng;
       // 마커 위치를 클릭한 위치로 옮깁니다
       marker.setPosition(latlng);
-      locationListRef.current.length < 2 && getLocation(latlng, locationList);
+      locationListRef.current.length < 3 && getLocation(latlng, locationList);
     });
 
     return () => {};
@@ -113,12 +116,16 @@ const SetLocationSlide = ({ toggleSlide, handleSubmit }) => {
           </InputRowContainer>
           <LocationTagContainer>
             {locationList &&
-              locationList.map((address) => (
-                <HashtagContainer>
+              locationList.map((address, index) => (
+                <HashtagContainer className={index === 0 && "main"}>
                   <HashtagContentContainer>
-                    <HashtagText>{address.address}</HashtagText>
+                    <HashtagText className={index === 0 && "mainText"}>
+                      {address.address}
+                    </HashtagText>
                     <IconContainer onClick={handleClick} id={address.address}>
-                      <DeleteIcon className="Icon" />
+                      <DeleteIcon
+                        className={index === 0 ? "mainIcon" : "Icon"}
+                      />
                     </IconContainer>
                   </HashtagContentContainer>
                 </HashtagContainer>
@@ -141,6 +148,11 @@ const SetLocationSlide = ({ toggleSlide, handleSubmit }) => {
 
 export default SetLocationSlide;
 
+const InputRowContainer = styled.div`
+  margin: 30px 30px 10px 30px;
+`;
+
+
 const LocationLabelText = styled.div`
   margin-bottom: 10px;
   font-family: Pretendard;
@@ -150,7 +162,6 @@ const LocationLabelText = styled.div`
 `;
 
 const SubLocationLabelText = styled.div`
-  margin-bottom: 1rem;
   font-family: Pretendard;
   font-size: 13px;
   font-weight: 500;
@@ -161,7 +172,7 @@ const SubLocationLabelText = styled.div`
 
 const MapContainer = styled.div`
   display: flex;
-  margin: 30px;
+  margin: 10px 30px 30px 30px;
   border: none;
   border-radius: 16px;
   width: 400px;
@@ -173,7 +184,25 @@ const MapContainer = styled.div`
 
 const LocationTagContainer = styled.div`
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
+  width: 462px;
+  .main {
+    border: 1px solid #7054ff;
+    margin: 5px 50px;
+  }
+  .mainText {
+    color: #7054ff;
+  }
+  .mainIcon {
+    width: 12px;
+    height: 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #7054ff;
+    fill: #7054ff;
+    stroke: #7054ff;
+  }
 `;
 
 export const HashtagListContainer = styled.div`
@@ -203,7 +232,7 @@ export const HashtagContainer = styled.div`
   flex: none;
   order: 1;
   flex-grow: 0;
-  margin: 0px 10px 0px 0px;
+  margin: 5px;
 `;
 
 export const HashtagContentContainer = styled.div`
