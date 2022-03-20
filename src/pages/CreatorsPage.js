@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import CreatorCard from "../components/Creators/CreatorCard";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { Creators } from "../store/fakeCreators";
+import { CreatorsState } from "../store/state";
+require("dotenv").config();
+
+const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const CreatorsPage = ({ match }) => {
+  const [allCreators, setAllCreators] = useRecoilState(CreatorsState);
+  const CreatorsRef = useRef();
+  CreatorsRef.current = allCreators;
   const [searchContent, setSearchContent] = useState("");
   const handleSearch = (e) => {
     const targetValue = e.currentTarget.value;
@@ -14,12 +23,23 @@ const CreatorsPage = ({ match }) => {
   };
   const searchedCreators =
     searchContent === ""
-      ? Creators
-      : Creators.filter(
+      ? allCreators.concat(Creators)
+      : allCreators.filter(
           (creator) =>
             creator.name.toLowerCase().includes(searchContent.toLowerCase()) ===
             true
         );
+  useEffect(async () => {
+    try {
+      const { data } = await axios.get(
+        `http://${SERVER_ADDRESS}/api/users/all`
+      );
+      await setAllCreators(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
     <>
       <Header />
@@ -32,9 +52,10 @@ const CreatorsPage = ({ match }) => {
           />
         </SearchBarContainer>
         <CreatorsContainer>
-          {searchedCreators.map((creator) => (
-            <CreatorCard creator={creator} match={match} />
-          ))}
+          {searchedCreators.length !== undefined &&
+            searchedCreators.map((creator) => (
+              <CreatorCard creator={creator} match={match} />
+            ))}
         </CreatorsContainer>
       </PageWrapper>
       <Footer />

@@ -41,7 +41,7 @@ const CreatorCard = ({ creator, match }) => {
             <SubText>{creator.job}</SubText>
             <CreatorTag>
               <HashTagListContainer>
-                {creator.tag.map((tag) => (
+                {creator.tag?.map((tag) => (
                   <CreatorHashtagContainer>
                     <CreatorHashtagContentContainer>
                       <CreatorHashtagText>{tag}</CreatorHashtagText>
