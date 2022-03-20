@@ -11,7 +11,7 @@ import {
 import {
   HeadText,
   HeadTextContainer,
-  InputForm, 
+  InputForm,
   SlideContainer,
   ButtonContainer,
   PrevSlideButton,
@@ -137,7 +137,7 @@ const SetLocationSlide = ({ toggleSlide, handleSubmit }) => {
           <PrevSlideButton onClick={toggleSlide("prev")}>
             이전으로
           </PrevSlideButton>
-          <RegisterButton type="submit" onClick={() => handleSubmit}>
+          <RegisterButton type="submit" onClick={handleSubmit}>
             프로필 등록
           </RegisterButton>
         </ButtonContainer>
@@ -151,7 +151,6 @@ export default SetLocationSlide;
 const InputRowContainer = styled.div`
   margin: 30px 30px 10px 30px;
 `;
-
 
 const LocationLabelText = styled.div`
   margin-bottom: 10px;
@@ -293,6 +292,7 @@ const RegisterButton = styled.div`
   font-weight: 600;
   color: #ffffff;
   background: #7054ff;
+  cursor: pointer;
   :hover {
     opacity: 0.8;
     transition: 0.3s;

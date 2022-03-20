@@ -12,12 +12,10 @@ import CompleteSlide from "./CompleteSlide";
 const TOTAL_SLIDES = 3;
 
 const Carousel = ({
-  gender,
   photo,
   introduce,
   nickname,
   job,
-  age,
   instagramUrl,
   hashtag,
   isValidNickname,
@@ -34,6 +32,7 @@ const Carousel = ({
   setIsValidNickname,
   setIsValidInstagramUrl,
   setLocation,
+  postProfile,
 }) => {
   const [hashtagList, setHashtagList] = useRecoilState(profileHashtagListState);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -115,6 +114,15 @@ const Carousel = ({
       }
     }
   };
+
+  const handleSubmit = async () => {
+    try {
+      await postProfile();
+      setIsComplete(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     slideRef.current.style.transition = "all 0.5s ease-in-out";
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
@@ -156,7 +164,7 @@ const Carousel = ({
               toggleSlide={toggleSlide}
               location={location}
               setLocation={setLocation}
-              setIsComplete={setIsComplete}
+              handleSubmit={handleSubmit}
             />
           </SlideContainer>
         )}

@@ -1,50 +1,79 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Carousel from "../components/Carousel/Carousel";
-import { useRecoilState } from "recoil";
-import { locationListState } from "../store/state";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  locationListState,
+  profileFieldTagListState,
+  profileHashtagListState,
+} from "../store/state";
 import Footer from "../components/Footer";
+import axios from "axios";
+require("dotenv").config();
+
+const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const ProfilePage = (props) => {
-  const [gender, setGender] = useState("여");
   const [introduce, setIntroduce] = useState("");
   const [photo, setPhoto] = useState("");
   const [nickname, setNickname] = useState("");
   const [job, setJob] = useState("");
-  const [age, setAge] = useState("");
   const [instagramUrl, setInstagramUrl] = useState("");
   const [hashtag, setHashtag] = useState("");
+  const fieldtagList = useRecoilValue(profileFieldTagListState);
+  const hashtagList = useRecoilValue(profileHashtagListState);
   const [isValidNickname, setIsValidNickname] = useState();
   const [isValidInstagramUrl, setIsValidInstagramUrl] = useState();
   const [location, setLocation] = useRecoilState(locationListState);
 
+  const postProfile = async () => {
+    try{
+      await axios
+      .post(`http://${SERVER_ADDRESS}/api/profile/`, {
+        fields: fieldtagList,
+        tags: hashtagList,
+        location: location,
+        nickname: nickname,
+        job: job,
+        snsLink: instagramUrl,
+        intro: introduce,
+        picture: photo,
+        gender: "",
+        age: "",
+
+      })
+      console.log("done");
+    } catch (error){
+      console.log(error);
+      alert(error);
+    }
+  };
+
   return (
     <>
-      <Header userId={""} />
+      <Header />
       <Carousel
-        gender={gender}
         introduce={introduce}
         photo={photo}
         nickname={nickname}
         job={job}
-        age={age}
         instagramUrl={instagramUrl}
         hashtag={hashtag}
         isValidNickname={isValidNickname}
         isValidInstagramUrl={isValidInstagramUrl}
         location={location}
-        setGender={setGender}
         setIntroduce={setIntroduce}
         setPhoto={setPhoto}
         setNickname={setNickname}
         setJob={setJob}
-        setAge={setAge}
         setInstagramUrl={setInstagramUrl}
         setHashtag={setHashtag}
         setIsValidNickname={setIsValidNickname}
         setIsValidInstagramUrl={setIsValidInstagramUrl}
         setLocation={setLocation}
+        postProfile={postProfile}
       />
+
       <Footer />
     </>
   );
