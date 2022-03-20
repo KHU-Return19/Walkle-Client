@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { ReactComponent as WriteIcon } from "../assets/pen.svg";
 import SearchBar from "../components/Community/SearchBar";
 import Header from "../components/Header";
@@ -8,45 +7,12 @@ import { Posts } from "../store/fakePosts";
 import PostCard from "../components/Community/PostCard";
 import WriteModal from "../components/Community/WriteModal";
 import Footer from "../components/Footer";
-import { useRecoilValue } from "recoil";
-import { userIDState } from "../store/state";
-
-require("dotenv").config();
-
-const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const CommunityPage = () => {
-  const userID = useRecoilValue(userIDState);
   const [searchContent, setSearchContent] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fileName, setFileName] = useState("게시물에 추가");
-  const [posts, setPosts] = useState([]);
-  useEffect(async () => {
-    try {
-      const {
-        data: { communities },
-      } = await axios.get(
-        `http://${SERVER_ADDRESS}/api/community/`
-      );
-      console.log(communities);
-    } catch (error) {
-      alert(error);
-      console.log(error);
-    }
-
-    /*await axios
-      .get(`http://${SERVER_ADDRESS}/api/community/posts`)
-      .then((res) => {
-        setPosts(res.data.communities);
-        console.log(posts);
-      })
-      .catch((error) => {
-        alert(error);
-      });
-      */
-  }, []);
-
-  const searchedPosts = posts.filter(
+  const searchedPosts = Posts.filter(
     (post) =>
       post.content.toLowerCase().includes(searchContent.toLowerCase()) === true
   );
@@ -57,7 +23,6 @@ const CommunityPage = () => {
   const handleModalOpen = () => {
     document.body.style.overflow = "hidden";
     setIsModalOpen(true);
-    console.log(posts);
   };
   return (
     <>
@@ -75,7 +40,7 @@ const CommunityPage = () => {
         </PageHeader>
         <PostListOutlay>
           <PostList>
-            {Posts.map((post) => (
+            {searchedPosts.map((post) => (
               <PostCard key={post} post={post} />
             ))}
           </PostList>
