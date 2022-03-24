@@ -168,6 +168,7 @@ const ButtonContainer = styled.div`
 
 const FollowIcon = styled(PlusIcon)`
   padding-right: 10px;
+  fill: white;
 `;
 
 const FollowButton = styled.div`

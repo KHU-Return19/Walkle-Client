@@ -35,7 +35,7 @@ const CommunityPage = () => {
             handleSearch={handleSearch}
           />
           <WritePostButton onClick={() => handleModalOpen()}>
-            <WriteIcon />
+            <WriteIcon fill="white" />
           </WritePostButton>
         </PageHeader>
         <PostListOutlay>

@@ -93,7 +93,7 @@ const Header = () => {
         <NotNavContainer>
           <Link to="/add_project">
             <AddProjectBtn>
-              <PlusIcon />
+              <PlusIcon fill="white" />
               <BtnText>프로젝트 생성</BtnText>
             </AddProjectBtn>
           </Link>

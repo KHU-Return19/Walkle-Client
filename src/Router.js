@@ -6,7 +6,7 @@ import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import Auth from "./hoc/auth";
 import ProjectPage from "./pages/ProjectPage";
-import ProfilePage from "./pages/ProfilePage";
+import MyPage from "./pages/MyPage";
 import AddProjectPage from "./pages/AddProjectPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import EditProjectPage from "./pages/EditProjectPage";
@@ -25,7 +25,7 @@ const Router = () => {
       <Route path={"/projects/:id"} component={ProjectDetailPage} />
       <Route exact path={"/project_edit/:id"} component={EditProjectPage} />
       <Route exact path="/community" component={CommunityPage} />
-      <Route exact path="/profile" component={ProfilePage} />
+      <Route exact path="/profile" component={MyPage} />
       <Route
         exact
         path="/add_project"
