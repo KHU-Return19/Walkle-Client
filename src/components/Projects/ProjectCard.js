@@ -10,7 +10,7 @@ import {
 } from "../Carousel/TagSlide";
 import { bookmarkListState } from "../../store/state";
 
-const ProjectCard = ({ project, match }) => {
+const ProjectCard = ({ project }) => {
   const [bookmarkList, setBookmarkList] = useRecoilState(bookmarkListState);
   const projectDDay = project.dDay && new Date(project.dDay);
   const dayDiff =
@@ -46,7 +46,7 @@ const ProjectCard = ({ project, match }) => {
           />
           <ProjectImage />
         </CardHeader>
-        <Link to={`${match.url}/${project.id}`}>
+        <Link to={`projects/${project.id}`}>
           <CardBody>
             <DirectorInfo>{project.director}</DirectorInfo>
             <ProjectTitle>{project.name}</ProjectTitle>

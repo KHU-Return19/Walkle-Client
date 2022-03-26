@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Header from "../components/Header";
@@ -7,8 +7,14 @@ import SearchBar from "../components/SearchBar";
 import { Projects } from "../store/fakeCreators";
 import ProjectFilterSelector from "../components/Projects/ProjectFilterSelector";
 import Footer from "../components/Footer";
+import { useRecoilState } from "recoil";
+import { ProjectsState } from "../store/state";
+require("dotenv").config();
 
-const ProjectPage = ({ match }) => {
+const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
+
+const ProjectPage = () => {
+  const [allProjects, setAllProjects] = useRecoilState(ProjectsState);
   const [searchContent, setSearchContent] = useState("");
   const [ongoingFilter, setOngoingFilter] = useState(false);
   const [timeFilter, setTimeFilter] = useState("recent");
@@ -46,6 +52,12 @@ const ProjectPage = ({ match }) => {
     const targetValue = e.currentTarget.value;
     setSearchContent(targetValue);
   };
+
+  useEffect(async () => {
+    const { data } = await axios.get(`http://${SERVER_ADDRESS}/api/projects`);
+    setAllProjects(data);
+  }, []);
+
   return (
     <>
       <Header />
@@ -66,7 +78,7 @@ const ProjectPage = ({ match }) => {
         />
         <ProjectsContainer>
           {filteredProjects.map((project) => (
-            <ProjectCard project={project} match={match} />
+            <ProjectCard project={project} />
           ))}
         </ProjectsContainer>
       </PageWrapper>

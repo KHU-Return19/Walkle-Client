@@ -62,14 +62,14 @@ const CreatorModalContent = ({ creator }) => {
       {tabCategory === "project" && (
         <ProjectList>
           {Projects.map((project) => (
-            <ProjectCard project={project} match={{ url: "/projects" }} />
+            <ProjectCard project={project} />
           ))}
         </ProjectList>
       )}
       {tabCategory === "community" && (
         <PostList>
           {Posts.map((post) => (
-            <ModalCommunityCard post={post} />
+            <ModalCommunityCard post={post} width="434px" />
           ))}
         </PostList>
       )}
