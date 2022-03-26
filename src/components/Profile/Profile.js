@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ReactComponent as PenIcon } from "../../assets/pen.svg";
 import { ReactComponent as InstagramIcon } from "../../assets/instagram.svg";
 import { ReactComponent as PlusIcon } from "../../assets/plus.svg";
+import TabContent from "./TabContent";
 
 const Profile = () => {
   const [currentTab, setCurrentTab] = useState("project");
@@ -180,6 +181,9 @@ const ProfileTab = styled.div`
   .selected {
     color: #7054ff;
     border-bottom: 2px solid #7054ff;
+    :hover {
+      opacity: 1;
+    }
   }
 `;
 
@@ -195,4 +199,8 @@ const TabElement = styled.div`
   font-size: 21px;
   line-height: 21px;
   cursor: pointer;
+  :hover {
+    opacity: 0.5;
+    transition: 0.3s;
+  }
 `;
