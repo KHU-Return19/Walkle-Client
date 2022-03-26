@@ -66,6 +66,7 @@ const Profile = () => {
             커뮤니티
           </TabElement>
         </ProfileTab>
+        <TabContent current={currentTab} />
       </PageBody>
     </>
   );
@@ -167,7 +168,7 @@ const AddFriendButton = styled.div`
   }
 `;
 const PageBody = styled.div`
-  height: calc(100vh - 64px - 342px);
+  height: 1700px;
   width: 1352px;
   margin: auto;
 `;

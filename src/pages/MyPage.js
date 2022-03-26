@@ -88,6 +88,6 @@ export default MyPage;
 
 const PageBackground = styled.div`
   width: 100vw;
-  height: 1080px;
+  height: 1700px;
   background: #fafafa;
 `;

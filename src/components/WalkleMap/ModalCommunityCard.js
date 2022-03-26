@@ -5,10 +5,10 @@ import { ReactComponent as CommentIcon } from "../../assets/comment.svg";
 import { ReactComponent as LikeIcon } from "../../assets/heart.svg";
 import { ReactComponent as PinIcon } from "../../assets/pin.svg";
 
-const ModalCommunityCard = ({ post }) => {
+const ModalCommunityCard = ({ post, width }) => {
   return (
     <>
-      <CardOutlay>
+      <CardOutlay width={width}>
         <Date>{moment(post.date, "YYYY-MM-DD").format("YYYY. MM. DD")}</Date>
         <Content>{post.content}</Content>
         <Footer>
@@ -37,12 +37,12 @@ export default ModalCommunityCard;
 const CardOutlay = styled.div`
   display: flex;
   flex-direction: column;
-  width: 434px;
+  width: ${(props) => props.width};
   height: 220px;
   border: 1px solid #d2d2d2;
   box-sizing: border-box;
   border-radius: 12px;
-  margin-bottom: 28px;
+  margin: 0px 14px 28px 14px;
   padding: 26px 26px 20px 26px;
 `;
 
