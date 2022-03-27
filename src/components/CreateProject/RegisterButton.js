@@ -6,9 +6,9 @@ const RegisterButton = ({ isEdit }) => {
     <>
       <RegisterButtonContainer>
         {isEdit ? (
-          <Button>프로젝트 등록하기</Button>
-        ) : (
           <Button>수정완료</Button>
+        ) : (
+          <Button>프로젝트 등록하기</Button>
         )}
       </RegisterButtonContainer>
     </>
