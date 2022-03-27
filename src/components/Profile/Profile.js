@@ -4,12 +4,10 @@ import { ReactComponent as PenIcon } from "../../assets/pen.svg";
 import { ReactComponent as InstagramIcon } from "../../assets/instagram.svg";
 import { ReactComponent as PlusIcon } from "../../assets/plus.svg";
 import TabContent from "./TabContent";
+import TabSelector from "./TabSelector";
 
 const Profile = () => {
   const [currentTab, setCurrentTab] = useState("project");
-  const changeTab = (tabName) => {
-    setCurrentTab(tabName);
-  };
   return (
     <>
       <PageUpper>
@@ -40,32 +38,7 @@ const Profile = () => {
         </ToolBox>
       </PageUpper>
       <PageBody>
-        <ProfileTab>
-          <TabElement
-            className={currentTab === "project" && "selected"}
-            onClick={() => changeTab("project")}
-          >
-            프로젝트
-          </TabElement>
-          <TabElement
-            className={currentTab === "invite" && "selected"}
-            onClick={() => changeTab("invite")}
-          >
-            초대
-          </TabElement>
-          <TabElement
-            className={currentTab === "bookmark" && "selected"}
-            onClick={() => changeTab("bookmark")}
-          >
-            북마크
-          </TabElement>
-          <TabElement
-            className={currentTab === "community" && "selected"}
-            onClick={() => changeTab("community")}
-          >
-            커뮤니티
-          </TabElement>
-        </ProfileTab>
+        <TabSelector currentTab={currentTab} setCurrentTab={setCurrentTab} />
         <TabContent current={currentTab} />
       </PageBody>
     </>
@@ -171,37 +144,4 @@ const PageBody = styled.div`
   height: 1700px;
   width: 1352px;
   margin: auto;
-`;
-const ProfileTab = styled.div`
-  display: flex;
-  align-items: flex-start;
-  width: 1000px;
-  height: 43px;
-  box-sizing: border-box;
-  margin-top: 54px;
-  .selected {
-    color: #7054ff;
-    border-bottom: 2px solid #7054ff;
-    :hover {
-      opacity: 1;
-    }
-  }
-`;
-
-const TabElement = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 43px;
-  margin-right: 40px;
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 21px;
-  cursor: pointer;
-  :hover {
-    opacity: 0.5;
-    transition: 0.3s;
-  }
 `;
