@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as PenIcon } from "../../assets/pen.svg";
 import { ReactComponent as InstagramIcon } from "../../assets/instagram.svg";
@@ -18,7 +19,9 @@ const Profile = () => {
               <Name>Maebinkim_00</Name>
               <Job>바리스타</Job>
             </NameJobContainer>
-            <EditIcon fill="#d2d2d2" />
+            <Link to="/profile_edit">
+              <EditIcon fill="#d2d2d2" />
+            </Link>
           </ProfileCard>
           <Intro>
             안녕하세요. 고잔동에서 청년예술가들에게 예술공간을 제공하고 있는

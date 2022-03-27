@@ -12,6 +12,7 @@ import ProjectDetailPage from "./pages/ProjectDetailPage";
 import EditProjectPage from "./pages/EditProjectPage";
 import CommunityPage from "./pages/CommunityPage";
 import CreatorsPage from "./pages/CreatorsPage";
+import EditProfilePage from './pages/EditProfilePage';
 
 const Router = () => {
   return (
@@ -26,6 +27,7 @@ const Router = () => {
       <Route exact path={"/project_edit/:id"} component={EditProjectPage} />
       <Route exact path="/community" component={CommunityPage} />
       <Route exact path="/profile" component={MyPage} />
+      <Route exact path="/profile_edit" component={EditProfilePage} />
       <Route
         exact
         path="/add_project"
