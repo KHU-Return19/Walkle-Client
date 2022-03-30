@@ -4,9 +4,6 @@ import Header from "../components/Header";
 import SignInForm from "../components/SignInForm";
 import { useRecoilState } from "recoil";
 import { userProfileState, userIDState } from "../store/state";
-require("dotenv").config();
-
-const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const SignInPage = (props) => {
   const [id, setId] = useState("");
@@ -21,7 +18,7 @@ const SignInPage = (props) => {
 
   const getProfile = () => {
     axios
-      .get(`http://${SERVER_ADDRESS}/api/profile/`, userID)
+      .get(`server/api/profile/`, userID)
       .then((res) => {
         res.status >= 200 && res.status < 300
           ? setUserProfile(res.data)
@@ -39,10 +36,7 @@ const SignInPage = (props) => {
       password: password,
     };
     try {
-      const { data } = await axios.post(
-        `http://${SERVER_ADDRESS}/api/users/login`,
-        body
-      );
+      const { data } = await axios.post(`server/api/users/login`, body);
       setUserID(data);
       alert("로그인이 완료되었습니다.");
       //getProfile();

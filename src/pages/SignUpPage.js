@@ -5,9 +5,6 @@ import Header from "../components/Header";
 import SignUpForm from "../components/SignUpForm";
 import { userProfileState } from "../store/state";
 import Footer from "../components/Footer";
-require("dotenv").config();
-
-const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const SignUpPage = (props) => {
   const [name, setName] = useState("");
@@ -67,7 +64,7 @@ const SignUpPage = (props) => {
       number: Number(authNum),
     };
     axios
-      .post(`http://${SERVER_ADDRESS}/api/users/register`, body)
+      .post(`server/api/users/register`, body)
       .then((res) => {
         if (res.data._id) {
           alert("회원가입이 완료되었습니다");
@@ -81,7 +78,7 @@ const SignUpPage = (props) => {
 
   const sendAuthMail = async () => {
     try {
-      const res = await axios.post(`http://${SERVER_ADDRESS}/api/mail`, {
+      const res = await axios.post(`server/api/mail`, {
         email: email,
       });
       setMessageId(res.data.messageId);

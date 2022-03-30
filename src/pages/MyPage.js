@@ -11,9 +11,6 @@ import {
 import Footer from "../components/Footer";
 import axios from "axios";
 import Profile from "../components/Profile/Profile";
-require("dotenv").config();
-
-const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const MyPage = (props) => {
   const [introduce, setIntroduce] = useState("");
@@ -31,7 +28,7 @@ const MyPage = (props) => {
 
   const postProfile = async () => {
     try {
-      await axios.post(`http://${SERVER_ADDRESS}/api/profile/`, {
+      await axios.post(`server/api/profile/`, {
         fields: fieldtagList,
         tags: hashtagList,
         location: location,

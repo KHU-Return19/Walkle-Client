@@ -9,9 +9,6 @@ import ProjectFilterSelector from "../components/Projects/ProjectFilterSelector"
 import Footer from "../components/Footer";
 import { useRecoilState } from "recoil";
 import { ProjectsState } from "../store/state";
-require("dotenv").config();
-
-const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const ProjectPage = () => {
   const [allProjects, setAllProjects] = useRecoilState(ProjectsState);
@@ -54,8 +51,8 @@ const ProjectPage = () => {
   };
 
   useEffect(async () => {
-    const { data } = await axios.get(`http://${SERVER_ADDRESS}/api/projects`);
-    setAllProjects(data);
+    const { data } = await axios.get(`server/api/projects`);
+    setAllProjects(data.projects);
   }, []);
 
   return (
@@ -77,7 +74,7 @@ const ProjectPage = () => {
           setTimeFilter={setTimeFilter}
         />
         <ProjectsContainer>
-          {filteredProjects.map((project) => (
+          {allProjects.map((project) => (
             <ProjectCard project={project} />
           ))}
         </ProjectsContainer>

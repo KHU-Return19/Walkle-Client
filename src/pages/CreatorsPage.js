@@ -8,9 +8,6 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { Creators } from "../store/fakeCreators";
 import { CreatorsState } from "../store/state";
-require("dotenv").config();
-
-const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 const CreatorsPage = ({ match }) => {
   const [allCreators, setAllCreators] = useRecoilState(CreatorsState);
@@ -32,7 +29,7 @@ const CreatorsPage = ({ match }) => {
   useEffect(async () => {
     try {
       const { data } = await axios.get(
-        `http://${SERVER_ADDRESS}/api/users/all`
+        `server/api/users/all`
       );
       await setAllCreators(data);
     } catch (error) {

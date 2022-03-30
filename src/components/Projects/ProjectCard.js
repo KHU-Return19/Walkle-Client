@@ -48,15 +48,15 @@ const ProjectCard = ({ project }) => {
         </CardHeader>
         <Link to={`projects/${project.id}`}>
           <CardBody>
-            <DirectorInfo>{project.director}</DirectorInfo>
-            <ProjectTitle>{project.name}</ProjectTitle>
+            <DirectorInfo>{project.nickname}</DirectorInfo>
+            <ProjectTitle>{project.title}</ProjectTitle>
             <ProjectTag>
               <HashTagListContainer>
                 <FieldTag>#분야태그</FieldTag>
-                {project.tag.map((tag) => (
+                {project.tags.map((tag) => (
                   <ProjectHashtagContainer>
                     <ProjectHashtagContentContainer>
-                      <ProjectHashtagText>{tag}</ProjectHashtagText>
+                      <ProjectHashtagText>{tag.tag}</ProjectHashtagText>
                     </ProjectHashtagContentContainer>
                   </ProjectHashtagContainer>
                 ))}
