@@ -12,7 +12,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import Profile from "../components/Profile/Profile";
 
-const MyPage = (props) => {
+const MyPage = ({match}) => {
   const [introduce, setIntroduce] = useState("");
   const [photo, setPhoto] = useState("");
   const [nickname, setNickname] = useState("");
@@ -27,6 +27,19 @@ const MyPage = (props) => {
   const [devIsProfile, setDevIsProfile] = useState(true);
 
   const postProfile = async () => {
+    console.log({
+      field: fieldtagList,
+      tags: hashtagList,
+      location: location,
+      nickname: nickname,
+      job: job,
+      sns_link: instagramUrl,
+      intro: introduce,
+      picture: photo,
+      gender: "",
+      age: "",
+      career: "",
+    });
     try {
       await axios.post(`server/api/profile/`, {
         fields: fieldtagList,
@@ -40,7 +53,7 @@ const MyPage = (props) => {
         gender: "",
         age: "",
       });
-      console.log("done");
+      alert("프로필 등록이 완료되었습니다.");
     } catch (error) {
       console.log(error);
       alert(error);
@@ -74,7 +87,7 @@ const MyPage = (props) => {
             postProfile={postProfile}
           />
         )}
-        <Profile />
+        {devIsProfile && <Profile match={match}/>}
       </PageBackground>
       <Footer />
     </>

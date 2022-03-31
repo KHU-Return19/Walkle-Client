@@ -6,8 +6,14 @@ import { ReactComponent as InstagramIcon } from "../../assets/instagram.svg";
 import { ReactComponent as PlusIcon } from "../../assets/plus.svg";
 import TabContent from "./TabContent";
 import TabSelector from "./TabSelector";
+import { useRecoilValue } from "recoil";
+import { CreatorsState } from "../../store/state";
 
-const Profile = () => {
+const Profile = ({ match }) => {
+  const Creators = useRecoilValue(CreatorsState);
+  const creator = Creators.find(
+    (person) => person.userId === match.params.userId
+  );
   const [currentTab, setCurrentTab] = useState("project");
   return (
     <>
@@ -16,22 +22,19 @@ const Profile = () => {
           <ProfileCard>
             <ProfileImg />
             <NameJobContainer>
-              <Name>Maebinkim_00</Name>
-              <Job>바리스타</Job>
+              <Name>{creator.nickname}</Name>
+              <Job>{creator.job}</Job>
             </NameJobContainer>
             <Link to="/profile_edit">
               <EditIcon fill="#d2d2d2" />
             </Link>
           </ProfileCard>
-          <Intro>
-            안녕하세요. 고잔동에서 청년예술가들에게 예술공간을 제공하고 있는
-            작은 카페 바리스타 입니다. 동네 크리에이터 분들 함께 소통해요!
-          </Intro>
+          <Intro>{creator.intro}</Intro>
         </ProfileHeader>
         <ToolBox>
           <SnsLink>
             <InstagramIcon />
-            <SnsId>Maebinkim_00</SnsId>
+            <SnsId>{creator.sns_link}</SnsId>
           </SnsLink>
           <FriendBox>
             <AddFriendButton>

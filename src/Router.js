@@ -27,6 +27,7 @@ const Router = () => {
       <Route exact path={"/project_edit/:id"} component={EditProjectPage} />
       <Route exact path="/community" component={CommunityPage} />
       <Route exact path="/profile" component={MyPage} />
+      <Route exact path={"/profile/:userId"} component={MyPage} />
       <Route exact path="/profile_edit" component={EditProfilePage} />
       <Route
         exact
