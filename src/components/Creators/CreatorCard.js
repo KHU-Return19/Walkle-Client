@@ -13,14 +13,15 @@ import { bookmarkListState } from "../../store/state";
 const CreatorCard = ({ creator, match }) => {
   const [bookmarkList, setBookmarkList] = useRecoilState(bookmarkListState);
   const isBookmarked =
-    bookmarkList.findIndex((bookmark) => bookmark.id === creator.id) === -1
+    bookmarkList.findIndex((bookmark) => bookmark.userId === creator.userId) ===
+    -1
       ? false
       : true;
   const handleClick = () => {
     let newList = bookmarkList;
     isBookmarked
       ? (newList = bookmarkList.filter(
-          (bookmark) => bookmark.id !== creator.id
+          (bookmark) => bookmark.userId !== creator.userId
         ))
       : (newList = bookmarkList.concat(creator));
     setBookmarkList(newList);
@@ -35,13 +36,13 @@ const CreatorCard = ({ creator, match }) => {
           />
           <CreatorImage />
         </CardHeader>
-        <Link to={`${match.url}/${creator.id}`}>
+        <Link to={`profile/${creator.userId}`}>
           <CardBody>
-            <HeadText>{creator.name}</HeadText>
+            <HeadText>{creator.nickname}</HeadText>
             <SubText>{creator.job}</SubText>
             <CreatorTag>
               <HashTagListContainer>
-                {creator.tag?.map((tag) => (
+                {creator.tags?.map(({ tag }) => (
                   <CreatorHashtagContainer>
                     <CreatorHashtagContentContainer>
                       <CreatorHashtagText>{tag}</CreatorHashtagText>

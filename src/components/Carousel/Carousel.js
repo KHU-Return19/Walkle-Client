@@ -40,8 +40,7 @@ const Carousel = ({
   const slideRef = useRef(null);
   const handleInput = (type) => async (event) => {
     const targetVal = event.currentTarget.value;
-    const regExpNickname =
-      /(?=.*\d{1,50})(?=.*[~`!@#$%^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{3,50}$/;
+    const regExpNickname = /(?=.*\d{1,50})(?=.*[a-zA-Z]{1,50}).{3,50}$/;
     const regExpUrl =
       /(http(s)?:\/\/www.instagram.com\/)([a-z0-9~`!@#$%^&*()-+=_]{1,100})/gi;
     switch (type) {
@@ -140,7 +139,7 @@ const Carousel = ({
               setJob={setJob}
               handleInput={handleInput}
               isValid={isValidNickname}
-              failComment="영어(대/소문자), 숫자, 특수문자를 포함해 주세요"
+              failComment="영어(대/소문자), 숫자를 포함해 주세요"
               toggleSlide={toggleSlide}
             />
             <IntroduceMeSlide

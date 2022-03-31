@@ -28,9 +28,8 @@ const CreatorsPage = ({ match }) => {
         );
   useEffect(async () => {
     try {
-      const { data } = await axios.get(
-        `server/api/users/all`
-      );
+      const { data } = await axios.get(`server/api/profile/list`);
+      console.log(data);
       await setAllCreators(data);
     } catch (error) {
       console.log(error);

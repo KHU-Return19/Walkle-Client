@@ -37,8 +37,7 @@ const SetLocationSlide = ({ toggleSlide, handleSubmit }) => {
   const container = useRef(null); //지도를 담을 영역의 DOM 레퍼런스
   const lat = useRecoilValue(latitudeState);
   const lon = useRecoilValue(longitudeState);
-  const [location, setLocation] = useRecoilState(locationListState);
-  const [locationList, setLocationList] = useState([]);
+  const [locationList, setLocationList] = useRecoilState(locationListState);;
   const locationListRef = useRef();
   locationListRef.current = locationList;
 
@@ -57,7 +56,8 @@ const SetLocationSlide = ({ toggleSlide, handleSubmit }) => {
     );
     const result = addressSet.concat({
       address: newLocation,
-      location: latlng,
+      lat: latlng.La,
+      lon: latlng.Ma,
     });
     setLocationList(result);
   };
