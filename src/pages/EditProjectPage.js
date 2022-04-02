@@ -5,27 +5,33 @@ import AddProjectForm from "../components/CreateProject/AddProjectForm";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ApplicantList from "../components/Projects/ProjectDetail/ApplicantList";
-import { Projects } from "../store/fakeCreators";
+import { useRecoilValue } from "recoil";
+import { ProjectsState } from "../store/state";
 
 const EditProjectPage = ({ match }) => {
+  const Projects = useRecoilValue(ProjectsState);
   const project = Projects.find(
     (project) => String(project.id) === match.params.id
   );
-  const [projectTitle, setProjectTitle] = useState(project.name);
+  const [projectTitle, setProjectTitle] = useState(project.title);
   const [coverImage, setCoverImage] = useState();
   const [imagePreview, setImagePreview] = useState();
   const [memberList, setMemberList] = useState(project.member);
   const [isConstantRecruit, setIsConstantRecruit] = useState(false);
-  const [recruitStartDate, setRecruitStartDate] = useState(project.initialDate);
-  const [recruitEndDate, setRecruitEndDate] = useState(project.dDay);
+  const [recruitStartDate, setRecruitStartDate] = useState(
+    new Date(project.startAt).toLocaleDateString()
+  );
+  const [recruitEndDate, setRecruitEndDate] = useState(
+    new Date(project.endAt).toLocaleDateString()
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchContent, setSearchContent] = useState("");
   const [currentCreator, setCurrentCreator] = useState();
-  const [simpleIntro, setSimpleIntro] = useState(project.intro);
-  const [detailedIntro, setDetailedIntro] = useState();
+  const [simpleIntro, setSimpleIntro] = useState(project.description);
+  const [detailedIntro, setDetailedIntro] = useState(project.content);
   const [hashtag, setHashtag] = useState("");
-  const [hashtagList, setHashtagList] = useState(project.tag);
-  const [myFieldTagList, setMyFieldTagList] = useState(project.fieldTag);
+  const [hashtagList, setHashtagList] = useState(project.tags);
+  const [myFieldTagList, setMyFieldTagList] = useState(project.categories);
   const handleInput = (type) => async (event) => {
     const targetValue = event.currentTarget.value;
     switch (type) {
@@ -137,6 +143,7 @@ const EditProjectPage = ({ match }) => {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           simpleIntro={simpleIntro}
+          detailedIntro={detailedIntro}
           setDetailedIntro={setDetailedIntro}
           hashtag={hashtag}
           hashtagList={hashtagList}

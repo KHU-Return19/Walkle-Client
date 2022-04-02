@@ -4,7 +4,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CreateProjectLabelText } from "./AddProjectForm";
 
-const IntroduceInput = ({ simpleIntro, setDetailedIntro, handleInput }) => {
+const IntroduceInput = ({ simple, detailed, setDetailedIntro, handleInput }) => {
   return (
     <>
       <SimpleIntroduceContainer>
@@ -12,7 +12,7 @@ const IntroduceInput = ({ simpleIntro, setDetailedIntro, handleInput }) => {
         <SimpleIntroduceInputContainer>
           <SimpleIntroduceInput
             placeholder="프로젝트의 한줄 소개 내용을 입력해 주세요"
-            value={simpleIntro}
+            value={simple}
             onChange={handleInput("simpleIntro")}
           />
         </SimpleIntroduceInputContainer>
@@ -29,7 +29,7 @@ const IntroduceInput = ({ simpleIntro, setDetailedIntro, handleInput }) => {
               resizeUnit: "100px",
             },
           }}
-          data=""
+          data={detailed}
           onChange={(event, editor) => {
             const data = editor.getData();
             console.log({ event, editor, data });

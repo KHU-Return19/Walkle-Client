@@ -68,7 +68,7 @@ const ProjectTagSelector = ({
         </HashtagInputContainer>
         <HashtagListContainer>
           {hashtagList &&
-            hashtagList.map((tag) => (
+            hashtagList.map(({tag}) => (
               <>
                 <ProjectHashtagContainer>
                   <HashtagContentContainer>

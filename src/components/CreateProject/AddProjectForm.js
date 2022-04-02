@@ -23,11 +23,13 @@ const AddProjectForm = ({
   setIsModalOpen,
   memberList,
   simpleIntro,
+  detailedIntro,
   setDetailedIntro,
   myFieldTagList,
   hashtag,
   hashtagList,
   isEdit = false,
+  onSubmit,
 }) => {
   return (
     <>
@@ -50,7 +52,8 @@ const AddProjectForm = ({
           recruitEndDate={recruitEndDate}
         />
         <IntroduceInput
-          simpleIntro={simpleIntro}
+          simple={simpleIntro}
+          detailed={detailedIntro}
           setDetailedIntro={setDetailedIntro}
           handleInput={handleInput}
         />
@@ -62,7 +65,7 @@ const AddProjectForm = ({
           handleTagClick={handleTagClick}
           onCheckEnter={onCheckEnter}
         />
-        <RegisterButton isEdit={isEdit} />
+        <RegisterButton isEdit={isEdit} onSubmit={onSubmit}/>
       </CreateProjectFormContainer>
     </>
   );

@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-const ProjectIntroduce = () => {
+const ProjectIntroduce = ({simple, detailed}) => {
   return (
     <>
       <SimpleIntroduceContainer>
         <ProjectLabelText>한줄 소개</ProjectLabelText>
         <SimpleIntroduceInputContainer>
-          프로젝트의 한줄 소개 내용을 입력해 주세요
+          {simple}
         </SimpleIntroduceInputContainer>
       </SimpleIntroduceContainer>
       <DetailedIntroduceContainer>
         <ProjectLabelText>세부 소개</ProjectLabelText>
-        프로젝트의 세부 소개 내용을 입력해 주세요
+        {detailed}
       </DetailedIntroduceContainer>
     </>
   );

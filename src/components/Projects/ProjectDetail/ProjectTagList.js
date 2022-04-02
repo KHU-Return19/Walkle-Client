@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const ProjectTagList = ({ project }) => {
+const ProjectTagList = ({ tags }) => {
   return (
     <>
       <HashtagListContainer>
-        {project.tag &&
-          project.tag.map((tag) => (
+        {tags &&
+          tags.map(({ tag }) => (
             <>
               <ProjectHashtagContainer>
                 <HashtagContentContainer>

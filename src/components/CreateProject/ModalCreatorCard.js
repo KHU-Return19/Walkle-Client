@@ -13,7 +13,7 @@ const ModalCreatorCard = ({ creator, currentCreator, setCurrentCreator }) => {
           <CardContent>
             <ImageContainer />
             <InfoContainer>
-              <Name>{creator.name}</Name>
+              <Name>{creator.nickname}</Name>
               <Job>{creator.job}</Job>
             </InfoContainer>
           </CardContent>
@@ -31,7 +31,7 @@ export const ParticipantCard = ({ creator, handleClick }) => {
           <ImageContainer />
           <InfoContainer>
             <InfoHeader>
-              <Name>{creator.name}</Name>
+              <Name>{creator.nickname}</Name>
               <DeleteIcon
                 className="Icon"
                 onClick={() => handleClick(creator)}

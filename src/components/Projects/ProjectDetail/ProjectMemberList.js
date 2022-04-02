@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import ProjectMemberCard, { ProjectDirectorCard } from "../ProjectMemberCard";
 
-const ProjectMemberList = ({ project }) => {
+const ProjectMemberList = ({ members }) => {
   return (
     <>
       <MemberWrapper>
         <ProjectLabelText>참여 멤버</ProjectLabelText>
         <MemberListContainer>
           <ProjectDirectorCard />
-          {project.member &&
-            project.member.map((creator) => (
+          {members &&
+            members.map((creator) => (
               <ProjectMemberCard creator={creator} />
             ))}
         </MemberListContainer>
