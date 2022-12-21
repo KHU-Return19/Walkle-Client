@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import styled from "styled-components";
 import { ButtonContainer } from "../Carousel/SetNameJobSlide";
 import { StyledSearchBar } from "../SearchBar";
 import { ReactComponent as SearchIcon } from "../../assets/magnifying_glass.svg";
+import { Creators } from "../../store/fakeCreators";
 import ModalCreatorCard from "./ModalCreatorCard";
-import { useRecoilState } from "recoil";
-import { CreatorsState } from "../../store/state";
 
 const AddMemberModal = ({
   searchContent,
@@ -17,29 +15,16 @@ const AddMemberModal = ({
   memberList,
   setMemberList,
 }) => {
-  const [Creators, setCreators] = useRecoilState(CreatorsState);
-  useEffect(async () => {
-    try {
-      const { data } = await axios.get(`server/api/profile/list`);
-      await setCreators(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
   let filteredCreators =
     searchContent !== "" &&
     Creators.filter(
       (creator) =>
-        creator.nickname.toLowerCase().includes(searchContent.toLowerCase()) ===
+        creator.name.toLowerCase().includes(searchContent.toLowerCase()) ===
         true
     );
   const handleApprove = (creator) => {
     let newList = memberList;
-    if (
-      memberList.find((member) => member.userId === creator.userId) ===
-      undefined
-    )
+    if (memberList.find((member) => member.id === creator.id) === undefined)
       newList = memberList.concat(creator);
     setMemberList(newList);
   };
