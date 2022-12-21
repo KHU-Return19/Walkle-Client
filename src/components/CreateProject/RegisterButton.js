@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const RegisterButton = ({ isEdit, onSubmit }) => {
+const RegisterButton = ({ isEdit }) => {
   return (
     <>
       <RegisterButtonContainer>
         {isEdit ? (
-          <Button onClick={onSubmit}>수정완료</Button>
+          <Button>수정완료</Button>
         ) : (
-          <Button onClick={onSubmit}>프로젝트 등록하기</Button>
+          <Button>프로젝트 등록하기</Button>
         )}
       </RegisterButtonContainer>
     </>

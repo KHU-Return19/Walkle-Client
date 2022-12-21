@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const ProjectTitle = ({ title, isManager, setIsManager }) => {
+const ProjectTitle = ({ project, isManager, setIsManager }) => {
   return (
     <>
       <Wrapper>
         <TitleContainer>
-          <Title>{title}</Title>
+          <Title>{project.name}</Title>
           <DevTransToManageButton
             className={!isManager && "manager"}
             onClick={() => setIsManager(!isManager)}

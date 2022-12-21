@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import ProjectCard from "../components/Projects/ProjectCard";
 import SearchBar from "../components/SearchBar";
+import { Projects } from "../store/fakeCreators";
 import ProjectFilterSelector from "../components/Projects/ProjectFilterSelector";
 import Footer from "../components/Footer";
 import { useRecoilState } from "recoil";

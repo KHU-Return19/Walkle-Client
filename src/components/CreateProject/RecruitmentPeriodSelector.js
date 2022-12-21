@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { CreateProjectLabelText, SubLabelText } from "./AddProjectForm";
 
@@ -9,9 +9,6 @@ const RecruitmentPeriodSelector = ({
   recruitStartDate,
   recruitEndDate,
 }) => {
-  console.log(recruitStartDate);
-  const startRef = useRef();
-  const endRef = useRef();
   return (
     <>
       <RecruitmentPeriodContainer>
@@ -31,10 +28,8 @@ const RecruitmentPeriodSelector = ({
             <SubLabelText>모집 시작</SubLabelText>
             <DateInputContainer>
               <DateInput
-                ref={startRef}
-                onFocus={() => (startRef.current.type = "date")}
-                onBlur={() => (startRef.current.type = "text")}
-                type="text"
+                type={isConstantRecruit ? "text" : "date"}
+                placeholder="날짜 입력"
                 disabled={isConstantRecruit ? "disabled" : ""}
                 value={recruitStartDate}
                 onChange={handleInput("startDate")}
@@ -45,10 +40,8 @@ const RecruitmentPeriodSelector = ({
             <SubLabelText>모집 종료</SubLabelText>
             <DateInputContainer>
               <DateInput
-                ref={endRef}
-                onFocus={() => (endRef.current.type = "date")}
-                onBlur={() => (endRef.current.type = "text")}
-                type="text"
+                type={isConstantRecruit ? "text" : "date"}
+                placeholder="날짜 입력"
                 disabled={isConstantRecruit ? "disabled" : ""}
                 value={recruitEndDate}
                 onChange={handleInput("endDate")}
@@ -99,7 +92,7 @@ const StartEndBox = styled.div`
   padding-right: 40px;
 `;
 
-export const DateInputContainer = styled.label`
+export const DateInputContainer = styled.div`
   display: table-cell;
   vertical-align: middle;
   margin: 0.4rem auto;
@@ -112,10 +105,6 @@ export const DateInputContainer = styled.label`
   font-size: 18px;
   color: #313338;
   background: #fafafa;
-  :focus {
-    outline: none;
-    border: 1px solid #7054ff;
-  }
 `;
 
 export const DateInput = styled.input`
@@ -127,7 +116,6 @@ export const DateInput = styled.input`
   font-weight: 400;
   color: #313338;
   background: #fafafa;
-  border-radius: 100px;
   :focus {
     outline: none;
   }

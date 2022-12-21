@@ -1,13 +1,9 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import AddMemberModal from "../components/CreateProject/AddMemberModal";
 import AddProjectForm from "../components/CreateProject/AddProjectForm";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { locationListState } from "../store/state";
 const AddProjectPage = () => {
   const [projectTitle, setProjectTitle] = useState();
   const [coverImage, setCoverImage] = useState();
@@ -24,8 +20,6 @@ const AddProjectPage = () => {
   const [hashtag, setHashtag] = useState("");
   const [hashtagList, setHashtagList] = useState([]);
   const [myFieldTagList, setMyFieldTagList] = useState([]);
-  const locationInfo = useRecoilValue(locationListState);
-  const history = useHistory();
   const handleInput = (type) => async (event) => {
     const targetValue = event.currentTarget.value;
     switch (type) {
@@ -65,10 +59,11 @@ const AddProjectPage = () => {
     const regExpTag = /^#([\w|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|]{1,15})/g;
     const targetVal = val.replace(/\s/gi, "");
     let newTagList = hashtagList;
+    console.log(hashtagList);
     if (targetVal !== "") {
       const newTag = targetVal.substring(1);
       regExpTag.test(targetVal) &&
-        (newTagList = await hashtagList.concat({ tag: newTag }));
+        (newTagList = await hashtagList.concat(newTag));
     }
     setHashtagList(newTagList);
   };
@@ -93,7 +88,7 @@ const AddProjectPage = () => {
   const handleTagClick = (type) => async (e) => {
     const targetVal = e.currentTarget.id;
     if (type === "hashtag") {
-      const newTagList = hashtagList.filter((tag) => tag.tag !== targetVal);
+      const newTagList = hashtagList.filter((tag) => tag !== targetVal);
       setHashtagList(newTagList);
     }
     if (type === "fieldtag") {
@@ -113,29 +108,6 @@ const AddProjectPage = () => {
         const newTagList = myFieldTagList.concat(targetVal);
         setMyFieldTagList(newTagList);
       }
-    }
-  };
-  const postProject = async () => {
-    const tagList = [];
-    hashtagList.forEach(element => tagList.concat(element.tag));
-    const newProject = {
-      title: projectTitle,
-      content: detailedIntro,
-      description: simpleIntro,
-      state: (isConstantRecruit ? 0 : 1),
-      lat: 127.04974020993444,
-      lon: 37.07684278859075,
-      startAt: recruitStartDate,
-      endAt: recruitEndDate,
-      tags: tagList,
-      categoryIdList: myFieldTagList,
-    };
-    try {
-      await axios.post(`server/api/projects`, newProject);
-      alert("프로젝트 등록이 완료되었습니다.");
-      history.push("/projects");
-    } catch (error) {
-      console.log(error);
     }
   };
   return (
@@ -158,13 +130,11 @@ const AddProjectPage = () => {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           simpleIntro={simpleIntro}
-          detailedIntro={detailedIntro}
           setDetailedIntro={setDetailedIntro}
           hashtag={hashtag}
           hashtagList={hashtagList}
           myFieldTagList={myFieldTagList}
           setMyFieldTagList={setMyFieldTagList}
-          onSubmit={postProject}
         />
       </AddProjectFormContainer>
       {isModalOpen && (

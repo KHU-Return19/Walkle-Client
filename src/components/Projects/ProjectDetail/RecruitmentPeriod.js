@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const RecruitmentPeriod = ({ start, end }) => {
+const RecruitmentPeriod = ({ project }) => {
   return (
     <>
       <RecruitmentPeriodContainer>
@@ -11,13 +11,11 @@ const RecruitmentPeriod = ({ start, end }) => {
         <StartEndContainer>
           <StartEndBox>
             <SubLabelText>모집 시작</SubLabelText>
-            <DateContainer>
-              {new Date(start).toLocaleDateString()}
-            </DateContainer>
+            <DateContainer>{project.initialDate}</DateContainer>
           </StartEndBox>
           <StartEndBox>
             <SubLabelText>모집 종료</SubLabelText>
-            <DateContainer>{new Date(end).toLocaleDateString()}</DateContainer>
+            <DateContainer>{project.dDay}</DateContainer>
           </StartEndBox>
         </StartEndContainer>
       </RecruitmentPeriodContainer>
