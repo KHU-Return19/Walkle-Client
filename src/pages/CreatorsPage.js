@@ -23,7 +23,7 @@ const CreatorsPage = ({ match }) => {
       ? allCreators.concat(Creators)
       : allCreators.filter(
           (creator) =>
-            creator.nickname.toLowerCase().includes(searchContent.toLowerCase()) ===
+            creator.name.toLowerCase().includes(searchContent.toLowerCase()) ===
             true
         );
   useEffect(async () => {

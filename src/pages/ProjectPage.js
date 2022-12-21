@@ -24,26 +24,25 @@ const ProjectPage = () => {
 
   const searchedProjects =
     searchContent === ""
-      ? allProjects
-      : allProjects.filter(
+      ? Projects
+      : Projects.filter(
           (project) =>
-            project.title
-              .toLowerCase()
-              .includes(searchContent.toLowerCase()) === true
+            project.name.toLowerCase().includes(searchContent.toLowerCase()) ===
+            true
         );
   const onGoingProjects = ongoingFilter
-    ? searchedProjects.filter((project) => project.status === 1)
+    ? searchedProjects.filter((project) => calcDate(project.dDay) > 0)
     : searchedProjects;
 
   const filteredProjects =
     timeFilter === "recent"
-      ? [...onGoingProjects].sort(
+      ? onGoingProjects.sort(
           (project1, project2) =>
-            calcDate(project1.createdAt) - calcDate(project2.createdAt)
+            calcDate(project1.initialDate) - calcDate(project2.initialDate)
         )
-      : [...onGoingProjects].sort(
+      : onGoingProjects.sort(
           (project1, project2) =>
-            calcDate(project1.endAt) - calcDate(project2.endAt)
+            calcDate(project1.dDay) - calcDate(project2.dDay)
         );
 
   const handleSearch = (e) => {
@@ -75,7 +74,7 @@ const ProjectPage = () => {
           setTimeFilter={setTimeFilter}
         />
         <ProjectsContainer>
-          {filteredProjects.map((project) => (
+          {allProjects.map((project) => (
             <ProjectCard project={project} />
           ))}
         </ProjectsContainer>

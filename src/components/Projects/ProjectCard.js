@@ -12,12 +12,11 @@ import { bookmarkListState } from "../../store/state";
 
 const ProjectCard = ({ project }) => {
   const [bookmarkList, setBookmarkList] = useRecoilState(bookmarkListState);
-  const projectDDay = project.endAt !== null && new Date(project.endAt);
+  const projectDDay = project.dDay && new Date(project.dDay);
   const dayDiff =
     projectDDay &&
     Math.ceil(
-      (new Date(project.startAt).getTime() - projectDDay.getTime()) /
-        (1000 * 3600 * 24)
+      (new Date().getTime() - projectDDay.getTime()) / (1000 * 3600 * 24)
     );
   const isBookmarked =
     bookmarkList.findIndex((bookmark) => bookmark.id === project.id) === -1
@@ -38,12 +37,9 @@ const ProjectCard = ({ project }) => {
     <>
       <CardContainer>
         <CardHeader>
-          {projectDDay && (
-            <DDayIndicator className={dDay === "모집완료" && "expired"}>
-              {dDay}
-            </DDayIndicator>
-          )}
-
+          <DDayIndicator className={dDay === "모집완료" && "expired"}>
+            {dDay}
+          </DDayIndicator>
           <BookmarkIcon
             className={isBookmarked ? "bookmarked Icon" : "Icon"}
             onClick={handleClick}
