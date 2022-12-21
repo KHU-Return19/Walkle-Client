@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
-import { useRecoilState } from "recoil";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CreatorCard from "../components/Creators/CreatorCard";
 import Footer from "../components/Footer";
@@ -10,9 +8,6 @@ import { Creators } from "../store/fakeCreators";
 import { CreatorsState } from "../store/state";
 
 const CreatorsPage = ({ match }) => {
-  const [allCreators, setAllCreators] = useRecoilState(CreatorsState);
-  const CreatorsRef = useRef();
-  CreatorsRef.current = allCreators;
   const [searchContent, setSearchContent] = useState("");
   const handleSearch = (e) => {
     const targetValue = e.currentTarget.value;
@@ -20,23 +15,12 @@ const CreatorsPage = ({ match }) => {
   };
   const searchedCreators =
     searchContent === ""
-      ? allCreators.concat(Creators)
-      : allCreators.filter(
+      ? Creators
+      : Creators.filter(
           (creator) =>
             creator.name.toLowerCase().includes(searchContent.toLowerCase()) ===
             true
         );
-  useEffect(async () => {
-    try {
-      const { data } = await axios.get(
-        `server/api/users/all`
-      );
-      await setAllCreators(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
   return (
     <>
       <Header />
@@ -49,10 +33,9 @@ const CreatorsPage = ({ match }) => {
           />
         </SearchBarContainer>
         <CreatorsContainer>
-          {searchedCreators.length !== undefined &&
-            searchedCreators.map((creator) => (
-              <CreatorCard creator={creator} match={match} />
-            ))}
+          {searchedCreators.map((creator) => (
+            <CreatorCard creator={creator} match={match} />
+          ))}
         </CreatorsContainer>
       </PageWrapper>
       <Footer />
