@@ -34,7 +34,7 @@ export const MapCreatorCard = (creator) => {
               </CardHeader>
               <CreatorIntroText>{creator.intro}</CreatorIntroText>
               <TagListContainer>
-                {creator.tags.map((subject, i) => (
+                {creator.tag.map((subject, i) => (
                   <CreatorTag tag={subject} key={i} />
                 ))}
               </TagListContainer>
