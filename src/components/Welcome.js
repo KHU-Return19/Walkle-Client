@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Welcome = () => {
-    return (
-        <div>
-            Welcome to our service
-        </div>
-    )
-}
+  return <div>Welcome to our service</div>;
+};
 
 export default Welcome;
