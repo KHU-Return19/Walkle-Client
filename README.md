@@ -1,4 +1,7 @@
-![image](https://github.com/KHU-Return19/Walkle-Client/assets/49388937/823213bd-5bf2-424a-a827-8d98f8665e81)
+<p align="center">
+    <img width="700" alt="스크린샷 2023-11-23 오후 9 55 07" src="https://github.com/KHU-Return19/Walkle-Client/assets/49388937/823213bd-5bf2-424a-a827-8d98f8665e81">
+</p>
+
 
 # 시작 전
 0. branch 및 버전 확인, 가장 최신 버전으로 pull.
@@ -23,7 +26,10 @@
 - Carousel, 카드형, 피드 등 **UI 전반 자체 구현 및 개발**
 - KaKao Map API 활용, 사용자의 위치 기반 서비스 제공
     - 당시 React.js를 미지원 했던 API의 CSS 관련 GUI 독자 구현
-      ![image](https://github.com/KHU-Return19/Walkle-Client/assets/49388937/a9c43b17-1c70-4cfe-a988-6fb227c1c42e){: width= "500" height="500"}
+      <p align="center">
+        <img width="600" alt="스크린샷 2023-11-23 오후 9 55 07" src="https://github.com/KHU-Return19/Walkle-Client/assets/49388937/a9c43b17-1c70-4cfe-a988-6fb227c1c42e">
+      </p>
+
     - 최종 결과
       
       ![화면 기록 2024-02-29 오전 1 47 59](https://github.com/KHU-Return19/Walkle-Client/assets/49388937/4333f797-597d-4062-88b6-daa3456d081f)
